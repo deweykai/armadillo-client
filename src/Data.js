@@ -11,7 +11,7 @@ class Data extends React.Component {
 
         this.updateData = this.updateData.bind(this);
         this.updateData();
-        this.updateTimer = setInterval(() => this.updateData(), 1000);
+        this.updateTimer = setInterval(() => this.updateData(), 500);
     }
 
     render() {
@@ -25,7 +25,7 @@ class Data extends React.Component {
             <div>
             <table>
             <tr>
-            <th>#</th>
+            <th>ID #</th>
             <th>Temperature</th>
             </tr>
             {rows}
