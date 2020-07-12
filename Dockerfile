@@ -5,6 +5,7 @@ FROM node:latest AS base
 FROM base as branch-development
 WORKDIR /code
 ENV HOST=0.0.0.0
+ENV PORT=80
 ENV CI=true
 CMD ["npm", "start"]
 
