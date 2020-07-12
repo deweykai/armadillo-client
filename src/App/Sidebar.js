@@ -38,17 +38,23 @@ const exampleOrgStructure = {
     ],
 };
 
+const ListItemLink = (props) => (
+    <ListItem button component="a" {...props} />
+);
+
 const orgListItem = (org) => {
     const trailers = org.trailers.map(trailerListItem);
     return (
         <div>
-          <ListItem button>
-            <ListItemIcon>
-              <OrgIcon />
-            </ListItemIcon>
-            <ListItemText primary={org.name}/>
-          </ListItem>
-          {trailers}
+          <List>
+            <ListItem button>
+              <ListItemIcon>
+                <OrgIcon />
+              </ListItemIcon>
+              <ListItemText primary={org.name}/>
+            </ListItem>
+            {trailers}
+          </List>
         </div>
     );
 };
