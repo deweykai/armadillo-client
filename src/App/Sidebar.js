@@ -86,19 +86,18 @@ const Sidebar = () => {
 	  const drawer = orgListItem(exampleOrgStructure);
 
     return (
-        <div>
+		    <Drawer
+          className={classes.drawer}
+			    variant="permanent"
+          classes={{
+              paper: classes.drawerPaper,
+          }}
+			    anchor="left"
+		    >
           <div className={classes.toolbar} />
-		      <Drawer
-            className={classes.drawer}
-			      variant="permanent"
-            classes={{
-                paper: classes.drawerPaper,
-            }}
-			      anchor="left"
-		      >
-            {drawer}
-		      </Drawer>
-        </div>
+          <Divider />
+          {drawer}
+		    </Drawer>
     );
 };
 
