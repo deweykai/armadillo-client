@@ -9,6 +9,7 @@ import TrailerIcon from '@material-ui/icons/LocalShippingTwoTone';
 import BikeIcon from '@material-ui/icons/DirectionsBike';
 import OrgIcon from '@material-ui/icons/Business';
 import useStyles from './styles';
+import { Link } from 'react-router-dom';
 
 const exampleOrgStructure = {
     id: 1,
@@ -39,7 +40,7 @@ const exampleOrgStructure = {
 };
 
 const ListItemLink = (props) => (
-    <ListItem button component="a" {...props} />
+    <ListItem button component={Link} {...props} />
 );
 
 const orgListItem = (org) => {
@@ -47,12 +48,12 @@ const orgListItem = (org) => {
     return (
         <div>
           <List>
-            <ListItem button>
+            <ListItemLink to={`/org/${org.id}`}>
               <ListItemIcon>
                 <OrgIcon />
               </ListItemIcon>
               <ListItemText primary={org.name}/>
-            </ListItem>
+            </ListItemLink>
             {trailers}
           </List>
         </div>
@@ -64,12 +65,12 @@ const trailerListItem = (trailer) => {
     return (
         <div>
           <Divider />
-          <ListItem button>
+          <ListItemLink to={`/trailer/${trailer.id}`}>
             <ListItemIcon>
               <TrailerIcon />
             </ListItemIcon>
             <ListItemText primary={trailer.location} />
-          </ListItem>
+          </ListItemLink>
           {bikes}
         </div>
     );
@@ -77,12 +78,12 @@ const trailerListItem = (trailer) => {
 
 const bikeListItem = (bike, idx) => {
     return (
-        <ListItem button>
+        <ListItemLink to={`/bike/${bike.id}`}>
           <ListItemIcon>
             <BikeIcon />
           </ListItemIcon>
           <ListItemText primary={`Bike ${idx + 1}`}/>
-        </ListItem>
+        </ListItemLink>
     );
 };
 
