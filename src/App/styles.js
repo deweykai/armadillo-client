@@ -9,6 +9,7 @@ const useStyles = makeStyles(theme => ({
     appBar: {
         width: `calc(100% - ${drawerWidth}px)`,
         marginLeft: drawerWidth,
+        backgroundColor: theme.palette.primary.main,
     },
     drawer: {
         width: drawerWidth,
@@ -16,6 +17,9 @@ const useStyles = makeStyles(theme => ({
     },
     drawerPaper: {
         width: drawerWidth,
+    },
+    activeLink: {
+        backgroundColor: 'blue',
     },
     toolbar: theme.mixins.toolbar,
     content: {

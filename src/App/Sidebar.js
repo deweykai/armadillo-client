@@ -9,7 +9,7 @@ import TrailerIcon from '@material-ui/icons/LocalShippingTwoTone';
 import BikeIcon from '@material-ui/icons/DirectionsBike';
 import OrgIcon from '@material-ui/icons/Business';
 import useStyles from './styles';
-import { Link, useParams, useRouteMatch } from 'react-router-dom';
+import { NavLink, useParams, useRouteMatch } from 'react-router-dom';
 
 const exampleOrgStructure = {
     id: 1,
@@ -40,7 +40,7 @@ const exampleOrgStructure = {
 };
 
 const ListItemLink = (props) => (
-    <ListItem button component={Link} {...props} />
+    <ListItem button exact component={NavLink} activeClassName='Mui-selected' {...props} />
 );
 
 const orgListItem = match => org => {
@@ -55,6 +55,7 @@ const orgListItem = match => org => {
     return (
         <div>
           <List>
+            <Divider />
             <ListItemLink to={`${match.url}/org/`}>
               <ListItemIcon>
                 <OrgIcon />
@@ -105,23 +106,29 @@ const Sidebar = () => {
         fetch(`/api/org/${org_id}`)
             .then(data => data.json())
             .then(structure => setStructure(structure));
-    }, [structure, org_id]);
+    }, [org_id]);
 
     const drawer = orgListItem(match)(structure);
 
     return (
-        <Drawer
-          className={classes.drawer}
-          variant="permanent"
-          classes={{
-              paper: classes.drawerPaper,
-          }}
-          anchor="left"
-        >
-          <div className={classes.toolbar} />
-          <Divider />
-          {drawer}
-        </Drawer>
+        <div>
+          <Drawer
+            className={classes.drawer}
+            variant="permanent"
+            classes={{
+                paper: classes.drawerPaper,
+            }}
+            anchor="left"
+            activeClassName={classes.activeLink}
+          >
+            <div className={classes.toolbar}>
+              <ListItemLink to='/'>
+                <ListItemText primary="World"/>
+              </ListItemLink>
+            </div>
+            {drawer}
+          </Drawer>
+        </div>
     );
 };
 
