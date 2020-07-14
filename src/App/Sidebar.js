@@ -102,6 +102,7 @@ const Sidebar = () => {
                 activeClassName='Mui-disabled'
                 variant='contained'
                 disableElevation
+                exact
               >
                 World
               </Button>
