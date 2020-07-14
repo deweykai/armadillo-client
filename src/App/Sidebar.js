@@ -8,6 +8,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import TrailerIcon from '@material-ui/icons/LocalShippingTwoTone';
 import BikeIcon from '@material-ui/icons/DirectionsBike';
 import OrgIcon from '@material-ui/icons/Business';
+import Button from '@material-ui/core/Button';
 import useStyles from './styles';
 import { NavLink, useParams, useRouteMatch } from 'react-router-dom';
 
@@ -105,7 +106,8 @@ const Sidebar = () => {
     useEffect(() => {
         fetch(`/api/org/${org_id}`)
             .then(data => data.json())
-            .then(structure => setStructure(structure));
+            .then(structure => setStructure(structure))
+            .catch(err => setStructure(null));
     }, [org_id]);
 
     const drawer = orgListItem(match)(structure);
@@ -114,17 +116,23 @@ const Sidebar = () => {
         <div>
           <Drawer
             className={classes.drawer}
-            variant="permanent"
+            variant='permanent'
             classes={{
                 paper: classes.drawerPaper,
             }}
             anchor="left"
-            activeClassName={classes.activeLink}
           >
             <div className={classes.toolbar}>
-              <ListItemLink to='/'>
-                <ListItemText primary="World"/>
-              </ListItemLink>
+              <Button
+                to='/'
+                color='secondary'
+                component={NavLink}
+                activeClassName='Mui-disabled'
+                variant='contained'
+                disableElevation
+              >
+                World
+              </Button>
             </div>
             {drawer}
           </Drawer>

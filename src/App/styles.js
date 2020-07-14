@@ -18,8 +18,10 @@ const useStyles = makeStyles(theme => ({
     drawerPaper: {
         width: drawerWidth,
     },
-    activeLink: {
-        backgroundColor: 'blue',
+    homeLink: {
+        '&$selected': {
+            backgroundColor: 'blue',
+        },
     },
     toolbar: theme.mixins.toolbar,
     content: {
