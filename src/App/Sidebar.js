@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect }from 'react';
 import Drawer from '@material-ui/core/Drawer';
 import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
@@ -9,7 +9,7 @@ import TrailerIcon from '@material-ui/icons/LocalShippingTwoTone';
 import BikeIcon from '@material-ui/icons/DirectionsBike';
 import OrgIcon from '@material-ui/icons/Business';
 import useStyles from './styles';
-import { Link } from 'react-router-dom';
+import { Link, useParams, useRouteMatch } from 'react-router-dom';
 
 const exampleOrgStructure = {
     id: 1,
@@ -43,12 +43,19 @@ const ListItemLink = (props) => (
     <ListItem button component={Link} {...props} />
 );
 
-const orgListItem = (org) => {
-    const trailers = org.trailers.map(trailerListItem);
+const orgListItem = match => org => {
+    if (org == null) {
+        return (
+            <List>
+              <ListItem>Org data not found</ListItem>
+            </List>
+        );
+    }
+    const trailers = org.trailers.map(trailerListItem(match));
     return (
         <div>
           <List>
-            <ListItemLink to={`/org/${org.id}`}>
+            <ListItemLink to={`/${match.url}/org/`}>
               <ListItemIcon>
                 <OrgIcon />
               </ListItemIcon>
@@ -60,12 +67,12 @@ const orgListItem = (org) => {
     );
 };
 
-const trailerListItem = (trailer) => {
-    const bikes = trailer.bikes.map(bikeListItem);
+const trailerListItem = match => trailer => {
+    const bikes = trailer.bikes.map(bikeListItem(match));
     return (
         <div>
           <Divider />
-          <ListItemLink to={`/trailer/${trailer.id}`}>
+          <ListItemLink to={`/${match.url}/trailer/${trailer.id}`}>
             <ListItemIcon>
               <TrailerIcon />
             </ListItemIcon>
@@ -76,9 +83,9 @@ const trailerListItem = (trailer) => {
     );
 };
 
-const bikeListItem = (bike, idx) => {
+const bikeListItem = match => (bike, idx) => {
     return (
-        <ListItemLink to={`/bike/${bike.id}`}>
+        <ListItemLink to={`/${match.url}/bike/${bike.id}`}>
           <ListItemIcon>
             <BikeIcon />
           </ListItemIcon>
@@ -87,24 +94,34 @@ const bikeListItem = (bike, idx) => {
     );
 };
 
-const Sidebar = () => {
-    const classes = useStyles();
 
-	  const drawer = orgListItem(exampleOrgStructure);
+const Sidebar = () => {
+    const match = useRouteMatch();
+    const classes = useStyles();
+    const [structure, setStructure] = useState(null);
+
+    const { org_id } = useParams();
+    useEffect(() => {
+        fetch(`/api/org/${org_id}`)
+            .then(data => data.json())
+            .then(structure => setStructure(structure));
+    }, [structure, org_id]);
+
+    const drawer = orgListItem(match)(structure);
 
     return (
-		    <Drawer
+        <Drawer
           className={classes.drawer}
-			    variant="permanent"
+          variant="permanent"
           classes={{
               paper: classes.drawerPaper,
           }}
-			    anchor="left"
-		    >
+          anchor="left"
+        >
           <div className={classes.toolbar} />
           <Divider />
           {drawer}
-		    </Drawer>
+        </Drawer>
     );
 };
 
