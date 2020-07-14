@@ -12,34 +12,6 @@ import Button from '@material-ui/core/Button';
 import useStyles from './styles';
 import { NavLink, useParams, useRouteMatch } from 'react-router-dom';
 
-const exampleOrgStructure = {
-    id: 1,
-    name: "Kai's Inc.",
-    trailers: [
-        {
-            location: "Kai's House",
-            id: 1,
-            bikes: [
-                {
-                    id: 1,
-                },
-                {
-                    id: 2,
-                },
-            ],
-        },
-        {
-            location: "Garage",
-            id: 2,
-            bikes: [
-                {
-                    id: 3,
-                },
-            ],
-        },
-    ],
-};
-
 const ListItemLink = (props) => (
     <ListItem button exact component={NavLink} activeClassName='Mui-selected' {...props} />
 );
