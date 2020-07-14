@@ -4,6 +4,7 @@ import ArmadilloAppBar from './AppBar';
 import Sidebar from './Sidebar';
 import useStyles from './styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import WorldView from './WorldView';
 import {
     BrowserRouter as Router,
     Switch,
@@ -25,7 +26,7 @@ const App = () => {
 	              <Sidebar />
                 <main className={classes.content}>
                   <div className={classes.toolbar}></div>
-                  This
+                  <WorldView />
                 </main>
               </Route>
               <Route path='/:org_id'>
