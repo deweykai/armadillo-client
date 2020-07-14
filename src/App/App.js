@@ -32,7 +32,7 @@ const App = () => {
 	              <Sidebar />
                 <main className={classes.content}>
                   <div className={classes.toolbar}></div>
-                  <OrgView />
+                  <ContentView />
                 </main>
               </Route>
             </Switch>
@@ -41,7 +41,7 @@ const App = () => {
     );
 };
 
-const OrgView = () => {
+const ContentView = () => {
     const { org_id } = useParams();
 
     return (
