@@ -4,17 +4,6 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { Link } from 'react-router-dom';
 
-const exampleOrgList = [
-    {
-        "id":1,
-        "name":"Kai"
-    },
-    {
-        "id":2,
-        "name":"energilab"
-    }
-];
-
 const renderOrg = org => {
     return (
         <ListItem button component={Link} to={`/${org.id}`}>
@@ -27,7 +16,10 @@ const WorldView = () => {
     let [orgList, setOrgList] = useState(null);
 
     useEffect(() => {
-        setOrgList(exampleOrgList);
+        fetch('/api/org/')
+            .then(res => res.json())
+            .then(orgList => setOrgList(orgList))
+            .catch(setOrgList(null));
     }, []);
 
     if (orgList == null) {
