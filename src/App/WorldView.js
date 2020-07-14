@@ -1,4 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import { Link } from 'react-router-dom';
 
 const exampleOrgList = [
     {
@@ -12,7 +16,11 @@ const exampleOrgList = [
 ];
 
 const renderOrg = org => {
-    return JSON.stringify(org);
+    return (
+        <ListItem button component={Link} to={`/${org.id}`}>
+          <ListItemText primary={org.name}/>
+        </ListItem>
+    );
 };
 
 const WorldView = () => {
@@ -28,7 +36,7 @@ const WorldView = () => {
 
     const orgs = orgList.map(renderOrg);
 
-    return orgs;
+    return <List>{orgs}</List>;
 };
 
 export default WorldView;
