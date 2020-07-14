@@ -8,6 +8,7 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
+    Redirect,
     useRouteMatch,
 } from 'react-router-dom';
 
@@ -46,6 +47,9 @@ const OrgView = () => {
     console.log(match);
     return (
         <Switch>
+          <Route exact path={`${match.url}/`}>
+            <Redirect to={`${match.url}/org`}/>
+          </Route>
           <Route path={`${match.url}/org`}>
             Org
           </Route>

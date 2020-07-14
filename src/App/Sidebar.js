@@ -55,7 +55,7 @@ const orgListItem = match => org => {
     return (
         <div>
           <List>
-            <ListItemLink to={`/${match.url}/org/`}>
+            <ListItemLink to={`${match.url}/org/`}>
               <ListItemIcon>
                 <OrgIcon />
               </ListItemIcon>
@@ -72,7 +72,7 @@ const trailerListItem = match => trailer => {
     return (
         <div>
           <Divider />
-          <ListItemLink to={`/${match.url}/trailer/${trailer.id}`}>
+          <ListItemLink to={`${match.url}/trailer/${trailer.id}`}>
             <ListItemIcon>
               <TrailerIcon />
             </ListItemIcon>
@@ -85,7 +85,7 @@ const trailerListItem = match => trailer => {
 
 const bikeListItem = match => (bike, idx) => {
     return (
-        <ListItemLink to={`/${match.url}/bike/${bike.id}`}>
+        <ListItemLink to={`${match.url}/bike/${bike.id}`}>
           <ListItemIcon>
             <BikeIcon />
           </ListItemIcon>
