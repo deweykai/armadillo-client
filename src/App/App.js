@@ -9,7 +9,7 @@ import {
     Switch,
     Route,
     Redirect,
-    useRouteMatch,
+    useParams,
 } from 'react-router-dom';
 
 const App = () => {
@@ -42,21 +42,20 @@ const App = () => {
 };
 
 const OrgView = () => {
-    const match = useRouteMatch();
+    const { org_id } = useParams();
 
-    console.log(match);
     return (
         <Switch>
-          <Route exact path={`${match.url}/`}>
-            <Redirect to={`${match.url}/org`}/>
+          <Route exact path={`/${org_id}`}>
+            <Redirect to={`/${org_id}/org`}/>
           </Route>
-          <Route path={`${match.url}/org`}>
+          <Route path={`/${org_id}/org`}>
             Org
           </Route>
-          <Route path={`${match.url}/trailer/:id`}>
+          <Route path={`/${org_id}/trailer/:id`}>
             Trailer
           </Route>
-          <Route path={`${match.url}/bike/:id`}>
+          <Route path={`/${org_id}/bike/:id`}>
             Bike
           </Route>
         </Switch>
