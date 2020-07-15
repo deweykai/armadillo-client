@@ -1,4 +1,2 @@
-FROM nginx as branch-production
+FROM nginx
 COPY ./build /usr/share/nginx/html
-
-FROM branch-${version} AS final
