@@ -5,6 +5,7 @@ import Sidebar from './Sidebar';
 import useStyles from './styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import WorldView from './WorldView';
+import BikeDashboard from './BikeDashboard';
 import {
     BrowserRouter as Router,
     Switch,
@@ -56,8 +57,8 @@ const ContentView = () => {
           <Route path={`/${org_id}/trailer/:id`}>
             Trailer
           </Route>
-          <Route path={`/${org_id}/bike/:id`}>
-            Bike
+          <Route path={`/${org_id}/bike/:bike_id`}>
+            <BikeDashboard />
           </Route>
         </Switch>
     );
