@@ -1,7 +1,7 @@
 import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import {
-    FlexibleWidthXYPlot as XYPlot,
+    XYPlot,
     XAxis,
     YAxis,
     Crosshair,
@@ -9,6 +9,7 @@ import {
     HorizontalGridLines,
     LineSeries,
 } from 'react-vis';
+import AutoSizer from 'react-virtualized-auto-sizer';
 
 
 const BikeDataGraph = ({ bikeData }) => {
@@ -19,14 +20,18 @@ const BikeDataGraph = ({ bikeData }) => {
 
     return (
         <Paper>
-          <XYPlot height={300} yDomain={[0, 50]} xType="time">
-            <VerticalGridLines />
-            <HorizontalGridLines />
-            <XAxis />
-            <YAxis />
+          <AutoSizer disableHeight>
+            {({ width }) => (
+                <XYPlot height={300} width={width} yDomain={[0, 50]} xType="time">
+                  <VerticalGridLines />
+                  <HorizontalGridLines />
+                  <XAxis />
+                  <YAxis />
 
-            <LineSeries data={data} />
-          </XYPlot>
+                  <LineSeries data={data} />
+                </XYPlot>
+            )}
+          </AutoSizer>
         </Paper>
     );
 };
