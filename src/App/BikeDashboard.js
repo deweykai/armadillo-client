@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import BikeDataTable from './BikeDataTable.js';
+import BikeDataGraph from './BikeDataGraph.js';
 import { useParams } from 'react-router-dom';
 
 
@@ -24,6 +25,7 @@ const BikeDashboard = () => {
 
     return (
         <div>
+          <BikeDataGraph bikeData={bikeData} />
           <BikeDataTable bikeData={bikeData} />
         </div>
     );
