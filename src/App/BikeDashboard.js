@@ -13,7 +13,7 @@ const BikeDashboard = () => {
             .then(res => res.json())
             .then(raw_data => raw_data.map(data => ({
                 ...data,
-                created_at: new Date(data.created_at.secs_since_epoch * 1000).toLocaleString(),
+                created_at: data.created_at.secs_since_epoch,
             })))
             .then(data => setBikeData(data));
     }, [bike_id]);
@@ -23,7 +23,9 @@ const BikeDashboard = () => {
     }
 
     return (
-        <BikeDataTable bikeData={bikeData}/>
+        <div>
+          <BikeDataTable bikeData={bikeData} />
+        </div>
     );
 };
 

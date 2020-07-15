@@ -8,7 +8,11 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
 const BikeDataTable = ({ bikeData }) => {
-    const tableContents = bikeData.map(createTableRow);
+    const tableContents = bikeData
+          .map(data => ({
+              ...data,
+              created_at: new Date(data.created_at * 1000).toLocaleString()}))
+          .map(createTableRow);
 
     return (
         <TableContainer component={Paper}>
