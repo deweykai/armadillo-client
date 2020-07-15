@@ -10,14 +10,22 @@ const BikeDashboard = () => {
     let [bikeData, setBikeData] = useState(null);
 
     useEffect(() => {
-        setBikeData(null);
-        fetch(`/api/data/bike/${bike_id}`)
+        const updateData = () => fetch(`/api/data/bike/${bike_id}`)
             .then(res => res.json())
             .then(raw_data => raw_data.map(data => ({
                 ...data,
                 created_at: data.created_at.secs_since_epoch * 1000,
             })))
             .then(data => setBikeData(data));
+
+        updateData();
+
+        let interval = setInterval(updateData, 1000);
+
+        return () => {
+            clearInterval(interval);
+            setBikeData(null);
+        };
     }, [bike_id]);
 
     if (bikeData == null) {
