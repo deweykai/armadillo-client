@@ -11,7 +11,7 @@ const BikeDataTable = ({ bikeData }) => {
     const tableContents = bikeData
           .map(data => ({
               ...data,
-              created_at: new Date(data.created_at * 1000).toLocaleString()}))
+              created_at: new Date(data.created_at).toLocaleString()}))
           .map(createTableRow);
 
     return (

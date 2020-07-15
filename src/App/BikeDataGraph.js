@@ -13,7 +13,7 @@ import {
 
 const BikeDataGraph = ({ bikeData }) => {
     const data = bikeData.map((bike, idx) => ({
-        x: bike.created_at * 1000,
+        x: bike.created_at,
         y: bike.current,
     }));
 

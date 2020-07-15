@@ -14,7 +14,7 @@ const BikeDashboard = () => {
             .then(res => res.json())
             .then(raw_data => raw_data.map(data => ({
                 ...data,
-                created_at: data.created_at.secs_since_epoch,
+                created_at: data.created_at.secs_since_epoch * 1000,
             })))
             .then(data => setBikeData(data));
     }, [bike_id]);
