@@ -1,5 +1,6 @@
 import React from 'react';
 import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
 import {
     XYPlot,
     XAxis,
@@ -10,19 +11,23 @@ import {
     LineSeries,
 } from 'react-vis';
 import AutoSizer from 'react-virtualized-auto-sizer';
+import useStyles from './styles';
 
 
 const BikeDataGraph = ({ bikeData }) => {
+    const classes = useStyles();
+
     const data = bikeData.map((bike, idx) => ({
         x: bike.created_at,
-        y: bike.current,
+        y: bike.current * bike.voltage,
     }));
 
     return (
-        <Paper>
+        <Paper className={classes.graphPaper}>
+          <Typography variant="h5">Power</Typography>
           <AutoSizer disableHeight>
             {({ width }) => (
-                <XYPlot height={300} width={width} yDomain={[0, 50]} xType="time">
+                <XYPlot height={250} width={width} yDomain={[0, 1600]} xType="time">
                   <VerticalGridLines />
                   <HorizontalGridLines />
                   <XAxis />

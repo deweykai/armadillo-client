@@ -23,6 +23,9 @@ const useStyles = makeStyles(theme => ({
             backgroundColor: 'blue',
         },
     },
+    graphPaper: {
+        padding: theme.spacing(2),
+    },
     toolbar: theme.mixins.toolbar,
     content: {
         flexGrow: 1,
