@@ -31,7 +31,7 @@ const BikeDataTable = ({ bikeData }) => {
 
 const createTableRow = data => (
     <TableRow key={data.created_at}>
-      <TableCell align="right">{data.created_at}</TableCell>
+      <TableCell component="th" scope="row">{data.created_at}</TableCell>
       <TableCell align="right">{data.voltage}</TableCell>
       <TableCell align="right">{data.current}</TableCell>
       <TableCell align="right">{data.rpm}</TableCell>
