@@ -8,6 +8,7 @@ const BikeDashboard = () => {
     let [bikeData, setBikeData] = useState(null);
 
     useEffect(() => {
+        setBikeData(null);
         fetch(`/api/data/bike/${bike_id}`)
             .then(res => res.json())
             .then(raw_data => raw_data.map(data => ({
