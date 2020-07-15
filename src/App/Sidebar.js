@@ -20,7 +20,7 @@ const orgListItem = match => org => {
     if (org == null) {
         return (
             <List>
-              <ListItem>Org data not found</ListItem>
+              <ListItem key="missing">No Org Data</ListItem>
             </List>
         );
     }
@@ -29,7 +29,7 @@ const orgListItem = match => org => {
         <div>
           <List>
             <Divider />
-            <ListItemLink to={`${match.url}/org/`}>
+            <ListItemLink to={`${match.url}/org/`} key={`org-${org.name}`}>
               <ListItemIcon>
                 <OrgIcon />
               </ListItemIcon>
@@ -46,7 +46,7 @@ const trailerListItem = match => trailer => {
     return (
         <div>
           <Divider />
-          <ListItemLink to={`${match.url}/trailer/${trailer.id}`}>
+          <ListItemLink to={`${match.url}/trailer/${trailer.id}`} key={`trailer-${trailer.id}`}>
             <ListItemIcon>
               <TrailerIcon />
             </ListItemIcon>
@@ -59,7 +59,7 @@ const trailerListItem = match => trailer => {
 
 const bikeListItem = match => (bike, idx) => {
     return (
-        <ListItemLink to={`${match.url}/bike/${bike.id}`}>
+        <ListItemLink to={`${match.url}/bike/${bike.id}`} key={`bike-${bike.id}`}>
           <ListItemIcon>
             <BikeIcon />
           </ListItemIcon>
