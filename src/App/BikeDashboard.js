@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import BikeDataTable from './BikeDataTable.js';
 import BikeDataGraph from './BikeDataGraph.js';
+import Grid from '@material-ui/core/Grid';
 import { useParams } from 'react-router-dom';
 
 
@@ -24,10 +25,14 @@ const BikeDashboard = () => {
     }
 
     return (
-        <div>
-          <BikeDataGraph bikeData={bikeData} />
-          <BikeDataTable bikeData={bikeData} />
-        </div>
+        <Grid container spacing={3}>
+          <Grid item xs={12}>
+            <BikeDataGraph bikeData={bikeData} />
+          </Grid>
+          <Grid item xs={12}>
+            <BikeDataTable bikeData={bikeData} />
+          </Grid>
+        </Grid>
     );
 };
 
