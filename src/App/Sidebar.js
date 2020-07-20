@@ -1,4 +1,4 @@
-import React, { useState, useEffect }from 'react';
+import React, { useState, useEffect } from 'react';
 import Drawer from '@material-ui/core/Drawer';
 import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
@@ -10,6 +10,7 @@ import BikeIcon from '@material-ui/icons/DirectionsBike';
 import OrgIcon from '@material-ui/icons/Business';
 import Button from '@material-ui/core/Button';
 import useStyles from './styles';
+import { useSelector } from 'react-redux';
 import { NavLink, useParams, useRouteMatch } from 'react-router-dom';
 
 const ListItemLink = (props) => (
@@ -75,6 +76,7 @@ const Sidebar = () => {
     const [structure, setStructure] = useState(null);
 
     const { org_id } = useParams();
+
     useEffect(() => {
         fetch(`/api/org/${org_id}`)
             .then(data => data.json())

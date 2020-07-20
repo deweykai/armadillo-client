@@ -1,47 +1,45 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import BikeDataTable from './BikeDataTable.js';
-import BikeDataGraph from './BikeDataGraph.js';
+import BikeDataGraph from '../features/bikeData/BikeDataGraph.js';
 import Grid from '@material-ui/core/Grid';
 import { useParams } from 'react-router-dom';
+import { fetchBikeData, bikeDataSelector } from '../features/bikeData/bikeDataSlice';
+import { useSelector, useDispatch } from 'react-redux';
 
 
 const BikeDashboard = () => {
-    let { bike_id } = useParams();
-    let [bikeData, setBikeData] = useState(null);
+    const { bike_id } = useParams();
+    const bikeData = useSelector(bikeDataSelector( bike_id ));
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        const updateData = () => fetch(`/api/data/bike/${bike_id}`)
-            .then(res => res.json())
-            .then(raw_data => raw_data.map(data => ({
-                ...data,
-                created_at: data.created_at.secs_since_epoch * 1000,
-            })))
-            .then(data => setBikeData(data));
+        dispatch(fetchBikeData(bike_id));
+    }, [bike_id, dispatch]);
 
-        updateData();
+    if (bikeData == null || bikeData.status === 'loading') {
+        return "waiting for data";
+    }
 
-        let interval = setInterval(updateData, 1000);
+    if (bikeData.status === 'failed') {
+        return "failed to load data";
+    }
 
-        return () => {
-            clearInterval(interval);
-            setBikeData(null);
-        };
-    }, [bike_id]);
-
-    if (bikeData == null) {
-        return "Waiting for data";
+    if (bikeData.status !== 'success') {
+        console.log(bikeData);
+        return "data not loaded";
     }
 
     return (
         <Grid container spacing={3}>
           <Grid item xs={12}>
-            <BikeDataGraph bikeData={bikeData} />
-          </Grid>
-          <Grid item xs={12}>
-            <BikeDataTable bikeData={bikeData} />
+            <BikeDataGraph bikeData={bikeData.data} />
           </Grid>
         </Grid>
     );
+    /*
+          <Grid item xs={12}>
+            <BikeDataTable bikeData={bikeData} />
+          </Grid>*/
 };
 
 export default BikeDashboard;

@@ -11,7 +11,7 @@ import {
     LineSeries,
 } from 'react-vis';
 import AutoSizer from 'react-virtualized-auto-sizer';
-import useStyles from './styles';
+import useStyles from '../../App/styles';
 
 
 const BikeDataGraph = ({ bikeData }) => {
