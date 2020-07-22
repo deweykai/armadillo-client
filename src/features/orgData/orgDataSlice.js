@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { getOrgData, getOrgList } from '../../App/api';
 
 const initialState = {
     status: 'idle',
@@ -27,40 +28,40 @@ export const orgDataSlice = createSlice ({
 
 export const { setList, setData, unsetData, loading, failed, success } = orgDataSlice.actions;
 
-export const fetchOrgData = (id) => (dispatch, getState) => {
+export const fetchOrgData = id => async (dispatch, getState) => {
     const { status } = getState();
     if (status === 'loading') return;
 
     dispatch(loading())
 
-    fetch(`/api/org/${id}`)
-        .then(res => res.json())
-        .then(data => {
-            dispatch(setData({ data }));
-            dispatch(success());
-        })
-        .catch(err => {
-            console.error(err);
-            dispatch(failed());
-        });
+    let res = await getOrgData(id);
+    if (!res.ok) {
+        console.error(res.statusText);
+        dispatch(failed());
+    }
+
+    const data = res.data;
+
+    dispatch(setData({ data }));
+    dispatch(success());
 };
 
-export const fetchOrgList = () => (dispatch, getState) => {
+export const fetchOrgList = () => async (dispatch, getState) => {
     const { status } = getState();
     if (status === 'loading') return;
 
     dispatch(loading())
 
-    fetch('/api/org')
-        .then(res => res.json())
-        .then(list => {
-            dispatch(setList({ list }));
-            dispatch(success());
-        })
-        .catch(err => {
-            console.error(err);
-            dispatch(failed());
-        });
+    let res = await getOrgList();
+    if (!res.ok) {
+        console.error(res.statusText);
+        dispatch(failed());
+    }
+
+    const data = res.data;
+
+    dispatch(setList({ list: data }));
+    dispatch(success());
 };
 
 export default orgDataSlice.reducer;
