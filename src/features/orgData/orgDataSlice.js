@@ -2,35 +2,50 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     status: 'idle',
-    orgList: [],
-    orgData: {},
+    list: [],
+    data: null,
 };
+
+const defaultOrg = () => ({
+    id: 0,
+    trailers: [],
+    bikes: [],
+});
 
 export const orgDataSlice = createSlice ({
     name: 'orgData',
     initialState,
     reducers: {
-        addOrgList(state, action) {
-            state.orgList = action.orgList;
-        },
-        addOrgData(state, action) {
-            state.orgData[action.orgId] = action.orgData;
-        },
-        loading(state, action) {
-            state.status = 'loading';
-        },
-        failed(state, action) {
-            state.status = 'failed';
-        },
-        success(state, action) {
-            state.status = 'success';
-        }
-    }
+        setList: (state, action) => { state.list = action.payload.list },
+        setData: (state, action) => { state.data = action.payload.data },
+        unsetData: state => { state.data = null },
+        loading: state => { state.status = 'loading' },
+        failed: state => { state.status = 'failed' },
+        success: state => { state.status = 'success' },
+    },
 });
 
-export const { addOrgList, addOrgData, loading, failed, success } = orgDataSlice.actions;
+export const { setList, setData, unsetData, loading, failed, success } = orgDataSlice.actions;
 
-export const fetchOrgList = () => (dispatch, getState)=> {
+export const fetchOrgData = (id) => (dispatch, getState) => {
+    const { status } = getState();
+    if (status === 'loading') return;
+
+    dispatch(loading())
+
+    fetch(`/api/org/${id}`)
+        .then(res => res.json())
+        .then(data => {
+            dispatch(setData({ data }));
+            dispatch(success());
+        })
+        .catch(err => {
+            console.error(err);
+            dispatch(failed());
+        });
+};
+
+export const fetchOrgList = () => (dispatch, getState) => {
     const { status } = getState();
     if (status === 'loading') return;
 
@@ -39,9 +54,13 @@ export const fetchOrgList = () => (dispatch, getState)=> {
     fetch('/api/org')
         .then(res => res.json())
         .then(list => {
+            dispatch(setList({ list }));
             dispatch(success());
-            dispatch(addOrgList(list));
         })
-}
+        .catch(err => {
+            console.error(err);
+            dispatch(failed());
+        });
+};
 
 export default orgDataSlice.reducer;

@@ -5,13 +5,11 @@ import Sidebar from './Sidebar';
 import useStyles from './styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import WorldView from './WorldView';
-import BikeDashboard from './BikeDashboard';
+import ContentView from './ContentView';
 import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Redirect,
-    useParams,
 } from 'react-router-dom';
 
 const App = () => {
@@ -40,27 +38,6 @@ const App = () => {
             </Switch>
 	        </div>
         </Router>
-    );
-};
-
-const ContentView = () => {
-    const { org_id } = useParams();
-
-    return (
-        <Switch>
-          <Route exact path={`/${org_id}`}>
-            <Redirect to={`/${org_id}/org`}/>
-          </Route>
-          <Route path={`/${org_id}/org`}>
-            Org
-          </Route>
-          <Route path={`/${org_id}/trailer/:id`}>
-            Trailer
-          </Route>
-          <Route path={`/${org_id}/bike/:bike_id`}>
-            <BikeDashboard />
-          </Route>
-        </Switch>
     );
 };
 

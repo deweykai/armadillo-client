@@ -73,16 +73,17 @@ const bikeListItem = match => (bike, idx) => {
 const Sidebar = () => {
     const match = useRouteMatch();
     const classes = useStyles();
-    const [structure, setStructure] = useState(null);
 
-    const { org_id } = useParams();
+    const org = useSelector(state => state.orgData);
 
-    useEffect(() => {
-        fetch(`/api/org/${org_id}`)
-            .then(data => data.json())
-            .then(structure => setStructure(structure))
-            .catch(err => setStructure(null));
-    }, [org_id]);
+    //if (org.status === 'loading') return "loading";
+    //if (org.status === 'failed') return "failed to load dashboard";
+    //if (org.status === 'idle') return "there is an issue";
+
+    const structure = org.data;
+
+
+    console.log(structure);
 
     const drawer = orgListItem(match)(structure);
 
