@@ -14,23 +14,12 @@ import {
     useParams,
 } from 'react-router-dom';
 
-const TestSocket = () => {
-  const socket = new WebSocket("ws://localhost:8000/api/bike/1/ws");
-
-  socket.onmessage = event => {
-    console.log(event.data);
-  }
-
-  return null;
-};
-
 const App = () => {
     const classes = useStyles();
 
     return (
         <Router>
 	        <div className={classes.root}>
-            <TestSocket />
             <CssBaseline />
             <ArmadilloAppBar />
             <Switch>
