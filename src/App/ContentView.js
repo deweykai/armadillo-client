@@ -41,8 +41,14 @@ const ContentView = () => {
             socket.onmessage = event => {
                 dispatch(pushData({ id: bike.id, packet: JSON.parse(event.data) }));
             }
-            console.log("create socket for bike", bike.id);
-            console.log(socket);
+            socket.onclose = () => {
+              console.log('closing socket')
+            }
+            socket.onopen = () => {
+              console.log("create socket for bike", bike.id);
+              console.log(socket);  
+            }
+            
             return socket;
         })).flat();
 
