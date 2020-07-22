@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchOrgData, unsetData } from './features/orgData/orgDataSlice';
 import { pushData, fetchBikeData } from './features/bikeData/bikeDataSlice';
 import BikeDashboard from './BikeDashboard';
+import TrailerDashboard from './TrailerDashboard';
 import { getBikeUpdateSocket } from './api';
 import {
     Switch, 
@@ -59,8 +60,8 @@ const ContentView = () => {
           <Route path={`/${org_id}/org`}>
             Org
           </Route>
-          <Route path={`/${org_id}/trailer/:id`}>
-            Trailer
+          <Route path={`/${org_id}/trailer/:trailer_id`}>
+            <TrailerDashboard />
           </Route>
           <Route path={`/${org_id}/bike/:bike_id`}>
             <BikeDashboard />
