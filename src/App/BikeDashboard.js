@@ -1,6 +1,7 @@
 import React from 'react';
 import BikeDataTable from './BikeDataTable.js';
 import BikeDataGraph from './features/bikeData/BikeDataGraph.js';
+import BikeDataIndicator from './features/bikeData/BikeDataIndicator';
 import Grid from '@material-ui/core/Grid';
 import { useParams } from 'react-router-dom';
 import { bikeDataSelector } from './features/bikeData/bikeDataSlice';
@@ -25,6 +26,9 @@ const BikeDashboard = () => {
     return (
       <div>
         <Grid container spacing={3}>
+          <Grid item xs={3}>
+            <BikeDataIndicator bike_id={bike_id}/>
+          </Grid>
           <Grid item xs={12}>
             <BikeDataGraph bike_id={bike_id} />
           </Grid>
