@@ -26,7 +26,7 @@ const BikeDashboard = () => {
       <div>
         <Grid container spacing={3}>
           <Grid item xs={12}>
-            <BikeDataGraph bikeData={bikeData.data} />
+            <BikeDataGraph bike_id={bike_id} />
           </Grid>
         </Grid>
       </div>
