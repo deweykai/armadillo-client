@@ -11,7 +11,6 @@ const TrailerDescription = ({ trailer_id }) => {
     if (orgData === null) return "No data";
 
     const trailer = orgData.trailers.find(trailer => trailer.id === Number(trailer_id) );
-    console.log(trailer);
 
     return (
         <Paper className={classes.graphPaper}>

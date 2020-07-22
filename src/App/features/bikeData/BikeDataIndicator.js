@@ -7,19 +7,34 @@ import useStyles from '../../styles';
 
 const BikeDataIndicator = ({ bike_id }) => {
     const classes = useStyles();
-    const bikeData = useSelector(bikeDataSelector(bike_id)).data;
+    const bike = useSelector(bikeDataSelector(bike_id));
+
+    let status;
+    if (bike.fetchStatus === 'fresh') {
+        status = (
+            <Typography>
+                Not connected to bike
+            </Typography>
+        );
+    } else if (bike.fetchStatus === 'success') {
+        status = (
+            <div>
+                <Typography>
+                    Current: {bike.data[0].current}
+                </Typography>
+                <Typography>
+                    Voltage: {bike.data[0].voltage}
+                </Typography>
+                <Typography>
+                    RPM: {bike.data[0].rpm}
+                </Typography>
+            </div>
+        )
+    }
 
     return (
         <Paper className={classes.graphPaper}>
-            <Typography>
-                Current: {bikeData[0].current}
-            </Typography>
-            <Typography>
-                Voltage: {bikeData[0].voltage}
-            </Typography>
-            <Typography>
-                RPM: {bikeData[0].rpm}
-            </Typography>
+            {status}
         </Paper>
     )
 }

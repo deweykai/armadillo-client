@@ -115,6 +115,12 @@ export const connectBike = id => (dispatch, getState) => {
     return socket;
 }
 
-export const bikeDataSelector = id => state => (state.bikeData[id]);
+export const bikeDataSelector = id => state => {
+    let bikeData = state.bikeData[id];
+    if (bikeData === undefined) {
+        bikeData = {...initialBikeState};
+    }
+    return bikeData;
+};
 
 export default bikeDataSlice.reducer;
