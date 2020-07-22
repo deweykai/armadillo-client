@@ -5,8 +5,6 @@ import Grid from '@material-ui/core/Grid';
 import { useParams } from 'react-router-dom';
 import { bikeDataSelector } from '../features/bikeData/bikeDataSlice';
 import { useSelector } from 'react-redux';
-import BikeDataSocket from '../features/bikeData/BikeDataSocket';
-
 
 const BikeDashboard = () => {
     const { bike_id } = useParams();
@@ -26,7 +24,6 @@ const BikeDashboard = () => {
 
     return (
       <div>
-        <BikeDataSocket bike_id={ bike_id } />
         <Grid container spacing={3}>
           <Grid item xs={12}>
             <BikeDataGraph bikeData={bikeData.data} />

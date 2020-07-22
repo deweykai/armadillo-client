@@ -32,9 +32,13 @@ export const bikeDataSlice = createSlice({
         pushData: (state, action) => {
             const { id, packet } = action.payload;
 
-            const data = getBikeState(state, id).data;
-            if (data.length() < 100) {
-                data.push(packet);
+            // put new data at front of array
+            const bike = getBikeState(state, id);
+            bike.data = [packet, ...bike.data];
+
+            // if the data is longer than 100 entries, pop old data
+            while (bike.data.length > 100) {
+                bike.data.pop();
             }
         },
         setData: (state, action) => {

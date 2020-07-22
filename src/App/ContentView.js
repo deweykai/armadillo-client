@@ -38,8 +38,10 @@ const ContentView = () => {
         const sockets = orgData.trailers.map(trailer => trailer.bikes.map(bike => {
             let socket = getBikeUpdateSocket(bike.id);
             socket.onmessage = event => {
-                dispatch(pushData({ packet: JSON.parse(event.data) }));
+                dispatch(pushData({ id: bike.id, packet: JSON.parse(event.data) }));
             }
+            console.log("create socket for bike", bike.id);
+            console.log(socket);
             return socket;
         })).flat();
 
