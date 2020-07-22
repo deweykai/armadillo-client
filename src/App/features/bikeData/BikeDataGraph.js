@@ -10,7 +10,7 @@ import {
     LineSeries,
 } from 'react-vis';
 import AutoSizer from 'react-virtualized-auto-sizer';
-import useStyles from '../../App/styles';
+import useStyles from '../../styles';
 import { bikeDataSelector } from './bikeDataSlice';
 import { useSelector } from 'react-redux';
 

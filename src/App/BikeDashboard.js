@@ -1,9 +1,9 @@
 import React from 'react';
 import BikeDataTable from './BikeDataTable.js';
-import BikeDataGraph from '../features/bikeData/BikeDataGraph.js';
+import BikeDataGraph from './features/bikeData/BikeDataGraph.js';
 import Grid from '@material-ui/core/Grid';
 import { useParams } from 'react-router-dom';
-import { bikeDataSelector } from '../features/bikeData/bikeDataSlice';
+import { bikeDataSelector } from './features/bikeData/bikeDataSlice';
 import { useSelector } from 'react-redux';
 
 const BikeDashboard = () => {

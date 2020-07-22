@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getOrgData, getOrgList } from '../../App/api';
+import { getOrgData, getOrgList } from '../../api';
 
 const initialState = {
     status: 'idle',

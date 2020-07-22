@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getBikeData } from '../../App/api';
+import { getBikeData } from '../../api';
 
 const initialBikeState = {
     status: 'disconnected',

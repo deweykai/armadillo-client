@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchOrgData, unsetData } from '../features/orgData/orgDataSlice';
-import { pushData, fetchBikeData } from '../features/bikeData/bikeDataSlice';
+import { fetchOrgData, unsetData } from './features/orgData/orgDataSlice';
+import { pushData, fetchBikeData } from './features/bikeData/bikeDataSlice';
 import BikeDashboard from './BikeDashboard';
 import { getBikeUpdateSocket } from './api';
 import {
