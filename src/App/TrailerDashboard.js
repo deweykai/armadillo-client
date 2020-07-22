@@ -26,7 +26,9 @@ const TrailerDashboard = () => {
             <Grid item xs={3}>
                 <TrailerDescription trailer_id={trailer_id} />
             </Grid>
-            {bikeGraphs}
+            <Grid container item spacing={1}>
+                {bikeGraphs}
+            </Grid>
         </Grid>
     );
 };
