@@ -22,6 +22,7 @@ const BikeDataGraph = ({ bike_id }) => {
 
     const [data, setData] = useState([]);
 
+    // only recalculate when new data is avaliable. 
     useEffect(() => {
       setData(bikeData.map((bike, idx) => ({
         x: bike.created_at.secs_since_epoch * 1000,
