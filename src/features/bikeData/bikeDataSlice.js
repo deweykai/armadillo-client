@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { getBikeData } from '../../App/api';
 
 const initialBikeState = {
     status: 'disconnected',
@@ -8,7 +9,7 @@ const initialBikeState = {
 
 const getBikeState = (state, id) => {
     if (state[id] === undefined) {
-        state[id] = initialBikeState;
+        state[id] = {...initialBikeState};
     }
 
     return state[id];
@@ -51,7 +52,7 @@ export const bikeDataSlice = createSlice({
         success: (state, action) => {
             const { id } = action.payload;
 
-            getBikeState(state, id).fetchStatus = 'loading';
+            getBikeState(state, id).fetchStatus = 'success';
 
             state[id] = {
                 ...state[id],
@@ -61,31 +62,31 @@ export const bikeDataSlice = createSlice({
         failed: (state, action) => {
             const { id } = action.payload;
 
-            getBikeState(state, id).fetchStatus = 'loading';
+            getBikeState(state, id).fetchStatus = 'failed';
         },
     }
 });
 
 export const { connect, disconnect, pushData, setData, loading, success, failed } = bikeDataSlice.actions;
 
-/*
-export const fetchBikeData = id => (dispatch, getState) => {
+
+export const fetchBikeData = id => async (dispatch, getState) => {
     const { bikeData } = getState();
-    if (bikeData[id] && bikeData[id].state === 'loading') return;
+    if (bikeData[id] && bikeData[id].fetchStatus === 'loading') return;
 
     dispatch(loading({ id }));
-    fetch(`/api/data/bike/${id}`)
-        .then(res => res.json())
-        .then(data => {
-            dispatch(addBikeData({ id, data }));
-            dispatch(success({ id }));
-        })
-        .catch(err => {
-            console.error(err);
-            dispatch(failed({ id }))
-        });
+
+    const res = await getBikeData(id);
+    if (!res.ok) {
+        console.error(res.statusText);
+        dispatch(failed({ id }));
+        return;
+    }
+    
+
+    dispatch(setData({ id, data: res.data }));
+    dispatch(success({ id }));
 }
-*/
 
 export const connectBike = id => (dispatch, getState) => {
     const { bikeData } = getState();

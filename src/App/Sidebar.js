@@ -82,9 +82,6 @@ const Sidebar = () => {
 
     const structure = org.data;
 
-
-    console.log(structure);
-
     const drawer = orgListItem(match)(structure);
 
     return (

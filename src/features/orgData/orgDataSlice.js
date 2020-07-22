@@ -38,6 +38,7 @@ export const fetchOrgData = id => async (dispatch, getState) => {
     if (!res.ok) {
         console.error(res.statusText);
         dispatch(failed());
+        return;
     }
 
     const data = res.data;
@@ -56,6 +57,7 @@ export const fetchOrgList = () => async (dispatch, getState) => {
     if (!res.ok) {
         console.error(res.statusText);
         dispatch(failed());
+        return;
     }
 
     const data = res.data;

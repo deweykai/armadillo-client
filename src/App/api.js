@@ -1,13 +1,13 @@
 const apiEndPoint = '/api';
 
-const response = (data, ok, statusText) => ({ data, ok, statusText });
+const response = (data, ok, statusText, url) => ({ data, ok, statusText, url});
 
 const convert = async res => {
     if (res.status !== 200) {
-        return response(null, false, res.statusText);
+        return response(null, false, res.statusText, res.url);
     }
 
-    return response(await res.json(), true, '');
+    return response(await res.json(), true, '', res.url);
 };
 
 export const getOrgList = async id => {
@@ -26,6 +26,6 @@ export const getBikeData = async id => {
 };
 
 export const getBikeUpdateSocket = id => {
-    const socket = new WebSocket(`ws://${window.location.host}/bike/${id}`);
+    const socket = new WebSocket(`ws://${window.location.host}/ws/bike/${id}`);
     return socket;
 };

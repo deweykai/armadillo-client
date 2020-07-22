@@ -12,16 +12,15 @@ const BikeDashboard = () => {
     const { bike_id } = useParams();
     const bikeData = useSelector(bikeDataSelector( bike_id ));
 
-    if (bikeData == null || bikeData.status === 'loading') {
+    if (bikeData == null || bikeData.fetchStatus === 'loading') {
       return "waiting for data";
     }
 
-    if (bikeData.status === 'failed') {
+    if (bikeData.fetchStatus === 'failed') {
       return "failed to load data";
     }
 
-    if (bikeData.status !== 'success') {
-      console.log(bikeData);
+    if (bikeData.fetchStatus !== 'success') {
       return "data not loaded";
     }
 
