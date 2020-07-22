@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchOrgData, unsetData } from '../features/orgData/orgDataSlice';
 import { pushData, fetchBikeData } from '../features/bikeData/bikeDataSlice';
@@ -30,7 +30,7 @@ const ContentView = () => {
         if (orgData === null) return;
 
         // fetch initial data for bikes
-        orgData.trailers.map(trailer => trailer.bikes.map(bike => {
+        orgData.trailers.map(trailer => trailer.bikes.forEach(bike => {
             dispatch(fetchBikeData(bike.id));
         }));
 
@@ -49,7 +49,7 @@ const ContentView = () => {
         return () => {
             sockets.map(socket => socket.close());
         };
-    }, [org_id, orgData]);
+    }, [org_id, orgData, dispatch]);
 
     return (
         <Switch>

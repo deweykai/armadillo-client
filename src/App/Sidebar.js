@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Drawer from '@material-ui/core/Drawer';
 import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
@@ -11,7 +11,7 @@ import OrgIcon from '@material-ui/icons/Business';
 import Button from '@material-ui/core/Button';
 import useStyles from './styles';
 import { useSelector } from 'react-redux';
-import { NavLink, useParams, useRouteMatch } from 'react-router-dom';
+import { NavLink, useRouteMatch } from 'react-router-dom';
 
 const ListItemLink = (props) => (
     <ListItem button exact component={NavLink} activeClassName='Mui-selected' {...props} />

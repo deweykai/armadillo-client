@@ -5,7 +5,6 @@ import {
     XYPlot,
     XAxis,
     YAxis,
-    Crosshair,
     VerticalGridLines,
     HorizontalGridLines,
     LineSeries,

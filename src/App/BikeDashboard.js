@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import BikeDataTable from './BikeDataTable.js';
 import BikeDataGraph from './BikeDataGraph.js';
 import Grid from '@material-ui/core/Grid';
