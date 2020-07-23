@@ -1,6 +1,6 @@
 const apiEndPoint = '/api';
 
-const response = (data, ok, statusText, url) => ({ data, ok, statusText, url});
+const response = (data, ok, statusText, url) => ({ data, ok, statusText, url });
 
 const convert = async res => {
     if (res.status !== 200) {

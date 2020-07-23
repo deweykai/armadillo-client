@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 const renderOrg = org => {
     return (
         <ListItem button component={Link} to={`/${org.id}`}>
-          <ListItemText primary={org.name}/>
+            <ListItemText primary={org.name} />
         </ListItem>
     );
 };

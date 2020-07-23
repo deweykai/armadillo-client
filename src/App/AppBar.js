@@ -5,19 +5,19 @@ import Toolbar from '@material-ui/core/ToolBar';
 import useStyles from './styles';
 
 const ArmadilloAppBar = () => {
-    const classes = useStyles();
+  const classes = useStyles();
 
-    return (
-        <div>
-          <AppBar position="fixed" className={classes.appBar}>
-            <Toolbar>
-              <Typography varient="h5" noWrap>
-                Armadillo
+  return (
+    <div>
+      <AppBar position="fixed" className={classes.appBar}>
+        <Toolbar>
+          <Typography varient="h5" noWrap>
+            Armadillo
               </Typography>
-            </Toolbar>
-          </AppBar>
-        </div>
-    );
+        </Toolbar>
+      </AppBar>
+    </div>
+  );
 };
 
 export default ArmadilloAppBar;

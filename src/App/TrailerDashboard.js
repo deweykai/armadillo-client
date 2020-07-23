@@ -11,7 +11,7 @@ const TrailerDashboard = () => {
 
     if (orgData === null) return "No data";
 
-    const trailer = orgData.trailers.find(trailer => trailer.id === Number(trailer_id) );
+    const trailer = orgData.trailers.find(trailer => trailer.id === Number(trailer_id));
 
     if (trailer === undefined) return "Invalid trailer id";
 

@@ -9,7 +9,7 @@ const initialBikeState = {
 
 const getBikeState = (state, id) => {
     if (state[id] === undefined) {
-        state[id] = {...initialBikeState};
+        state[id] = { ...initialBikeState };
     }
 
     return state[id];
@@ -86,7 +86,7 @@ export const fetchBikeData = id => async (dispatch, getState) => {
         dispatch(failed({ id }));
         return;
     }
-    
+
 
     dispatch(setData({ id, data: res.data }));
     dispatch(success({ id }));
@@ -96,7 +96,7 @@ export const connectBike = id => (dispatch, getState) => {
     const { bikeData } = getState();
 
     // make sure only one connection exists at a time
-    if ( bikeData[id] && bikeData[id].status === 'connected') return;
+    if (bikeData[id] && bikeData[id].status === 'connected') return;
 
     const socket = new WebSocket(`ws://${window.location.host}/ws/bike/${id}`);
 
@@ -118,7 +118,7 @@ export const connectBike = id => (dispatch, getState) => {
 export const bikeDataSelector = id => state => {
     let bikeData = state.bikeData[id];
     if (bikeData === undefined) {
-        bikeData = {...initialBikeState};
+        bikeData = { ...initialBikeState };
     }
     return bikeData;
 };

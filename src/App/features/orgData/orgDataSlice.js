@@ -13,7 +13,7 @@ const defaultOrg = () => ({
     bikes: [],
 });
 
-export const orgDataSlice = createSlice ({
+export const orgDataSlice = createSlice({
     name: 'orgData',
     initialState,
     reducers: {
