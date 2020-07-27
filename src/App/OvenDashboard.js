@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import TemperatureGraph from './TemperatureGraph';
+import TemperatureGraph from './components/TemperatureGraph';
 import OvenDescription from './features/orgData/OvenDescription';
 import Grid from '@material-ui/core/Grid';
 import { useParams } from 'react-router-dom';
