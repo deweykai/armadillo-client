@@ -2,7 +2,7 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import { useParams } from 'react-router-dom';
 import TrailerDescription from './features/orgData/TrailerDescription';
-import BikeDataGraph from './features/bikeData/BikeDataGraph';
+import BikePowerGraph from './features/bikeData/BikePowerGraph';
 import { useSelector } from 'react-redux';
 
 const TrailerDashboard = () => {
@@ -17,7 +17,7 @@ const TrailerDashboard = () => {
 
     const bikeGraphs = trailer.bikes.map(bike => (
         <Grid item sm={12} md={6}>
-            <BikeDataGraph bike_id={bike.id} />
+            <BikePowerGraph bike_id={bike.id} />
         </Grid>
     ));
 

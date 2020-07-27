@@ -1,12 +1,9 @@
-import React from 'react';
-import BikeDataTable from './BikeDataTable.js';
-import BikeDataGraph from './features/bikeData/BikeDataGraph.js';
+import React, { useState, useEffect } from 'react';
 import BikeDataIndicator from './features/bikeData/BikeDataIndicator';
 import BikeDescription from './features/orgData/BikeDescription';
+import BikePowerGraph from './features/bikeData/BikePowerGraph';
 import Grid from '@material-ui/core/Grid';
 import { useParams } from 'react-router-dom';
-import { bikeDataSelector } from './features/bikeData/bikeDataSlice';
-import { useSelector } from 'react-redux';
 
 const BikeDashboard = () => {
   const { bike_id } = useParams();
@@ -21,7 +18,7 @@ const BikeDashboard = () => {
           <BikeDataIndicator bike_id={bike_id} />
         </Grid>
         <Grid item xs={12}>
-          <BikeDataGraph bike_id={bike_id} />
+          <BikePowerGraph bike_id={bike_id} />
         </Grid>
       </Grid>
     </div>

@@ -17,6 +17,8 @@ const OvenDashboard = () => {
             if (res.ok) {
                 setData(res.data);
                 console.log(res.data);
+            } else {
+                setData([]);
             }
         });
   }, [oven_id]);
