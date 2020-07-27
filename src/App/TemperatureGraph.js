@@ -20,7 +20,7 @@ const TemperatureGraph = ({ data }) => {
       <Typography variant="h5">Temperature</Typography>
       <AutoSizer disableHeight>
         {({ width }) => (
-          <XYPlot height={250} width={width} yDomain={[0, 1600]} xType="time">
+          <XYPlot height={250} width={width} yDomain={[0, 100]} xType="time">
             <VerticalGridLines />
             <HorizontalGridLines />
             <XAxis />

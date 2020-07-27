@@ -25,6 +25,11 @@ export const getBikeData = async id => {
     return await convert(res);
 };
 
+export const getOvenData = async id => {
+    const res = await fetch(`${apiEndPoint}/data/oven/${id}`);
+    return await convert(res);
+};
+
 export const getBikeUpdateSocket = id => {
     const socket = new WebSocket(`ws://${window.location.host}/ws/bike/${id}`);
     return socket;
