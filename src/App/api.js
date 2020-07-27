@@ -30,6 +30,11 @@ export const getOvenData = async id => {
     return await convert(res);
 };
 
+export const getMicrogridData = async id => {
+    const res = await fetch(`${apiEndPoint}/data/microgrid/${id}`);
+    return await convert(res);
+};
+
 export const getBikeUpdateSocket = id => {
     const socket = new WebSocket(`ws://${window.location.host}/ws/bike/${id}`);
     return socket;

@@ -5,6 +5,7 @@ import { pushData, fetchBikeData } from './features/bikeData/bikeDataSlice';
 import BikeDashboard from './BikeDashboard';
 import TrailerDashboard from './TrailerDashboard';
 import OvenDashboard from './OvenDashboard';
+import MicrogridDashboard from './MicrogridDashboard';
 import { getBikeUpdateSocket } from './api';
 import {
   Switch,
@@ -75,6 +76,9 @@ const ContentView = () => {
       </Route>
       <Route path={`/${org_id}/oven/:oven_id`}>
         <OvenDashboard />
+      </Route>
+      <Route path={`/${org_id}/microgrid/:microgrid_id`}>
+        <MicrogridDashboard />
       </Route>
     </Switch>
   );
