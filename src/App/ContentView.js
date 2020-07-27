@@ -4,6 +4,7 @@ import { fetchOrgData, unsetData } from './features/orgData/orgDataSlice';
 import { pushData, fetchBikeData } from './features/bikeData/bikeDataSlice';
 import BikeDashboard from './BikeDashboard';
 import TrailerDashboard from './TrailerDashboard';
+import OvenDashboard from './OvenDashboard';
 import { getBikeUpdateSocket } from './api';
 import {
   Switch,
@@ -71,6 +72,9 @@ const ContentView = () => {
       </Route>
       <Route path={`/${org_id}/bike/:bike_id`}>
         <BikeDashboard />
+      </Route>
+      <Route path={`/${org_id}/oven/:oven_id`}>
+        <OvenDashboard />
       </Route>
     </Switch>
   );
