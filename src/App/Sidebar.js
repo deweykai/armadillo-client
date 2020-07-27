@@ -43,7 +43,10 @@ const orgListItem = match => org => {
 };
 
 const trailerListItem = match => trailer => {
-  const bikes = trailer.bikes.map(bikeListItem(match));
+  const bikes = trailer.bikes.map(nodeListItem(match, 'bike'));
+  const ovens = trailer.bikes.map(nodeListItem(match, 'oven'));
+  const microgrids = trailer.bikes.map(nodeListItem(match, 'microgrid'));
+
   return (
     <div>
       <Divider />
@@ -54,17 +57,19 @@ const trailerListItem = match => trailer => {
         <ListItemText primary={trailer.location} />
       </ListItemLink>
       {bikes}
+      {ovens}
+      {microgrids}
     </div>
   );
 };
 
-const bikeListItem = match => (bike, idx) => {
+const nodeListItem = (match, type) => (item, idx) => {
   return (
-    <ListItemLink to={`${match.url}/bike/${bike.id}`} key={`bike-${bike.id}`}>
+    <ListItemLink to={`${match.url}/${type}/${item.id}`} key={`${type}-${item.id}`}>
       <ListItemIcon>
         <BikeIcon />
       </ListItemIcon>
-      <ListItemText primary={`Bike ${idx + 1}`} />
+      <ListItemText primary={`${type} ${idx + 1}`} />
     </ListItemLink>
   );
 };
