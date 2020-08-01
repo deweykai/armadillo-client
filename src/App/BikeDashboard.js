@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import BikeDataIndicator from './features/bikeData/BikeDataIndicator';
 import BikeDescription from './features/orgData/BikeDescription';
 import BikePowerGraph from './features/bikeData/BikePowerGraph';
