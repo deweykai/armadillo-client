@@ -37,6 +37,7 @@ const ContentView = () => {
       dispatch(fetchBikeData(bike.id));
     }));
 
+    /*
     // map through all bikes
     const sockets = orgData.trailers.map(trailer => trailer.bikes.map(bike => {
       let socket = getBikeUpdateSocket(bike.id);
@@ -58,6 +59,7 @@ const ContentView = () => {
     return () => {
       sockets.map(socket => socket.close());
     };
+    */
   }, [org_id, orgData, dispatch]);
 
   return (
