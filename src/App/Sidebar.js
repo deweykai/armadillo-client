@@ -44,8 +44,8 @@ const orgListItem = match => org => {
 
 const trailerListItem = match => trailer => {
   const bikes = trailer.bikes.map(nodeListItem(match, 'bike'));
-  const ovens = trailer.bikes.map(nodeListItem(match, 'oven'));
-  const microgrids = trailer.bikes.map(nodeListItem(match, 'microgrid'));
+  const ovens = trailer.ovens.map(nodeListItem(match, 'oven'));
+  const microgrids = trailer.microgrids.map(nodeListItem(match, 'microgrid'));
 
   return (
     <div>
