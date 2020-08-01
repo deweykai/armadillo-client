@@ -15,6 +15,12 @@ import useStyles from '../styles';
 const TemperatureGraph = ({ data }) => {
   const classes = useStyles();
 
+    if (data == null) {
+        return (
+            <Typography>No Data</Typography>
+        );
+    }
+
   return (
     <Paper className={classes.graphPaper}>
       <Typography variant="h5">Temperature</Typography>
