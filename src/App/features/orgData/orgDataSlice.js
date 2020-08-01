@@ -7,12 +7,6 @@ const initialState = {
     data: null,
 };
 
-const defaultOrg = () => ({
-    id: 0,
-    trailers: [],
-    bikes: [],
-});
-
 export const orgDataSlice = createSlice({
     name: 'orgData',
     initialState,
