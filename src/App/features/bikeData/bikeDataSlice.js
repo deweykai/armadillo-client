@@ -19,16 +19,6 @@ export const bikeDataSlice = createSlice({
     name: 'bikeData',
     initialState: {},
     reducers: {
-        connect: (state, action) => {
-            const { id } = action.payload;
-
-            getBikeState(state, id).status = 'connected';
-        },
-        disconnect: (state, action) => {
-            const { id } = action.payload;
-
-            getBikeState(state, id).status = 'disconnected';
-        },
         pushData: (state, action) => {
             const { id, packet } = action.payload;
 
@@ -44,9 +34,7 @@ export const bikeDataSlice = createSlice({
         setData: (state, action) => {
             const { id, data } = action.payload;
 
-            const bikeState = getBikeState(state, id);
-            bikeState.data = data;
-
+            getBikeState(state, id).data = data;
         },
         loading: (state, action) => {
             const { id } = action.payload;
@@ -57,11 +45,6 @@ export const bikeDataSlice = createSlice({
             const { id } = action.payload;
 
             getBikeState(state, id).fetchStatus = 'success';
-
-            state[id] = {
-                ...state[id],
-                status: 'success',
-            };
         },
         failed: (state, action) => {
             const { id } = action.payload;
@@ -71,7 +54,7 @@ export const bikeDataSlice = createSlice({
     }
 });
 
-export const { connect, disconnect, pushData, setData, loading, success, failed } = bikeDataSlice.actions;
+export const { pushData, setData, loading, success, failed } = bikeDataSlice.actions;
 
 
 export const fetchBikeData = id => async (dispatch, getState) => {
@@ -90,30 +73,7 @@ export const fetchBikeData = id => async (dispatch, getState) => {
 
     dispatch(setData({ id, data: res.data }));
     dispatch(success({ id }));
-}
-
-export const connectBike = id => (dispatch, getState) => {
-    const { bikeData } = getState();
-
-    // make sure only one connection exists at a time
-    if (bikeData[id] && bikeData[id].status === 'connected') return;
-
-    const socket = new WebSocket(`ws://${window.location.host}/ws/bike/${id}`);
-
-    socket.onmessage = event => {
-        const packet = JSON.parse(event.data);
-        console.log(packet);
-        dispatch(pushData({ id, packet }));
-    };
-
-    socket.onclose = event => {
-        dispatch(disconnect({ id }));
-    };
-
-    dispatch(connect({ id }));
-
-    return socket;
-}
+};
 
 export const bikeDataSelector = id => state => {
     let bikeData = state.bikeData[id];
