@@ -11,33 +11,37 @@ import {
   Switch,
   Route,
 } from 'react-router-dom';
+import { ThemeProvider } from '@material-ui/core/styles';
+import theme from './theme';
 
 const App = () => {
-  const classes = useStyles();
+    const classes = useStyles();
 
   return (
-    <Router>
-      <div className={classes.root}>
-        <CssBaseline />
-        <ArmadilloAppBar />
-        <Switch>
-          <Route exact path='/'>
-            <Sidebar />
-            <main className={classes.content}>
-              <div className={classes.toolbar}></div>
-              <WorldView />
-            </main>
-          </Route>
-          <Route path='/:org_id'>
-            <Sidebar />
-            <main className={classes.content}>
-              <div className={classes.toolbar}></div>
-              <ContentView />
-            </main>
-          </Route>
-        </Switch>
-      </div>
-    </Router>
+    <ThemeProvider theme={theme}>
+        <Router>
+          <div className={classes.root}>
+            <CssBaseline />
+            <ArmadilloAppBar />
+            <Switch>
+              <Route exact path='/'>
+                <Sidebar />
+                <main className={classes.content}>
+                  <div className={classes.toolbar}></div>
+                  <WorldView />
+                </main>
+              </Route>
+              <Route path='/:org_id'>
+                <Sidebar />
+                <main className={classes.content}>
+                  <div className={classes.toolbar}></div>
+                  <ContentView />
+                </main>
+              </Route>
+            </Switch>
+          </div>
+        </Router>
+    </ThemeProvider>
   );
 };
 
