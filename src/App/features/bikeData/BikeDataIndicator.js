@@ -1,11 +1,11 @@
 import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import { bikeDataSelector } from './bikeDataSlice';
-import { useSelector } from 'react-redux';
+import {bikeDataSelector} from './bikeDataSlice';
+import {useSelector} from 'react-redux';
 import useStyles from '../../styles';
 
-const BikeDataIndicator = ({ bike_id }) => {
+const BikeDataIndicator = ({bike_id}) => {
     const classes = useStyles();
     const data = useSelector(bikeDataSelector(bike_id));
 
@@ -29,13 +29,13 @@ const BikeDataIndicator = ({ bike_id }) => {
                     RPM: {data[0].rpm}
                 </Typography>
             </div>
-        )
+        );
     }
 
     return (
         <Paper className={classes.graphPaper}>
             {status}
         </Paper>
-    )
-}
+    );
+};
 export default BikeDataIndicator;

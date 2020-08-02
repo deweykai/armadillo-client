@@ -1,8 +1,8 @@
 const apiEndPoint = '/api';
 
-const response = (data, ok, statusText, url) => ({ data, ok, statusText, url });
+const response = (data, ok, statusText, url) => ({data, ok, statusText, url});
 
-const convert = async res => {
+const convert = async (res) => {
     if (res.status !== 200) {
         return response(null, false, res.statusText, res.url);
     }
@@ -10,32 +10,32 @@ const convert = async res => {
     return response(await res.json(), true, '', res.url);
 };
 
-export const getOrgList = async id => {
+export const getOrgList = async (id) => {
     const res = await fetch(`${apiEndPoint}/org`);
     return await convert(res);
 };
 
-export const getOrgData = async id => {
-    const res = await fetch(`${apiEndPoint}/org/${id}`)
+export const getOrgData = async (id) => {
+    const res = await fetch(`${apiEndPoint}/org/${id}`);
     return await convert(res);
 };
 
-export const getBikeData = async id => {
+export const getBikeData = async (id) => {
     const res = await fetch(`${apiEndPoint}/data/bike/${id}`);
     return await convert(res);
 };
 
-export const getOvenData = async id => {
+export const getOvenData = async (id) => {
     const res = await fetch(`${apiEndPoint}/data/oven/${id}`);
     return await convert(res);
 };
 
-export const getMicrogridData = async id => {
+export const getMicrogridData = async (id) => {
     const res = await fetch(`${apiEndPoint}/data/microgrid/${id}`);
     return await convert(res);
 };
 
-export const getBikeUpdateSocket = id => {
+export const getBikeUpdateSocket = (id) => {
     const socket = new WebSocket(`ws://${window.location.host}/ws/bike/${id}`);
     return socket;
 };

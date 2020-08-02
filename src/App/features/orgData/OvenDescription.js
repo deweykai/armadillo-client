@@ -3,7 +3,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import useStyles from '../../styles';
 
-const OvenDescription = ({ oven_id }) => {
+const OvenDescription = ({oven_id}) => {
     const classes = useStyles();
 
     return (
@@ -12,6 +12,6 @@ const OvenDescription = ({ oven_id }) => {
                 Oven: {oven_id}
             </Typography>
         </Paper>
-    )
-}
+    );
+};
 export default OvenDescription;

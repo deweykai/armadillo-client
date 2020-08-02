@@ -1,21 +1,21 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
-import { useParams } from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 import TrailerDescription from './features/orgData/TrailerDescription';
 import BikePowerGraph from './features/bikeData/BikePowerGraph';
-import { useSelector } from 'react-redux';
+import {useSelector} from 'react-redux';
 
 const TrailerDashboard = () => {
-    const { trailer_id } = useParams();
-    const orgData = useSelector(state => state.orgData.data);
+    const {trailer_id} = useParams();
+    const orgData = useSelector((state) => state.orgData.data);
 
-    if (orgData === null) return "No data";
+    if (orgData === null) return 'No data';
 
-    const trailer = orgData.trailers.find(trailer => trailer.id === Number(trailer_id));
+    const trailer = orgData.trailers.find((trailer) => trailer.id === Number(trailer_id));
 
-    if (trailer === undefined) return "Invalid trailer id";
+    if (trailer === undefined) return 'Invalid trailer id';
 
-    const bikeGraphs = trailer.bikes.map(bike => (
+    const bikeGraphs = trailer.bikes.map((bike) => (
         <Grid item sm={12} md={6}>
             <BikePowerGraph bike_id={bike.id} />
         </Grid>

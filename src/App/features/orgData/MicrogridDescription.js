@@ -3,7 +3,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import useStyles from '../../styles';
 
-const MicrogridDescription = ({ microgrid_id }) => {
+const MicrogridDescription = ({microgrid_id}) => {
     const classes = useStyles();
 
     return (
@@ -12,6 +12,6 @@ const MicrogridDescription = ({ microgrid_id }) => {
                 Microgrid: {microgrid_id}
             </Typography>
         </Paper>
-    )
-}
+    );
+};
 export default MicrogridDescription;

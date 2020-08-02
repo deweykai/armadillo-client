@@ -1,5 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { getOrgData, getOrgList } from '../../api';
+import {createSlice} from '@reduxjs/toolkit';
+import {getOrgData, getOrgList} from '../../api';
 
 const initialState = {
     status: 'idle',
@@ -11,24 +11,36 @@ export const orgDataSlice = createSlice({
     name: 'orgData',
     initialState,
     reducers: {
-        setList: (state, action) => { state.list = action.payload.list },
-        setData: (state, action) => { state.data = action.payload.data },
-        unsetData: state => { state.data = null },
-        loading: state => { state.status = 'loading' },
-        failed: state => { state.status = 'failed' },
-        success: state => { state.status = 'success' },
+        setList: (state, action) => {
+            state.list = action.payload.list;
+        },
+        setData: (state, action) => {
+            state.data = action.payload.data;
+        },
+        unsetData: (state) => {
+            state.data = null;
+        },
+        loading: (state) => {
+            state.status = 'loading';
+        },
+        failed: (state) => {
+            state.status = 'failed';
+        },
+        success: (state) => {
+            state.status = 'success';
+        },
     },
 });
 
-export const { setList, setData, unsetData, loading, failed, success } = orgDataSlice.actions;
+export const {setList, setData, unsetData, loading, failed, success} = orgDataSlice.actions;
 
-export const fetchOrgData = id => async (dispatch, getState) => {
-    const { status } = getState();
+export const fetchOrgData = (id) => async (dispatch, getState) => {
+    const {status} = getState();
     if (status === 'loading') return;
 
-    dispatch(loading())
+    dispatch(loading());
 
-    let res = await getOrgData(id);
+    const res = await getOrgData(id);
     if (!res.ok) {
         console.error(res.statusText);
         dispatch(failed());
@@ -37,17 +49,17 @@ export const fetchOrgData = id => async (dispatch, getState) => {
 
     const data = res.data;
 
-    dispatch(setData({ data }));
+    dispatch(setData({data}));
     dispatch(success());
 };
 
 export const fetchOrgList = () => async (dispatch, getState) => {
-    const { status } = getState();
+    const {status} = getState();
     if (status === 'loading') return;
 
-    dispatch(loading())
+    dispatch(loading());
 
-    let res = await getOrgList();
+    const res = await getOrgList();
     if (!res.ok) {
         console.error(res.statusText);
         dispatch(failed());
@@ -56,7 +68,7 @@ export const fetchOrgList = () => async (dispatch, getState) => {
 
     const data = res.data;
 
-    dispatch(setList({ list: data }));
+    dispatch(setList({list: data}));
     dispatch(success());
 };
 

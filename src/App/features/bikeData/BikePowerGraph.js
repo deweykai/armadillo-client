@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import PowerGraph from '../../components/PowerGraph';
-import { bikeDataSelector } from './bikeDataSlice';
-import { useSelector } from 'react-redux';
+import {bikeDataSelector} from './bikeDataSlice';
+import {useSelector} from 'react-redux';
 
 const BikePowerGraph = ({bike_id}) => {
     // assume that the data is valid since this component should only render when the data is present.
@@ -9,7 +9,7 @@ const BikePowerGraph = ({bike_id}) => {
 
     const [data, setData] = useState([]);
 
-    // only recalculate when new data is avaliable. 
+    // only recalculate when new data is avaliable.
     useEffect(() => {
         setData(bikeData.map((bike, idx) => ({
             x: bike.created_at.secs_since_epoch * 1000, // time
@@ -19,7 +19,7 @@ const BikePowerGraph = ({bike_id}) => {
 
     return (
         <PowerGraph data={data} />
-    )
-}
+    );
+};
 
 export default BikePowerGraph;

@@ -1,11 +1,11 @@
-import { createSlice } from '@reduxjs/toolkit';
+import {createSlice} from '@reduxjs/toolkit';
 
 export const bikeDataSlice = createSlice({
     name: 'bikeData',
     initialState: {},
     reducers: {
         pushData: (state, action) => {
-            const { id, packet } = action.payload;
+            const {id, packet} = action.payload;
 
             // put new data at front of array
             let data = state[id];
@@ -19,16 +19,16 @@ export const bikeDataSlice = createSlice({
             state[id] = data;
         },
         setData: (state, action) => {
-            const { id, data } = action.payload;
+            const {id, data} = action.payload;
 
             state[id] = data;
         },
-    }
+    },
 });
 
-export const { pushData, setData } = bikeDataSlice.actions;
+export const {pushData, setData} = bikeDataSlice.actions;
 
-export const bikeDataSelector = id => state => {
+export const bikeDataSelector = (id) => (state) => {
     return state.bikeData[id] || [];
 };
 

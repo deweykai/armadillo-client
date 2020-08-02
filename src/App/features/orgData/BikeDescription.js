@@ -3,7 +3,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import useStyles from '../../styles';
 
-const BikeDescription = ({ bike_id }) => {
+const BikeDescription = ({bike_id}) => {
     const classes = useStyles();
 
     return (
@@ -12,6 +12,6 @@ const BikeDescription = ({ bike_id }) => {
                 Bike: {bike_id}
             </Typography>
         </Paper>
-    )
-}
+    );
+};
 export default BikeDescription;
