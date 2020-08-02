@@ -30,7 +30,12 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "react-app",
+    "rules": {
+      "indent": ["error", 4],
+      "quotes": ["error", "single"],
+      "semi": ["error", "always"]
+    }
   },
   "browserslist": {
     "production": [
@@ -45,8 +50,6 @@
     ]
   },
   "devDependencies": {
-    "eslint": "^7.6.0",
-    "eslint-config-google": "^0.14.0",
     "eslint-plugin-react": "^7.20.5"
   }
 }
