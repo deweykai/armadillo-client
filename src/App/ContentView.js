@@ -12,10 +12,16 @@ import {
     Redirect,
     useParams,
 } from 'react-router-dom';
-import {getBikeData, getOvenData, getMicrogridData} from './api';
+import {getSourceData} from './api';
 
-const fetchData = getData => async(id, count) => {
-    const res = await getData(id, count);
+const flatOrg = orgData => orgData.trailers.flatMap(trailer => [
+    trailer.bikes.map(bike => `bike/${bike.id}`),
+    trailer.ovens.map(oven => `oven/${oven.id}`),
+    trailer.microgrids.map(microgrid => `microgrid/${microgrid.id}`),
+]).flat();
+
+const fetchData = async(id, count) => {
+    const res = await getSourceData(id, count);
     if (!res.ok) {
         console.error(res.statusText);
         return;
@@ -23,10 +29,6 @@ const fetchData = getData => async(id, count) => {
 
     return res.data;
 };
-
-const fetchBikeData = fetchData(getBikeData);
-const fetchOvenData = fetchData(getOvenData);
-const fetchMicrogridData = fetchData(getMicrogridData);
 
 const ContentView = () => {
     const {org_id} = useParams();
@@ -46,19 +48,12 @@ const ContentView = () => {
     // can't do anything if there is no data.
         if (orgData === null) return;
 
+
         // fetch initial data for bikes
         const initialCount = 100;
-        orgData.trailers.map((trailer) => {
-            trailer.bikes.forEach((bike) => {
-                fetchBikeData(bike.id, initialCount).then((data) => dispatch(setData({id: `bike/${bike.id}`, data})));
-            });
-            trailer.ovens.forEach((oven) => {
-                fetchOvenData(oven.id, initialCount).then((data) => dispatch(setData({id: `oven/${oven.id}`, data})));
-            });
-            trailer.microgrids.forEach((microgrid) => {
-                fetchMicrogridData(microgrid.id, initialCount).then((data) => dispatch(setData({id: `microgrid/${microgrid.id}`, data})));
-            });
-        });
+        flatOrg(orgData).forEach(sourceId => 
+            fetchData(sourceId, initialCount).then(data => dispatch(setData({ id: sourceId, data })))
+        );
     }, [org_id, orgData, dispatch]);
 
     return (
