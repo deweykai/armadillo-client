@@ -13,6 +13,9 @@ import {
     useParams,
 } from 'react-router-dom';
 import {getSourceData} from './api';
+import {ajax} from 'rxjs/ajax';
+import * as rxjs from 'rxjs';
+import {mergeMap} from 'rxjs/operators';
 
 const flatOrg = orgData => orgData.trailers.flatMap(trailer => [
     trailer.bikes.map(bike => `bike/${bike.id}`),
@@ -50,10 +53,22 @@ const ContentView = () => {
 
 
         // fetch initial data for bikes
+        const sourceIdList = rxjs.from(flatOrg(orgData));
+
+        const get = count => sourceId => new rxjs.Observable(subscriber => {
+            getSourceData(sourceId, count)
+                .then(res => {
+                    subscriber.next([sourceId, res.data]);
+                    subscriber.complete();
+                });
+        });
+
         const initialCount = 100;
-        flatOrg(orgData).forEach(sourceId => 
-            fetchData(sourceId, initialCount).then(data => dispatch(setData({ id: sourceId, data })))
-        );
+        const initialSourceData = sourceIdList
+            .pipe(mergeMap(get(initialCount)));
+
+        initialSourceData.subscribe(console.log);
+        initialSourceData.subscribe(res => dispatch(setData({id: res[0], data: res[1]})));
     }, [org_id, orgData, dispatch]);
 
     return (
