@@ -30,7 +30,7 @@ export const {pushData, setData} = sourceDataSlice.actions;
 
 const sourceDataSelector = type => id => state => {
     return state.sourceData[`${type}/${id}`] || [];
-}
+};
 
 export const bikeDataSelector = sourceDataSelector('bike');
 export const ovenDataSelector = sourceDataSelector('oven');

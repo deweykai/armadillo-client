@@ -12,10 +12,28 @@ import {
     Redirect,
     useParams,
 } from 'react-router-dom';
-import {getBikeData} from './api';
+import {getBikeData, getOvenData, getMicrogridData} from './api';
 
 const fetchBikeData = async (id) => {
     const res = await getBikeData(id);
+    if (!res.ok) {
+        console.error(res.statusText);
+        return;
+    }
+
+    return res.data;
+};
+const fetchOvenData = async (id) => {
+    const res = await getOvenData(id);
+    if (!res.ok) {
+        console.error(res.statusText);
+        return;
+    }
+
+    return res.data;
+};
+const fetchMicrogridData = async (id) => {
+    const res = await getMicrogridData(id);
     if (!res.ok) {
         console.error(res.statusText);
         return;
@@ -43,9 +61,17 @@ const ContentView = () => {
         if (orgData === null) return;
 
         // fetch initial data for bikes
-        orgData.trailers.map((trailer) => trailer.bikes.forEach((bike) => {
-            fetchBikeData(bike.id).then((data) => dispatch(setData({id: `bike/${bike.id}`, data})));
-        }));
+        orgData.trailers.map((trailer) => {
+            trailer.bikes.forEach((bike) => {
+                fetchBikeData(bike.id).then((data) => dispatch(setData({id: `bike/${bike.id}`, data})));
+            });
+            trailer.ovens.forEach((oven) => {
+                fetchOvenData(oven.id).then((data) => dispatch(setData({id: `oven/${oven.id}`, data})));
+            });
+            trailer.microgrids.forEach((microgrid) => {
+                fetchMicrogridData(microgrid.id).then((data) => dispatch(setData({id: `microgrid/${microgrid.id}`, data})));
+            });
+        });
     }, [org_id, orgData, dispatch]);
 
     return (

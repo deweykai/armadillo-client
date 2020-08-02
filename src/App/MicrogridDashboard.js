@@ -3,25 +3,14 @@ import PowerGraph from './components/PowerGraph';
 import MicrogridDescription from './features/orgData/MicrogridDescription';
 import Grid from '@material-ui/core/Grid';
 import {useParams} from 'react-router-dom';
-import {getMicrogridData} from './api';
+import {useSelector} from 'react-redux';
+import {microgridDataSelector} from './features/sourceData/sourceDataSlice';
 
 const OvenDashboard = () => {
     const {microgrid_id} = useParams();
 
-    const [data, setData] = useState([]);
+    const data = useSelector(microgridDataSelector(microgrid_id));
     const [power, setPower] = useState([]);
-
-    useEffect(() => {
-        getMicrogridData(microgrid_id)
-            .then((res) => {
-                if (res.ok) {
-                    setData(res.data);
-                    console.log(res.data);
-                } else {
-                    setData([]);
-                }
-            });
-    }, [microgrid_id]);
 
     useEffect(() => {
         setPower(data.map((entry) => ({

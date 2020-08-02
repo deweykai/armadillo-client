@@ -3,25 +3,15 @@ import TemperatureGraph from './components/TemperatureGraph';
 import OvenDescription from './features/orgData/OvenDescription';
 import Grid from '@material-ui/core/Grid';
 import {useParams} from 'react-router-dom';
-import {getOvenData} from './api';
+import {useSelector} from 'react-redux';
+import {ovenDataSelector} from './features/sourceData/sourceDataSlice';
 
 const OvenDashboard = () => {
     const {oven_id} = useParams();
 
-    const [data, setData] = useState([]);
-    const [temp, setTemp] = useState([]);
+    const data = useSelector(ovenDataSelector(oven_id));
 
-    useEffect(() => {
-        getOvenData(oven_id)
-            .then((res) => {
-                if (res.ok) {
-                    setData(res.data);
-                    console.log(res.data);
-                } else {
-                    setData([]);
-                }
-            });
-    }, [oven_id]);
+    const [temp, setTemp] = useState([]);
 
     useEffect(() => {
         setTemp(data.map((entry) => ({
