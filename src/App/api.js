@@ -20,18 +20,18 @@ export const getOrgData = async (id) => {
     return await convert(res);
 };
 
-export const getBikeData = async (id) => {
-    const res = await fetch(`${apiEndPoint}/data/bike/${id}`);
+export const getBikeData = async (id, count) => {
+    const res = await fetch(`${apiEndPoint}/data/bike/${id}?count=${count}`);
     return await convert(res);
 };
 
-export const getOvenData = async (id) => {
-    const res = await fetch(`${apiEndPoint}/data/oven/${id}`);
+export const getOvenData = async (id, count) => {
+    const res = await fetch(`${apiEndPoint}/data/oven/${id}?count=${count}`);
     return await convert(res);
 };
 
-export const getMicrogridData = async (id) => {
-    const res = await fetch(`${apiEndPoint}/data/microgrid/${id}`);
+export const getMicrogridData = async (id, count) => {
+    const res = await fetch(`${apiEndPoint}/data/microgrid/${id}?count=${count}`);
     return await convert(res);
 };
 

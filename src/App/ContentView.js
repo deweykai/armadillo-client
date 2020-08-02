@@ -14,8 +14,8 @@ import {
 } from 'react-router-dom';
 import {getBikeData, getOvenData, getMicrogridData} from './api';
 
-const fetchBikeData = async (id) => {
-    const res = await getBikeData(id);
+const fetchData = getData => async(id, count) => {
+    const res = await getData(id, count);
     if (!res.ok) {
         console.error(res.statusText);
         return;
@@ -23,24 +23,10 @@ const fetchBikeData = async (id) => {
 
     return res.data;
 };
-const fetchOvenData = async (id) => {
-    const res = await getOvenData(id);
-    if (!res.ok) {
-        console.error(res.statusText);
-        return;
-    }
 
-    return res.data;
-};
-const fetchMicrogridData = async (id) => {
-    const res = await getMicrogridData(id);
-    if (!res.ok) {
-        console.error(res.statusText);
-        return;
-    }
-
-    return res.data;
-};
+const fetchBikeData = fetchData(getBikeData);
+const fetchOvenData = fetchData(getOvenData);
+const fetchMicrogridData = fetchData(getMicrogridData);
 
 const ContentView = () => {
     const {org_id} = useParams();
@@ -61,15 +47,16 @@ const ContentView = () => {
         if (orgData === null) return;
 
         // fetch initial data for bikes
+        const initialCount = 100;
         orgData.trailers.map((trailer) => {
             trailer.bikes.forEach((bike) => {
-                fetchBikeData(bike.id).then((data) => dispatch(setData({id: `bike/${bike.id}`, data})));
+                fetchBikeData(bike.id, initialCount).then((data) => dispatch(setData({id: `bike/${bike.id}`, data})));
             });
             trailer.ovens.forEach((oven) => {
-                fetchOvenData(oven.id).then((data) => dispatch(setData({id: `oven/${oven.id}`, data})));
+                fetchOvenData(oven.id, initialCount).then((data) => dispatch(setData({id: `oven/${oven.id}`, data})));
             });
             trailer.microgrids.forEach((microgrid) => {
-                fetchMicrogridData(microgrid.id).then((data) => dispatch(setData({id: `microgrid/${microgrid.id}`, data})));
+                fetchMicrogridData(microgrid.id, initialCount).then((data) => dispatch(setData({id: `microgrid/${microgrid.id}`, data})));
             });
         });
     }, [org_id, orgData, dispatch]);
