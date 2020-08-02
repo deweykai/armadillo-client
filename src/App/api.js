@@ -10,7 +10,7 @@ const convert = async (res) => {
     return response(await res.json(), true, '', res.url);
 };
 
-export const getOrgList = async (id) => {
+export const getOrgList = async () => {
     const res = await fetch(`${apiEndPoint}/org`);
     return await convert(res);
 };

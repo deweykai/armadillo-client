@@ -11,8 +11,9 @@ import {
 } from 'react-vis';
 import AutoSizer from 'react-virtualized-auto-sizer';
 import useStyles from '../styles';
+import PropTypes from 'prop-types';
 
-const TemperatureGraph = ({data}) => {
+const TemperatureGraph = ({ data }) => {
     const classes = useStyles();
 
     if (data == null) {
@@ -38,6 +39,10 @@ const TemperatureGraph = ({data}) => {
             </AutoSizer>
         </Paper>
     );
+};
+
+TemperatureGraph.propTypes = {
+    data: PropTypes.array,
 };
 
 export default TemperatureGraph;

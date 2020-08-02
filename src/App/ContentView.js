@@ -6,7 +6,6 @@ import BikeDashboard from './BikeDashboard';
 import TrailerDashboard from './TrailerDashboard';
 import OvenDashboard from './OvenDashboard';
 import MicrogridDashboard from './MicrogridDashboard';
-import {getBikeUpdateSocket} from './api';
 import {
     Switch,
     Route,

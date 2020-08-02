@@ -2,6 +2,7 @@ import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import useStyles from '../../styles';
+import PropTypes from 'prop-types';
 
 const BikeDescription = ({bike_id}) => {
     const classes = useStyles();
@@ -14,4 +15,9 @@ const BikeDescription = ({bike_id}) => {
         </Paper>
     );
 };
+
+BikeDescription.propTypes = {
+    bike_id: PropTypes.number,
+};
+
 export default BikeDescription;

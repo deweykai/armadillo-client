@@ -3,6 +3,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import {useSelector} from 'react-redux';
 import useStyles from '../../styles';
+import PropTypes from 'prop-types';
 
 const TrailerDescription = ({trailer_id}) => {
     const classes = useStyles();
@@ -25,6 +26,10 @@ const TrailerDescription = ({trailer_id}) => {
             </Typography>
         </Paper>
     );
+};
+
+TrailerDescription.propTypes = {
+    trailer_id: PropTypes.number,
 };
 
 export default TrailerDescription;

@@ -16,7 +16,7 @@ const TrailerDashboard = () => {
     if (trailer === undefined) return 'Invalid trailer id';
 
     const bikeGraphs = trailer.bikes.map((bike) => (
-        <Grid item sm={12} md={6}>
+        <Grid item sm={12} md={6} key={bike.id}>
             <BikePowerGraph bike_id={bike.id} />
         </Grid>
     ));

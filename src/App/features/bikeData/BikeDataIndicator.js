@@ -4,6 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import {bikeDataSelector} from './bikeDataSlice';
 import {useSelector} from 'react-redux';
 import useStyles from '../../styles';
+import PropTypes from 'prop-types';
 
 const BikeDataIndicator = ({bike_id}) => {
     const classes = useStyles();
@@ -37,5 +38,9 @@ const BikeDataIndicator = ({bike_id}) => {
             {status}
         </Paper>
     );
+};
+
+BikeDataIndicator.propTypes = {
+    bike_id: PropTypes.number,
 };
 export default BikeDataIndicator;

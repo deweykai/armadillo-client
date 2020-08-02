@@ -11,6 +11,7 @@ import {
 } from 'react-vis';
 import AutoSizer from 'react-virtualized-auto-sizer';
 import useStyles from '../styles';
+import PropTypes from 'prop-types';
 
 const PowerGraph = ({data}) => {
     const classes = useStyles();
@@ -32,6 +33,10 @@ const PowerGraph = ({data}) => {
             </AutoSizer>
         </Paper>
     );
+};
+
+PowerGraph.propTypes = {
+    data: PropTypes.array,
 };
 
 export default PowerGraph;
