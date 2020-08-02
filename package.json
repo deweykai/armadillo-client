@@ -21,7 +21,8 @@
     "react-vis": "^1.11.7",
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "rxjs": "^6.6.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -32,9 +33,18 @@
   "eslintConfig": {
     "extends": "react-app",
     "rules": {
-      "indent": ["error", 4],
-      "quotes": ["error", "single"],
-      "semi": ["error", "always"]
+      "indent": [
+        "error",
+        4
+      ],
+      "quotes": [
+        "error",
+        "single"
+      ],
+      "semi": [
+        "error",
+        "always"
+      ]
     }
   },
   "browserslist": {
