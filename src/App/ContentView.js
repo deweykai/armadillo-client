@@ -48,29 +48,6 @@ const ContentView = () => {
         fetchBikeData(bike.id).then(data => dispatch(setData({ id: bike.id, data })));
     }));
 
-    /*
-    // map through all bikes
-    const sockets = orgData.trailers.map(trailer => trailer.bikes.map(bike => {
-      let socket = getBikeUpdateSocket(bike.id);
-      socket.onmessage = event => {
-        dispatch(pushData({ id: bike.id, packet: JSON.parse(event.data) }));
-      }
-      socket.onclose = () => {
-        console.log('closing socket')
-      }
-      socket.onopen = () => {
-        console.log("create socket for bike", bike.id);
-        console.log(socket);
-      }
-
-      return socket;
-    })).flat();
-
-    // close sockets afterwards
-    return () => {
-      sockets.map(socket => socket.close());
-    };
-    */
   }, [org_id, orgData, dispatch]);
 
   return (
