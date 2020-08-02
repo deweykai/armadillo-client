@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchOrgData, unsetData } from './features/orgData/orgDataSlice';
-import { pushData, fetchBikeData } from './features/bikeData/bikeDataSlice';
+import { pushData, setData } from './features/bikeData/bikeDataSlice';
 import BikeDashboard from './BikeDashboard';
 import TrailerDashboard from './TrailerDashboard';
 import OvenDashboard from './OvenDashboard';
@@ -13,6 +13,17 @@ import {
   Redirect,
   useParams,
 } from 'react-router-dom';
+import { getBikeData } from './api';
+
+const fetchBikeData = async id => {
+    const res = await getBikeData(id);
+    if (!res.ok) {
+        console.error(res.statusText);
+        return;
+    }
+
+    return res.data;
+};
 
 const ContentView = () => {
   const { org_id } = useParams();
@@ -34,7 +45,7 @@ const ContentView = () => {
 
     // fetch initial data for bikes
     orgData.trailers.map(trailer => trailer.bikes.forEach(bike => {
-      dispatch(fetchBikeData(bike.id));
+        fetchBikeData(bike.id).then(data => dispatch(setData({ id: bike.id, data })));
     }));
 
     /*

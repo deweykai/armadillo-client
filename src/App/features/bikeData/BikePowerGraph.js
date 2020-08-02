@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 
 const BikePowerGraph = ({bike_id}) => {
     // assume that the data is valid since this component should only render when the data is present.
-    const bikeData = useSelector(bikeDataSelector(bike_id)).data;
+    const bikeData = useSelector(bikeDataSelector(bike_id));
 
     const [data, setData] = useState([]);
 

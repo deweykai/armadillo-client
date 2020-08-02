@@ -7,26 +7,26 @@ import useStyles from '../../styles';
 
 const BikeDataIndicator = ({ bike_id }) => {
     const classes = useStyles();
-    const bike = useSelector(bikeDataSelector(bike_id));
+    const data = useSelector(bikeDataSelector(bike_id));
 
     let status;
-    if (bike.fetchStatus === 'fresh') {
+    if (data.length === 0) {
         status = (
             <Typography>
                 Not connected to bike
             </Typography>
         );
-    } else if (bike.fetchStatus === 'success') {
+    } else {
         status = (
             <div>
                 <Typography>
-                    Current: {bike.data[0].current}
+                    Current: {data[0].current}
                 </Typography>
                 <Typography>
-                    Voltage: {bike.data[0].voltage}
+                    Voltage: {data[0].voltage}
                 </Typography>
                 <Typography>
-                    RPM: {bike.data[0].rpm}
+                    RPM: {data[0].rpm}
                 </Typography>
             </div>
         )
