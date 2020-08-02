@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import PowerGraph from '../../components/PowerGraph';
-import {bikeDataSelector} from './bikeDataSlice';
+import {bikeDataSelector} from '../sourceData/sourceDataSlice';
 import {useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 

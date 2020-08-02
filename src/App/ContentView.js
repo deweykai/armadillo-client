@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {fetchOrgData, unsetData} from './features/orgData/orgDataSlice';
-import {pushData, setData} from './features/bikeData/bikeDataSlice';
+import {pushData, setData} from './features/sourceData/sourceDataSlice';
 import BikeDashboard from './BikeDashboard';
 import TrailerDashboard from './TrailerDashboard';
 import OvenDashboard from './OvenDashboard';
@@ -44,7 +44,7 @@ const ContentView = () => {
 
         // fetch initial data for bikes
         orgData.trailers.map((trailer) => trailer.bikes.forEach((bike) => {
-            fetchBikeData(bike.id).then((data) => dispatch(setData({id: bike.id, data})));
+            fetchBikeData(bike.id).then((data) => dispatch(setData({id: `bike/${bike.id}`, data})));
         }));
     }, [org_id, orgData, dispatch]);
 

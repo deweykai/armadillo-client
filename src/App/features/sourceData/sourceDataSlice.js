@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 
-export const bikeDataSlice = createSlice({
-    name: 'bikeData',
+export const sourceDataSlice = createSlice({
+    name: 'sourceData',
     initialState: {},
     reducers: {
         pushData: (state, action) => {
@@ -26,10 +26,14 @@ export const bikeDataSlice = createSlice({
     },
 });
 
-export const {pushData, setData} = bikeDataSlice.actions;
+export const {pushData, setData} = sourceDataSlice.actions;
 
-export const bikeDataSelector = (id) => (state) => {
-    return state.bikeData[id] || [];
-};
+const sourceDataSelector = type => id => state => {
+    return state.sourceData[`${type}/${id}`] || [];
+}
 
-export default bikeDataSlice.reducer;
+export const bikeDataSelector = sourceDataSelector('bike');
+export const ovenDataSelector = sourceDataSelector('oven');
+export const microgridDataSelector = sourceDataSelector('microgrid');
+
+export default sourceDataSlice.reducer;
