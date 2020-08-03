@@ -13,7 +13,6 @@ import {
     useParams,
 } from 'react-router-dom';
 import {getSourceData} from './api';
-import {ajax} from 'rxjs/ajax';
 import * as rxjs from 'rxjs';
 import {mergeMap} from 'rxjs/operators';
 
@@ -23,15 +22,17 @@ const flatOrg = orgData => orgData.trailers.flatMap(trailer => [
     trailer.microgrids.map(microgrid => `microgrid/${microgrid.id}`),
 ]).flat();
 
-const fetchData = async(id, count) => {
-    const res = await getSourceData(id, count);
-    if (!res.ok) {
-        console.error(res.statusText);
-        return;
-    }
-
-    return res.data;
-};
+const fetchData = count => sourceId => new rxjs.Observable(subscriber => {
+    getSourceData(sourceId, count)
+        .then(res => {
+            if (res.ok) {
+                subscriber.next([sourceId, res.data]);
+            } else {
+                console.error(res.statusText);
+            }
+            subscriber.complete();
+        });
+});
 
 const ContentView = () => {
     const {org_id} = useParams();
@@ -55,17 +56,9 @@ const ContentView = () => {
         // fetch initial data for bikes
         const sourceIdList = rxjs.from(flatOrg(orgData));
 
-        const get = count => sourceId => new rxjs.Observable(subscriber => {
-            getSourceData(sourceId, count)
-                .then(res => {
-                    subscriber.next([sourceId, res.data]);
-                    subscriber.complete();
-                });
-        });
-
         const initialCount = 100;
         const initialSourceData = sourceIdList
-            .pipe(mergeMap(get(initialCount)));
+            .pipe(mergeMap(fetchData(initialCount)));
 
         initialSourceData.subscribe(console.log);
         initialSourceData.subscribe(res => dispatch(setData({id: res[0], data: res[1]})));
