@@ -10,6 +10,7 @@ import {
     AreaSeries,
     LineSeries,
     Hint,
+    Highlight,
 } from 'react-vis';
 import AutoSizer from 'react-virtualized-auto-sizer';
 import useStyles from '../styles';
@@ -53,6 +54,10 @@ const PowerGraph = ({data}) => {
                             curve={'curveMonotoneX'}
                             color={theme.palette.secondary.main}
                             onNearestX={onNearestX}
+                        />
+                        <Highlight
+                            drag
+                            enableY={false}
                         />
                         {value ? <Hint value={value} /> : null}
                     </XYPlot>
