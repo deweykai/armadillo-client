@@ -27,10 +27,12 @@ const PowerGraph = ({data}) => {
                     <XYPlot height={250} width={width} yDomain={[0, 1500]} xType="time">
                         <XAxis />
                         <YAxis />
-                        <AreaSeries data={data} curve={'curveMonotoneX'} color={theme.palette.secondary.light} />
-                        <LineSeries data={data} curve={'curveMonotoneX'} color={theme.palette.secondary.main} />
                         <VerticalGridLines />
                         <HorizontalGridLines />
+
+                        <AreaSeries data={data} curve={'curveMonotoneX'} opacity={0.6} color={theme.palette.secondary.light} />
+                        <LineSeries data={data} curve={'curveMonotoneX'} color={theme.palette.secondary.main} />
+                        <Hint
                     </XYPlot>
                 )}
             </AutoSizer>
