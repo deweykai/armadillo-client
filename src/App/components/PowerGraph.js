@@ -7,14 +7,17 @@ import {
     YAxis,
     VerticalGridLines,
     HorizontalGridLines,
+    AreaSeries,
     LineSeries,
 } from 'react-vis';
 import AutoSizer from 'react-virtualized-auto-sizer';
 import useStyles from '../styles';
 import PropTypes from 'prop-types';
+import { useTheme } from '@material-ui/core/styles';
 
 const PowerGraph = ({data}) => {
     const classes = useStyles();
+    const theme = useTheme();
 
     return (
         <Paper className={classes.graphPaper}>
@@ -22,12 +25,12 @@ const PowerGraph = ({data}) => {
             <AutoSizer disableHeight>
                 {({width}) => (
                     <XYPlot height={250} width={width} yDomain={[0, 1500]} xType="time">
-                        <VerticalGridLines />
-                        <HorizontalGridLines />
                         <XAxis />
                         <YAxis />
-
-                        <LineSeries data={data} />
+                        <AreaSeries data={data} color={theme.palette.secondary.light} />
+                        <LineSeries data={data} color={theme.palette.secondary.main} />
+                        <VerticalGridLines />
+                        <HorizontalGridLines />
                     </XYPlot>
                 )}
             </AutoSizer>
