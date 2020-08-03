@@ -6,7 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import {useParams} from 'react-router-dom';
 
 const BikeDashboard = () => {
-    const {bike_id} = useParams();
+    const bike_id = Number(useParams().bike_id);
 
     return (
         <div>
