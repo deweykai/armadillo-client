@@ -28,8 +28,13 @@ export const sourceDataSlice = createSlice({
 
 export const {pushData, setData} = sourceDataSlice.actions;
 
+// this has to return the same empty array when fails because
+// [] != []
+// Returning a new [] instance causes
+const emptyArray = [];
+
 const sourceDataSelector = type => id => state => {
-    return state.sourceData[`${type}/${id}`] || [];
+    return state.sourceData[`${type}/${id}`] || emptyArray; 
 };
 
 export const bikeDataSelector = sourceDataSelector('bike');
