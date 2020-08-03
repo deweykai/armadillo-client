@@ -27,8 +27,8 @@ const PowerGraph = ({data}) => {
                     <XYPlot height={250} width={width} yDomain={[0, 1500]} xType="time">
                         <XAxis />
                         <YAxis />
-                        <AreaSeries data={data} color={theme.palette.secondary.light} />
-                        <LineSeries data={data} color={theme.palette.secondary.main} />
+                        <AreaSeries data={data} curve={'curveMonotoneX'} color={theme.palette.secondary.light} />
+                        <LineSeries data={data} curve={'curveMonotoneX'} color={theme.palette.secondary.main} />
                         <VerticalGridLines />
                         <HorizontalGridLines />
                     </XYPlot>
