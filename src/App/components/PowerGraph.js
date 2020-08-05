@@ -18,7 +18,7 @@ import PropTypes from 'prop-types';
 import { useTheme } from '@material-ui/core/styles';
 
 
-const PowerGraph = ({data}) => {
+const PowerGraph = ({data, title}) => {
     const classes = useStyles();
     const theme = useTheme();
 
@@ -34,7 +34,7 @@ const PowerGraph = ({data}) => {
 
     return (
         <Paper className={classes.graphPaper}>
-            <Typography variant="h5">Power</Typography>
+            <Typography variant="h5">{title}</Typography>
             <AutoSizer disableHeight>
                 {({width}) => (
                     <XYPlot onMouseLeave={onMouseLeave} height={250} width={width} xType="time">

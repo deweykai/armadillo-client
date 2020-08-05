@@ -17,7 +17,7 @@ const MicrogridDashboard = () => {
                     <MicrogridDescription microgrid_id={microgrid_id} />
                 </Grid>
                 <Grid item xs={12}>
-                    <PowerGraph data={power} />
+                    <PowerGraph data={power} title={"Solar Data"} />
                 </Grid>
             </Grid>
         </div>

@@ -14,7 +14,7 @@ const OvenData = ({ trailerId }) => {
     const ovenId = trailer.ovens[0].id;
     const tempData = useOvenTemperatureGraphData(ovenId);
 
-    return (<TemperatureGraph data={tempData} />);
+    return (<TemperatureGraph data={tempData} title={"Oven Temperature"} />);
 };
 
 const SolarData = ({ trailerId }) => {
@@ -23,7 +23,7 @@ const SolarData = ({ trailerId }) => {
     const powerData = useSolarPowerGraphData(solarId);
 
     return (
-        <PowerGraph data={powerData} />
+        <PowerGraph data={powerData} title={"Solar Power"} />
     );
 };
 
@@ -34,7 +34,7 @@ const AggregateBikeData = ({ trailerId }) => {
     const bikeGraphData = useBikeListGraphData(bikeIdList);
 
     return (
-        <PowerGraph data={bikeGraphData} />
+        <PowerGraph data={bikeGraphData} title={"Bike Data"} />
     );
 }
 

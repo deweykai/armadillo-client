@@ -17,7 +17,7 @@ const OvenDashboard = () => {
                     <OvenDescription oven_id={oven_id} />
                 </Grid>
                 <Grid item xs={12}>
-                    <TemperatureGraph data={temp} />
+                    <TemperatureGraph data={temp} title={"Oven Temperature"} />
                 </Grid>
             </Grid>
         </div>

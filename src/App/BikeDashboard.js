@@ -21,7 +21,7 @@ const BikeDashboard = () => {
                     <BikeDataIndicator bike_id={bike_id} />
                 </Grid>
                 <Grid item xs={12}>
-                    <PowerGraph data={bikeGraphData} />
+                    <PowerGraph data={bikeGraphData} title={"Bike Power"}/>
                 </Grid>
             </Grid>
         </div>
