@@ -1,12 +1,15 @@
 import React from 'react';
 import BikeDataIndicator from './features/bikeData/BikeDataIndicator';
 import BikeDescription from './features/orgData/BikeDescription';
-import BikePowerGraph from './features/bikeData/BikePowerGraph';
+import { useBikeGraphData } from './features/bikeData/bikeGraphData';
+import PowerGraph from './components/PowerGraph';
 import Grid from '@material-ui/core/Grid';
 import {useParams} from 'react-router-dom';
 
 const BikeDashboard = () => {
     const bike_id = Number(useParams().bike_id);
+
+    const bikeGraphData = useBikeGraphData(bike_id);
 
     return (
         <div>
@@ -18,7 +21,7 @@ const BikeDashboard = () => {
                     <BikeDataIndicator bike_id={bike_id} />
                 </Grid>
                 <Grid item xs={12}>
-                    <BikePowerGraph bike_id={bike_id} />
+                    <PowerGraph data={bikeGraphData} />
                 </Grid>
             </Grid>
         </div>

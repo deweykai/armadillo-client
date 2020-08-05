@@ -41,4 +41,17 @@ export const bikeDataSelector = sourceDataSelector('bike');
 export const ovenDataSelector = sourceDataSelector('oven');
 export const microgridDataSelector = sourceDataSelector('microgrid');
 
+const sourceDataListSelector = type => idList => state => {
+    let dataList = [];
+    for (let i = 0; i < idList.length; i++) {
+        dataList.push(state.sourceData[`${type}/${idList[i]}`] || emptyArray);
+    }
+
+    return dataList;
+};
+
+export const bikeDataListSelector = sourceDataListSelector('bike');
+export const ovenDataListSelector = sourceDataListSelector('oven');
+export const microgridDataListSelector = sourceDataListSelector('microgrid');
+
 export default sourceDataSlice.reducer;

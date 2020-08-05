@@ -37,7 +37,7 @@ const PowerGraph = ({data}) => {
             <Typography variant="h5">Power</Typography>
             <AutoSizer disableHeight>
                 {({width}) => (
-                    <XYPlot onMouseLeave={onMouseLeave} height={250} width={width} yDomain={[0, 1500]} xType="time">
+                    <XYPlot onMouseLeave={onMouseLeave} height={250} width={width} xType="time">
                         <XAxis />
                         <YAxis />
                         <VerticalGridLines />
