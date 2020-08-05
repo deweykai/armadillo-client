@@ -16,8 +16,6 @@ const sumArrays = (data) => {
         }
     }
 
-    console.log(longestLength, longestIndex);
-
     let sumArray = [];
     for (let i = 0; i < longestLength; i++) {
         let ySum = 0;

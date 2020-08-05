@@ -3,21 +3,12 @@ import PowerGraph from './components/PowerGraph';
 import MicrogridDescription from './features/orgData/MicrogridDescription';
 import Grid from '@material-ui/core/Grid';
 import {useParams} from 'react-router-dom';
-import {useSelector} from 'react-redux';
-import {microgridDataSelector} from './features/sourceData/sourceDataSlice';
+import {useSolarPowerGraphData} from './features/solarData/solarGraphData';
 
-const OvenDashboard = () => {
+const MicrogridDashboard = () => {
     const {microgrid_id} = useParams();
 
-    const data = useSelector(microgridDataSelector(microgrid_id));
-    const [power, setPower] = useState([]);
-
-    useEffect(() => {
-        setPower(data.map((entry) => ({
-            x: entry.created_at.secs_since_epoch * 1000,
-            y: entry.power,
-        })));
-    }, [data]);
+    const power = useSolarPowerGraphData(microgrid_id);
 
     return (
         <div>
@@ -33,4 +24,4 @@ const OvenDashboard = () => {
     );
 };
 
-export default OvenDashboard;
+export default MicrogridDashboard;

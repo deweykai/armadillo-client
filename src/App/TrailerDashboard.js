@@ -4,18 +4,37 @@ import {useParams} from 'react-router-dom';
 import TrailerDescription from './features/orgData/TrailerDescription';
 import { useTrailer } from './features/trailer/trailer';
 import { useBikeListGraphData } from './features/bikeData/bikeGraphData';
+import { useOvenTemperatureGraphData} from './features/ovenData/ovenGraphData';
+import { useSolarPowerGraphData} from './features/solarData/solarGraphData';
 import PowerGraph from './components/PowerGraph';
+import TemperatureGraph from './components/TemperatureGraph';
+
+const OvenData = ({ trailerId }) => {
+    const trailer = useTrailer(trailerId);
+    const ovenId = trailer.ovens[0].id;
+    const tempData = useOvenTemperatureGraphData(ovenId);
+
+    return (<TemperatureGraph data={tempData} />);
+};
+
+const SolarData = ({ trailerId }) => {
+    const trailer = useTrailer(trailerId);
+    const solarId = trailer.microgrids[0].id;
+    const powerData = useSolarPowerGraphData(solarId);
+
+    return (
+        <PowerGraph data={powerData} />
+    );
+};
 
 const AggregateBikeData = ({ trailerId }) => {
     const trailer = useTrailer(trailerId);
 
-    let bikeIdList = trailer.bikes.map(bike => bike.id);
-    let bikeGraphData = useBikeListGraphData(bikeIdList);
+    const bikeIdList = trailer.bikes.map(bike => bike.id);
+    const bikeGraphData = useBikeListGraphData(bikeIdList);
 
     return (
-        <Grid item sm={12} md={6} key={'bike'}>
-            <PowerGraph data={bikeGraphData} />
-        </Grid>
+        <PowerGraph data={bikeGraphData} />
     );
 }
 
@@ -31,7 +50,15 @@ const TrailerDashboard = () => {
                 <TrailerDescription trailer_id={trailerId} />
             </Grid>
             <Grid container item spacing={1}>
-                <AggregateBikeData trailerId={trailerId} />
+                <Grid item sm={12} md={4} key={'bike'}>
+                    <AggregateBikeData trailerId={trailerId} />
+                </Grid>
+                <Grid item sm={12} md={4} key={'solar'}>
+                    <SolarData trailerId={trailerId} />
+                </Grid>
+                <Grid item sm={12} md={4} key={'oven'}>
+                    <OvenData trailerId={trailerId} />
+                </Grid>
             </Grid>
         </Grid>
     );
