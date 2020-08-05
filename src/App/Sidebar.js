@@ -54,7 +54,7 @@ const trailerListItem = (match) => (trailer) => {
                 <ListItemIcon>
                     <TrailerIcon />
                 </ListItemIcon>
-                <ListItemText primary={trailer.location} />
+                <ListItemText primary={trailer.name} />
             </ListItemLink>
             {bikes}
             {ovens}
