@@ -45,7 +45,7 @@ const TrailerDashboard = () => {
 
     return (
         <Grid container spacing={3}>
-            <Grid item xs={3}>
+            <Grid item xs={12}>
                 <TrailerDescription trailer_id={trailerId} />
             </Grid>
             <Grid container item spacing={1}>
