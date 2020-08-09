@@ -12,6 +12,7 @@ import Button from '@material-ui/core/Button';
 import useStyles from './styles';
 import {useTrailer} from './features/trailer/trailer';
 import {NavLink, useRouteMatch} from 'react-router-dom';
+import HomeButton from './components/HomeButton';
 
 const ListItemLink = (props) => (
     <ListItem button exact component={NavLink} activeClassName='Mui-selected' {...props} />
@@ -67,7 +68,7 @@ const Sidebar = () => {
     if (trailer !== null) {
         drawer = createDrawer(match.url, trailer);
     } else {
-        drawer = "Not connected to trailer";
+        drawer = "";
     }
 
     return (
@@ -81,17 +82,7 @@ const Sidebar = () => {
                 anchor="left"
             >
                 <div className={classes.toolbar}>
-                    <Button
-                        to='/'
-                        color='secondary'
-                        component={NavLink}
-                        activeClassName='Mui-disabled'
-                        variant='contained'
-                        disableElevation
-                        exact
-                    >
-            World
-                    </Button>
+                    <HomeButton />
                 </div>
                 {drawer}
             </Drawer>
