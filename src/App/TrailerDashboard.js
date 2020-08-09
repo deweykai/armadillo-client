@@ -1,7 +1,7 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import {useParams} from 'react-router-dom';
-import TrailerDescription from './features/orgData/TrailerDescription';
+import TrailerDescription from './components/TrailerDescription';
 import { useTrailer } from './features/trailer/trailer';
 import { useBikeListGraphData } from './features/bikeData/bikeGraphData';
 import { useOvenTemperatureGraphData} from './features/ovenData/ovenGraphData';
@@ -11,7 +11,7 @@ import TemperatureGraph from './components/TemperatureGraph';
 
 const OvenData = ({ trailerId }) => {
     const trailer = useTrailer(trailerId);
-    const ovenId = trailer.ovens[0].id;
+    const ovenId = trailer.ovens[0];
     const tempData = useOvenTemperatureGraphData(ovenId);
 
     return (<TemperatureGraph data={tempData} title={"Oven Temperature"} />);
@@ -19,7 +19,7 @@ const OvenData = ({ trailerId }) => {
 
 const SolarData = ({ trailerId }) => {
     const trailer = useTrailer(trailerId);
-    const solarId = trailer.microgrids[0].id;
+    const solarId = trailer.microgrids[0];
     const powerData = useSolarPowerGraphData(solarId);
 
     return (
@@ -30,8 +30,7 @@ const SolarData = ({ trailerId }) => {
 const AggregateBikeData = ({ trailerId }) => {
     const trailer = useTrailer(trailerId);
 
-    const bikeIdList = trailer.bikes.map(bike => bike.id);
-    const bikeGraphData = useBikeListGraphData(bikeIdList);
+    const bikeGraphData = useBikeListGraphData(trailer.bikes);
 
     return (
         <PowerGraph data={bikeGraphData} title={"Bike Data"} />

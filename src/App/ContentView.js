@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {fetchOrgData, unsetData} from './features/orgData/orgDataSlice';
-import {pushData, setData} from './features/sourceData/sourceDataSlice';
+import {fetchTrailerData, removeData} from './features/trailer/trailerSlice';
+import {pushData} from './features/sourceData/sourceDataSlice';
 import BikeDashboard from './BikeDashboard';
 import TrailerDashboard from './TrailerDashboard';
 import OvenDashboard from './OvenDashboard';
@@ -16,10 +16,10 @@ import {getSourceData} from './api';
 import * as rxjs from 'rxjs';
 import {mergeMap} from 'rxjs/operators';
 
-const flatOrg = orgData => orgData.trailers.flatMap(trailer => [
-    trailer.bikes.map(bike => `bike/${bike.id}`),
-    trailer.ovens.map(oven => `oven/${oven.id}`),
-    trailer.microgrids.map(microgrid => `microgrid/${microgrid.id}`),
+const getDataIds = trailer => ([
+    trailer.bikes.map(bike => `bike/${bike}`),
+    trailer.ovens.map(oven => `oven/${oven}`),
+    trailer.microgrids.map(microgrid => `microgrid/${microgrid}`),
 ]).flat();
 
 const fetchData = count => sourceId => new rxjs.Observable(subscriber => {
@@ -35,53 +35,49 @@ const fetchData = count => sourceId => new rxjs.Observable(subscriber => {
 });
 
 const ContentView = () => {
-    const {org_id} = useParams();
+    const {trailer_id} = useParams();
     const dispatch = useDispatch();
-    const orgData = useSelector((state) => state.orgData.data);
+    const trailer = useSelector((state) => state.trailer.data);
 
     // dispatch org data request
     useEffect(() => {
-        dispatch(fetchOrgData(org_id));
+        dispatch(fetchTrailerData(trailer_id));
 
         return () => {
-            dispatch(unsetData());
+            dispatch(removeData());
         };
-    }, [org_id, dispatch]);
+    }, [trailer_id, dispatch]);
 
     useEffect(() => {
     // can't do anything if there is no data.
-        if (orgData === null) return;
-
+        if (trailer === null) return;
 
         // fetch initial data for bikes
-        const sourceIdList = rxjs.from(flatOrg(orgData));
+        const sourceIdList = rxjs.from(getDataIds(trailer));
 
         const initialCount = 100;
         const initialSourceData = sourceIdList
             .pipe(mergeMap(fetchData(initialCount)));
 
         initialSourceData.subscribe(console.log);
-        initialSourceData.subscribe(res => dispatch(setData({id: res[0], data: res[1]})));
-    }, [org_id, orgData, dispatch]);
+        initialSourceData.subscribe(res => dispatch(pushData({id: res[0], packet: res[1]})));
+    }, [trailer_id, trailer, dispatch]);
 
     return (
         <Switch>
-            <Route exact path={`/${org_id}`}>
-                <Redirect to={`/${org_id}/org`} />
+            <Route exact path={`/${trailer_id}`}>
+                <Redirect to={`/${trailer_id}/trailer`} />
             </Route>
-            <Route path={`/${org_id}/org`}>
-        Org
-            </Route>
-            <Route path={`/${org_id}/trailer/:trailer_id`}>
+            <Route path={`/${trailer_id}/trailer`}>
                 <TrailerDashboard />
             </Route>
-            <Route path={`/${org_id}/bike/:bike_id`}>
+            <Route path={`/${trailer_id}/bike/:bike_id`}>
                 <BikeDashboard />
             </Route>
-            <Route path={`/${org_id}/oven/:oven_id`}>
+            <Route path={`/${trailer_id}/oven/:oven_id`}>
                 <OvenDashboard />
             </Route>
-            <Route path={`/${org_id}/microgrid/:microgrid_id`}>
+            <Route path={`/${trailer_id}/microgrid/:microgrid_id`}>
                 <MicrogridDashboard />
             </Route>
         </Switch>

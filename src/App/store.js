@@ -1,10 +1,10 @@
 import {configureStore} from '@reduxjs/toolkit';
-import orgDataReducer from './features/orgData/orgDataSlice';
 import sourceDataReducer from './features/sourceData/sourceDataSlice';
+import trailerReducer from './features/trailer/trailerSlice';
 
 export default configureStore({
     reducer: {
-        orgData: orgDataReducer,
+        trailer: trailerReducer,
         sourceData: sourceDataReducer,
     },
 });

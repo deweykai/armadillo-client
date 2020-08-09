@@ -7,9 +7,11 @@ export const sourceDataSlice = createSlice({
         pushData: (state, action) => {
             const {id, packet} = action.payload;
 
+            console.assert(packet);
+
             // put new data at front of array
-            let data = state[id];
-            data = [packet, ...data];
+            let data = state[id] || [];
+            data = [...packet, ...data];
 
             // if the data is longer than 100 entries, pop old data
             while (data.length > 100) {
@@ -18,15 +20,10 @@ export const sourceDataSlice = createSlice({
 
             state[id] = data;
         },
-        setData: (state, action) => {
-            const {id, data} = action.payload;
-
-            state[id] = data;
-        },
     },
 });
 
-export const {pushData, setData} = sourceDataSlice.actions;
+export const {pushData} = sourceDataSlice.actions;
 
 // this has to return the same empty array when fails because
 // [] != []

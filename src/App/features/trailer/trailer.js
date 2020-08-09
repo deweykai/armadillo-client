@@ -1,11 +1,9 @@
 import {useSelector} from 'react-redux';
 
 // will return null with error
-export const useTrailer = (trailerId) => {
-    console.assert(typeof trailerId === "number");
-    const orgData = useSelector((state) => state.orgData.data);
-    if (orgData === null) return null;
-    const trailer = orgData.trailers.find((trailer) => trailer.id === Number(trailerId));
+export const useTrailer = () => {
+    const trailer = useSelector((state) => state.trailer);
+    if (trailer.status !== 'success') return null;
 
-    return trailer;
+    return trailer.data;
 };

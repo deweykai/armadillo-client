@@ -10,13 +10,13 @@ const convert = async (res) => {
     return response(await res.json(), true, '', res.url);
 };
 
-export const getOrgList = async () => {
-    const res = await fetch(`${apiEndPoint}/org`);
+export const getTrailerList = async () => {
+    const res = await fetch(`${apiEndPoint}/trailer`);
     return await convert(res);
-};
+}
 
-export const getOrgData = async (id) => {
-    const res = await fetch(`${apiEndPoint}/org/${id}`);
+export const getTrailerData = async (id) => {
+    const res = await fetch(`${apiEndPoint}/trailer/${id}`);
     return await convert(res);
 };
 

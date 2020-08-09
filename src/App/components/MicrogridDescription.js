@@ -1,23 +1,23 @@
 import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import useStyles from '../../styles';
+import useStyles from '../styles';
 import PropTypes from 'prop-types';
 
-const OvenDescription = ({oven_id}) => {
+const MicrogridDescription = ({microgrid_id}) => {
     const classes = useStyles();
 
     return (
         <Paper className={classes.graphPaper}>
             <Typography>
-                Oven: {oven_id}
+                Microgrid: {microgrid_id}
             </Typography>
         </Paper>
     );
 };
 
-OvenDescription.propTypes = {
-    oven_id: PropTypes.number,
+MicrogridDescription.propTypes = {
+    microgrid_id: PropTypes.number,
 };
 
-export default OvenDescription;
+export default MicrogridDescription;
