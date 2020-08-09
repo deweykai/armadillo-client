@@ -25,6 +25,7 @@ export const trailerSlice = createSlice({
         },
         removeData: (state) => {
             state.data = initialTrailerData;
+            state.status = 'idle';
         },
         loading: (state) => {
             state.status = 'loading';

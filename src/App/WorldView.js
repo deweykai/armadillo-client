@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom';
 
 const renderTrailer = (trailer) => {
     return (
-        <ListItem button component={Link} to={`/${trailer.id}`}>
+        <ListItem button component={Link} to={`/${trailer.id}`} key={trailer.id}>
             <ListItemText primary={trailer.name} />
         </ListItem>
     );

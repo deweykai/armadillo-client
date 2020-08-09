@@ -6,7 +6,7 @@ import {useParams} from 'react-router-dom';
 import {useSolarPowerGraphData} from './features/solarData/solarGraphData';
 
 const MicrogridDashboard = () => {
-    const {microgrid_id} = useParams();
+    const microgrid_id = Number(useParams().microgrid_id);
 
     const power = useSolarPowerGraphData(microgrid_id);
 

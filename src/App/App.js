@@ -25,12 +25,14 @@ const App = () => {
                     <ArmadilloAppBar />
                     <Switch>
                         <Route exact path='/'>
+                            <Sidebar />
                             <main className={classes.content}>
                                 <div className={classes.toolbar}></div>
                                 <WorldView />
                             </main>
                         </Route>
                         <Route path='/:trailer_id'>
+                            <Sidebar />
                             <main className={classes.content}>
                                 <div className={classes.toolbar}></div>
                                 <ContentView />

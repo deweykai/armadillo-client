@@ -10,62 +10,16 @@ import BikeIcon from '@material-ui/icons/DirectionsBike';
 import OrgIcon from '@material-ui/icons/Business';
 import Button from '@material-ui/core/Button';
 import useStyles from './styles';
-import {useSelector} from 'react-redux';
+import {useTrailer} from './features/trailer/trailer';
 import {NavLink, useRouteMatch} from 'react-router-dom';
 
 const ListItemLink = (props) => (
     <ListItem button exact component={NavLink} activeClassName='Mui-selected' {...props} />
 );
 
-const orgListItem = (match) => (org) => {
-    if (org == null) {
-        return (
-            <List>
-                <ListItem key="missing">No Org Data</ListItem>
-            </List>
-        );
-    }
-    const trailers = org.trailers.map(trailerListItem(match));
+const nodeListItem = (url, type) => (id, idx) => {
     return (
-        <div>
-            <List>
-                <Divider />
-                <ListItemLink to={`${match.url}/org/`} key={`org-${org.name}`}>
-                    <ListItemIcon>
-                        <OrgIcon />
-                    </ListItemIcon>
-                    <ListItemText primary={org.name} />
-                </ListItemLink>
-                {trailers}
-            </List>
-        </div>
-    );
-};
-
-const trailerListItem = (match) => (trailer) => {
-    const bikes = trailer.bikes.map(nodeListItem(match, 'bike'));
-    const ovens = trailer.ovens.map(nodeListItem(match, 'oven'));
-    const microgrids = trailer.microgrids.map(nodeListItem(match, 'microgrid'));
-
-    return (
-        <div>
-            <Divider />
-            <ListItemLink to={`${match.url}/trailer/${trailer.id}`} key={`trailer-${trailer.id}`}>
-                <ListItemIcon>
-                    <TrailerIcon />
-                </ListItemIcon>
-                <ListItemText primary={trailer.name} />
-            </ListItemLink>
-            {bikes}
-            {ovens}
-            {microgrids}
-        </div>
-    );
-};
-
-const nodeListItem = (match, type) => (item, idx) => {
-    return (
-        <ListItemLink to={`${match.url}/${type}/${item.id}`} key={`${type}-${item.id}`}>
+        <ListItemLink to={`${url}/${type}/${id}`} key={`${type}-${id}`}>
             <ListItemIcon>
                 <BikeIcon />
             </ListItemIcon>
@@ -74,20 +28,47 @@ const nodeListItem = (match, type) => (item, idx) => {
     );
 };
 
+const createDrawer = (url, trailer) => {
+    const bikes = trailer.bikes.map(nodeListItem(url, 'bike'));
+    const ovens = trailer.ovens.map(nodeListItem(url, 'oven'));
+    const microgrids = trailer.microgrids.map(nodeListItem(url, 'microgrid'));
+
+    return (
+        <List>
+            <ListItemLink to={`${url}/trailer`} key={'trailer'}>
+                <ListItemIcon>
+                    <TrailerIcon />
+                </ListItemIcon>
+                <ListItemText primary={trailer.name} />
+            </ListItemLink>
+
+            <Divider />
+            {bikes}
+            <Divider />
+            {ovens}
+            <Divider />
+            {microgrids}
+        </List>
+    );
+};
+
 
 const Sidebar = () => {
     const match = useRouteMatch();
     const classes = useStyles();
 
-    const org = useSelector((state) => state.orgData);
+    const trailer = useTrailer();
 
     // if (org.status === 'loading') return "loading";
     // if (org.status === 'failed') return "failed to load dashboard";
     // if (org.status === 'idle') return "there is an issue";
 
-    const structure = org.data;
-
-    const drawer = orgListItem(match)(structure);
+    let drawer;
+    if (trailer !== null) {
+        drawer = createDrawer(match.url, trailer);
+    } else {
+        drawer = "Not connected to trailer";
+    }
 
     return (
         <div>

@@ -6,7 +6,7 @@ import {useParams} from 'react-router-dom';
 import {useOvenTemperatureGraphData} from './features/ovenData/ovenGraphData';
 
 const OvenDashboard = () => {
-    const {oven_id} = useParams();
+    const oven_id = Number(useParams().oven_id);
 
     const temp = useOvenTemperatureGraphData(oven_id);
 
