@@ -1,7 +1,7 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import {useParams} from 'react-router-dom';
-import TrailerDescription from '../components/TrailerDescription';
+import TrailerDescription from '../components/trailer/TrailerDescription';
 import { useTrailer } from '../features/trailer/trailer';
 import { useBikeListGraphData } from '../features/bikeData/bikeGraphData';
 import { useOvenTemperatureGraphData} from '../features/ovenData/ovenGraphData';
