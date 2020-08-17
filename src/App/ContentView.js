@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {fetchTrailerData, removeData} from '../features/trailer/trailerSlice';
-import BikeDashboard from './BikeDashboard';
+import BikeListDashboard from './BikeListDashboard';
 import TrailerDashboard from './TrailerDashboard';
 import OvenDashboard from './OvenDashboard';
 import SolarDashboard from './SolarDashboard';
@@ -43,8 +43,8 @@ const ContentView = () => {
             <Route path={`/${trailer_id}/trailer`}>
                 <TrailerDashboard />
             </Route>
-            <Route path={`/${trailer_id}/bike/:bike_id`}>
-                <BikeDashboard />
+            <Route path={`/${trailer_id}/bike`}>
+                <BikeListDashboard />
             </Route>
             <Route path={`/${trailer_id}/oven/:oven_id`}>
                 <OvenDashboard />

@@ -29,8 +29,16 @@ const nodeListItem = (url, type) => (id, idx) => {
     );
 };
 
+const BikeListLink = ({url}) => (
+    <ListItemLink to={`${url}/bike`} key={`bike-list`}>
+        <ListItemIcon>
+            <BikeIcon />
+        </ListItemIcon>
+        <ListItemText primary={'Bikes'} />
+    </ListItemLink>
+);
+
 const createDrawer = (url, trailer) => {
-    const bikes = trailer.bikes.map(nodeListItem(url, 'bike'));
     const ovens = trailer.ovens.map(nodeListItem(url, 'oven'));
     const solars= trailer.solars.map(nodeListItem(url, 'solar'));
 
@@ -44,7 +52,7 @@ const createDrawer = (url, trailer) => {
             </ListItemLink>
 
             <Divider />
-            {bikes}
+            <BikeListLink url={url} />
             <Divider />
             {ovens}
             <Divider />
