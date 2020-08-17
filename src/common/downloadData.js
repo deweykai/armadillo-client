@@ -24,6 +24,7 @@ const fetchData = (from, until) => id => new rxjs.Observable(subscriber => {
 let trailer = null;
 let interval = null;
 let running = false;
+let loopStarted = false;
 
 const downloadData = (dispatch, from, until) => {
     // can't do anything if there is no data.
@@ -35,8 +36,6 @@ const downloadData = (dispatch, from, until) => {
         .pipe(
             mergeMap(fetchData(from, until))
         );
-
-    trailerData.subscribe(console.log);
 
     trailerData.subscribe(
         res => dispatch(pushData({id: res[0], packet: res[1]})),
@@ -50,6 +49,9 @@ const start = (newTrailer, dispatch) => {
 
     console.assert(interval === null);
     if (interval !== null) return;
+
+    if (loopStarted) return;
+    loopStarted = true;
 
     let startLoop = async () => {
         let until = (await getServerTime()).data;
