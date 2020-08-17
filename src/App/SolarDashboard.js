@@ -1,20 +1,20 @@
 import React, {useEffect, useState} from 'react';
 import PowerGraph from '../components/PowerGraph';
-import MicrogridDescription from '../components/MicrogridDescription';
+import SolarDescription from '../components/SolarDescription';
 import Grid from '@material-ui/core/Grid';
 import {useParams} from 'react-router-dom';
 import {useSolarPowerGraphData} from '../features/solarData/solarGraphData';
 
-const MicrogridDashboard = () => {
-    const microgrid_id = Number(useParams().microgrid_id);
+const SolarDashboard = () => {
+    const solar_id = Number(useParams().solar_id);
 
-    const power = useSolarPowerGraphData(microgrid_id);
+    const power = useSolarPowerGraphData(solar_id);
 
     return (
         <div>
             <Grid container spacing={3}>
                 <Grid item xs={3}>
-                    <MicrogridDescription microgrid_id={microgrid_id} />
+                    <SolarDescription solar_id={solar_id} />
                 </Grid>
                 <Grid item xs={12}>
                     <PowerGraph data={power} title={"Solar Data"} />
@@ -24,4 +24,4 @@ const MicrogridDashboard = () => {
     );
 };
 
-export default MicrogridDashboard;
+export default SolarDashboard;

@@ -6,7 +6,7 @@ const initialTrailerData = {
     location: "",
     ovens: [],
     bikes: [],
-    microgrids: [],
+    solars: [],
 };
 
 

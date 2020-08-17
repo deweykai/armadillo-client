@@ -32,7 +32,7 @@ const nodeListItem = (url, type) => (id, idx) => {
 const createDrawer = (url, trailer) => {
     const bikes = trailer.bikes.map(nodeListItem(url, 'bike'));
     const ovens = trailer.ovens.map(nodeListItem(url, 'oven'));
-    const microgrids = trailer.microgrids.map(nodeListItem(url, 'microgrid'));
+    const solars= trailer.solars.map(nodeListItem(url, 'solar'));
 
     return (
         <List>
@@ -48,7 +48,7 @@ const createDrawer = (url, trailer) => {
             <Divider />
             {ovens}
             <Divider />
-            {microgrids}
+            {solars}
         </List>
     );
 };

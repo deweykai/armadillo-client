@@ -6,7 +6,7 @@ import {getServerTime, getSourceData} from './api';
 const getDataIds = trailer => ([
     trailer.bikes.map(bike => `bike/${bike}`),
     trailer.ovens.map(oven => `oven/${oven}`),
-    trailer.microgrids.map(microgrid => `solar/${microgrid}`),
+    trailer.solars.map(solar => `solar/${solar}`),
 ]).flat();
 
 const fetchData = (from, until) => id => new rxjs.Observable(subscriber => {

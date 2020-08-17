@@ -4,7 +4,7 @@ import {fetchTrailerData, removeData} from '../features/trailer/trailerSlice';
 import BikeDashboard from './BikeDashboard';
 import TrailerDashboard from './TrailerDashboard';
 import OvenDashboard from './OvenDashboard';
-import MicrogridDashboard from './MicrogridDashboard';
+import SolarDashboard from './SolarDashboard';
 import {
     Switch,
     Route,
@@ -49,8 +49,8 @@ const ContentView = () => {
             <Route path={`/${trailer_id}/oven/:oven_id`}>
                 <OvenDashboard />
             </Route>
-            <Route path={`/${trailer_id}/microgrid/:microgrid_id`}>
-                <MicrogridDashboard />
+            <Route path={`/${trailer_id}/solar/:solar_id`}>
+                <SolarDashboard />
             </Route>
         </Switch>
     );

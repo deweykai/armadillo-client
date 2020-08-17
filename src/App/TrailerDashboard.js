@@ -19,7 +19,7 @@ const OvenData = ({ trailerId }) => {
 
 const SolarData = ({ trailerId }) => {
     const trailer = useTrailer(trailerId);
-    const solarId = trailer.microgrids[0];
+    const solarId = trailer.solars[0];
     const powerData = useSolarPowerGraphData(solarId);
 
     return (

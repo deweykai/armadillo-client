@@ -36,7 +36,7 @@ const sourceDataSelector = type => id => state => {
 
 export const bikeDataSelector = sourceDataSelector('bike');
 export const ovenDataSelector = sourceDataSelector('oven');
-export const microgridDataSelector = sourceDataSelector('microgrid');
+export const solarDataSelector = sourceDataSelector('solar');
 
 const sourceDataListSelector = type => idList => state => {
     let dataList = [];
@@ -49,6 +49,6 @@ const sourceDataListSelector = type => idList => state => {
 
 export const bikeDataListSelector = sourceDataListSelector('bike');
 export const ovenDataListSelector = sourceDataListSelector('oven');
-export const microgridDataListSelector = sourceDataListSelector('microgrid');
+export const solarDataListSelector = sourceDataListSelector('solar');
 
 export default sourceDataSlice.reducer;

@@ -1,14 +1,14 @@
 import {useState, useEffect} from 'react';
 import {useSelector} from 'react-redux';
-import {microgridDataSelector} from '../sourceData/sourceDataSlice';
+import {solarDataSelector} from '../sourceData/sourceDataSlice';
 
 export const useSolarPowerGraphData = (solarId) => {
-    const data = useSelector(microgridDataSelector(solarId));
+    const data = useSelector(solarDataSelector(solarId));
     const [power, setPower] = useState([]);
 
     useEffect(() => {
         setPower(data.map((entry) => ({
-            x: entry.created_at.secs_since_epoch * 1000,
+            x: entry.created_at,
             y: entry.power,
         })));
     }, [data]);

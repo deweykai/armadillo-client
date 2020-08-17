@@ -4,20 +4,20 @@ import Typography from '@material-ui/core/Typography';
 import useStyles from '../App/styles';
 import PropTypes from 'prop-types';
 
-const MicrogridDescription = ({microgrid_id}) => {
+const SolarDescription = ({solar_id}) => {
     const classes = useStyles();
 
     return (
         <Paper className={classes.graphPaper}>
             <Typography>
-                Microgrid: {microgrid_id}
+                Solar Microgrid: {solar_id}
             </Typography>
         </Paper>
     );
 };
 
-MicrogridDescription.propTypes = {
-    microgrid_id: PropTypes.number,
+SolarDescription.propTypes = {
+    solar_id: PropTypes.number,
 };
 
-export default MicrogridDescription;
+export default SolarDescription;
