@@ -13,8 +13,9 @@ export const sourceDataSlice = createSlice({
             let data = state[id] || [];
             data = [...packet, ...data];
 
-            // if the data is longer than 100 entries, pop old data
-            while (data.length > 100) {
+            // if the data is longer than 5 minutes entries, pop old data
+            const max_length = 60 * 5;
+            while (data.length > max_length) {
                 data.pop();
             }
 

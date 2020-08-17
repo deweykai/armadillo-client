@@ -49,13 +49,11 @@ const PowerGraph = ({data, title}) => {
 
                         <AreaSeries
                             data={data}
-                            curve={'curveMonotoneX'}
                             color={theme.palette.secondary.light}
                             opacity={0.6}
                         />
                         <LineSeries
                             data={data}
-                            curve={'curveMonotoneX'}
                             color={theme.palette.secondary.main}
                             onNearestX={onNearestX}
                         />

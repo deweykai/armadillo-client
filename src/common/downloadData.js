@@ -62,7 +62,7 @@ const start = (newTrailer, dispatch) => {
             }
         };
         innerLoop();
-        //interval = setInterval(innerLoop, 1000);
+        interval = setInterval(innerLoop, 1000);
     };
 
     startLoop();
