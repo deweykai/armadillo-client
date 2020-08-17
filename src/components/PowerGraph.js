@@ -32,12 +32,16 @@ const PowerGraph = ({data, title}) => {
         setValue(false);
     };
 
+    const getX = (d) => {
+        return d.x * 1000;
+    };
+
     return (
         <Paper className={classes.graphPaper}>
             <Typography variant="h5">{title}</Typography>
             <AutoSizer disableHeight>
                 {({width}) => (
-                    <XYPlot onMouseLeave={onMouseLeave} height={250} width={width} xType="time">
+                    <XYPlot getX={getX} onMouseLeave={onMouseLeave} height={250} width={width} xType="time">
                         <XAxis />
                         <YAxis />
                         <VerticalGridLines />
