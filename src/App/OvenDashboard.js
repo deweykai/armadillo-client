@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import TemperatureGraph from './components/TemperatureGraph';
-import OvenDescription from './components/OvenDescription';
+import TemperatureGraph from '../components/TemperatureGraph';
+import OvenDescription from '../components/OvenDescription';
 import Grid from '@material-ui/core/Grid';
 import {useParams} from 'react-router-dom';
-import {useOvenTemperatureGraphData} from './features/ovenData/ovenGraphData';
+import {useOvenTemperatureGraphData} from '../features/ovenData/ovenGraphData';
 
 const OvenDashboard = () => {
     const oven_id = Number(useParams().oven_id);

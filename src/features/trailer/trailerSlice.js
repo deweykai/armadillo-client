@@ -1,5 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {getTrailerData} from '../../api';
+import {getTrailerData} from '../../common/api';
 
 const initialTrailerData = {
     name: "",

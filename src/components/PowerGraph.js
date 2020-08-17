@@ -13,7 +13,7 @@ import {
     Highlight,
 } from 'react-vis';
 import AutoSizer from 'react-virtualized-auto-sizer';
-import useStyles from '../styles';
+import useStyles from '../App/styles';
 import PropTypes from 'prop-types';
 import { useTheme } from '@material-ui/core/styles';
 

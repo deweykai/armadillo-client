@@ -10,7 +10,7 @@ import {
     LineSeries,
 } from 'react-vis';
 import AutoSizer from 'react-virtualized-auto-sizer';
-import useStyles from '../styles';
+import useStyles from '../App/styles';
 import PropTypes from 'prop-types';
 
 const TemperatureGraph = ({ data, title }) => {

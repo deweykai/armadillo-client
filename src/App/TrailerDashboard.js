@@ -1,13 +1,13 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import {useParams} from 'react-router-dom';
-import TrailerDescription from './components/TrailerDescription';
-import { useTrailer } from './features/trailer/trailer';
-import { useBikeListGraphData } from './features/bikeData/bikeGraphData';
-import { useOvenTemperatureGraphData} from './features/ovenData/ovenGraphData';
-import { useSolarPowerGraphData} from './features/solarData/solarGraphData';
-import PowerGraph from './components/PowerGraph';
-import TemperatureGraph from './components/TemperatureGraph';
+import TrailerDescription from '../components/TrailerDescription';
+import { useTrailer } from '../features/trailer/trailer';
+import { useBikeListGraphData } from '../features/bikeData/bikeGraphData';
+import { useOvenTemperatureGraphData} from '../features/ovenData/ovenGraphData';
+import { useSolarPowerGraphData} from '../features/solarData/solarGraphData';
+import PowerGraph from '../components/PowerGraph';
+import TemperatureGraph from '../components/TemperatureGraph';
 
 const OvenData = ({ trailerId }) => {
     const trailer = useTrailer(trailerId);

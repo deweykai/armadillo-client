@@ -3,7 +3,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
 import Toolbar from '@material-ui/core/ToolBar';
 import useStyles from './styles';
-import {useTrailer} from './features/trailer/trailer';
+import {useTrailer} from '../features/trailer/trailer';
 
 const ArmadilloAppBar = () => {
     const classes = useStyles();

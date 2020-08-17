@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {fetchTrailerData, removeData} from './features/trailer/trailerSlice';
-import {pushData} from './features/sourceData/sourceDataSlice';
+import {fetchTrailerData, removeData} from '../features/trailer/trailerSlice';
+import {pushData} from '../features/sourceData/sourceDataSlice';
 import BikeDashboard from './BikeDashboard';
 import TrailerDashboard from './TrailerDashboard';
 import OvenDashboard from './OvenDashboard';
@@ -12,7 +12,7 @@ import {
     Redirect,
     useParams,
 } from 'react-router-dom';
-import {getSourceData} from './api';
+import {getSourceData} from '../common/api';
 import * as rxjs from 'rxjs';
 import {mergeMap} from 'rxjs/operators';
 

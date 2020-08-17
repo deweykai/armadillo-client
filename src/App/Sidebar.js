@@ -10,9 +10,9 @@ import BikeIcon from '@material-ui/icons/DirectionsBike';
 import OrgIcon from '@material-ui/icons/Business';
 import Button from '@material-ui/core/Button';
 import useStyles from './styles';
-import {useTrailer} from './features/trailer/trailer';
+import {useTrailer} from '../features/trailer/trailer';
 import {NavLink, useRouteMatch} from 'react-router-dom';
-import HomeButton from './components/HomeButton';
+import HomeButton from '../components/HomeButton';
 
 const ListItemLink = (props) => (
     <ListItem button exact component={NavLink} activeClassName='Mui-selected' {...props} />
