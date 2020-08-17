@@ -9,7 +9,7 @@ export const useOvenTemperatureGraphData = (oven_id) => {
 
     useEffect(() => {
         setTemp(data.map((entry) => ({
-            x: entry.created_at.secs_since_epoch * 1000,
+            x: entry.created_at,
             y: entry.temperature,
         })));
     }, [data]);

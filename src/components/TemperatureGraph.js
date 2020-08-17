@@ -22,12 +22,16 @@ const TemperatureGraph = ({ data, title }) => {
         );
     }
 
+    const getX = (d) => {
+        return d.x * 1000;
+    };
+
     return (
         <Paper className={classes.graphPaper}>
             <Typography variant="h5">{title}</Typography>
             <AutoSizer disableHeight>
                 {({width}) => (
-                    <XYPlot height={250} width={width} yDomain={[0, 100]} xType="time">
+                    <XYPlot getX={getX} height={250} width={width} yDomain={[0, 100]} xType="time">
                         <VerticalGridLines />
                         <HorizontalGridLines />
                         <XAxis />
