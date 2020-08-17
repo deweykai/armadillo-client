@@ -10,10 +10,10 @@ import {
     LineSeries,
 } from 'react-vis';
 import AutoSizer from 'react-virtualized-auto-sizer';
-import useStyles from '../styles';
+import useStyles from '../App/styles';
 import PropTypes from 'prop-types';
 
-const TemperatureGraph = ({ data }) => {
+const TemperatureGraph = ({ data, title }) => {
     const classes = useStyles();
 
     if (data == null) {
@@ -22,12 +22,16 @@ const TemperatureGraph = ({ data }) => {
         );
     }
 
+    const getX = (d) => {
+        return d.x * 1000;
+    };
+
     return (
         <Paper className={classes.graphPaper}>
-            <Typography variant="h5">Temperature</Typography>
+            <Typography variant="h5">{title}</Typography>
             <AutoSizer disableHeight>
                 {({width}) => (
-                    <XYPlot height={250} width={width} yDomain={[0, 100]} xType="time">
+                    <XYPlot getX={getX} height={250} width={width} yDomain={[0, 100]} xType="time">
                         <VerticalGridLines />
                         <HorizontalGridLines />
                         <XAxis />

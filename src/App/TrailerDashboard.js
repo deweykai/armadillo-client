@@ -1,33 +1,63 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import {useParams} from 'react-router-dom';
-import TrailerDescription from './features/orgData/TrailerDescription';
-import BikePowerGraph from './features/bikeData/BikePowerGraph';
-import {useSelector} from 'react-redux';
+import TrailerDescription from '../components/trailer/TrailerDescription';
+import { useTrailer } from '../features/trailer/trailer';
+import { useBikeListGraphData } from '../features/bikeData/bikeGraphData';
+import { useOvenTemperatureGraphData} from '../features/ovenData/ovenGraphData';
+import { useSolarPowerGraphData} from '../features/solarData/solarGraphData';
+import PowerGraph from '../components/PowerGraph';
+import TemperatureGraph from '../components/TemperatureGraph';
+
+const OvenData = ({ trailerId }) => {
+    const trailer = useTrailer(trailerId);
+    const ovenId = trailer.ovens[0];
+    const tempData = useOvenTemperatureGraphData(ovenId);
+
+    return (<TemperatureGraph data={tempData} title={"Oven Temperature"} />);
+};
+
+const SolarData = ({ trailerId }) => {
+    const trailer = useTrailer(trailerId);
+    const solarId = trailer.solars[0];
+    const powerData = useSolarPowerGraphData(solarId);
+
+    return (
+        <PowerGraph data={powerData} title={"Solar Power"} />
+    );
+};
+
+const AggregateBikeData = ({ trailerId }) => {
+    const trailer = useTrailer(trailerId);
+
+    const bikeGraphData = useBikeListGraphData(trailer.bikes);
+
+    return (
+        <PowerGraph data={bikeGraphData} title={"Bike Data"} />
+    );
+}
 
 const TrailerDashboard = () => {
-    const {trailer_id} = useParams();
-    const orgData = useSelector((state) => state.orgData.data);
+    const trailerId = Number(useParams().trailer_id);
+    const trailer = useTrailer(trailerId);
 
-    if (orgData === null) return 'No data';
-
-    const trailer = orgData.trailers.find((trailer) => trailer.id === Number(trailer_id));
-
-    if (trailer === undefined) return 'Invalid trailer id';
-
-    const bikeGraphs = trailer.bikes.map((bike) => (
-        <Grid item sm={12} md={6} key={bike.id}>
-            <BikePowerGraph bike_id={bike.id} />
-        </Grid>
-    ));
+    if (trailer === null) return "No Data";
 
     return (
         <Grid container spacing={3}>
-            <Grid item xs={3}>
-                <TrailerDescription trailer_id={trailer_id} />
+            <Grid item xs={12}>
+                <TrailerDescription trailer_id={trailerId} />
             </Grid>
             <Grid container item spacing={1}>
-                {bikeGraphs}
+                <Grid item sm={12} md={4} key={'bike'}>
+                    <AggregateBikeData trailerId={trailerId} />
+                </Grid>
+                <Grid item sm={12} md={4} key={'solar'}>
+                    <SolarData trailerId={trailerId} />
+                </Grid>
+                <Grid item sm={12} md={4} key={'oven'}>
+                    <OvenData trailerId={trailerId} />
+                </Grid>
             </Grid>
         </Grid>
     );

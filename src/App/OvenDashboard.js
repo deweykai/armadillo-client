@@ -1,24 +1,14 @@
 import React, {useEffect, useState} from 'react';
-import TemperatureGraph from './components/TemperatureGraph';
-import OvenDescription from './features/orgData/OvenDescription';
+import TemperatureGraph from '../components/TemperatureGraph';
+import OvenDescription from '../components/oven/OvenDescription';
 import Grid from '@material-ui/core/Grid';
 import {useParams} from 'react-router-dom';
-import {useSelector} from 'react-redux';
-import {ovenDataSelector} from './features/sourceData/sourceDataSlice';
+import {useOvenTemperatureGraphData} from '../features/ovenData/ovenGraphData';
 
 const OvenDashboard = () => {
-    const {oven_id} = useParams();
+    const oven_id = Number(useParams().oven_id);
 
-    const data = useSelector(ovenDataSelector(oven_id));
-
-    const [temp, setTemp] = useState([]);
-
-    useEffect(() => {
-        setTemp(data.map((entry) => ({
-            x: entry.created_at.secs_since_epoch * 1000,
-            y: entry.temperature,
-        })));
-    }, [data]);
+    const temp = useOvenTemperatureGraphData(oven_id);
 
     return (
         <div>
@@ -27,7 +17,7 @@ const OvenDashboard = () => {
                     <OvenDescription oven_id={oven_id} />
                 </Grid>
                 <Grid item xs={12}>
-                    <TemperatureGraph data={temp} />
+                    <TemperatureGraph data={temp} title={"Oven Temperature"} />
                 </Grid>
             </Grid>
         </div>

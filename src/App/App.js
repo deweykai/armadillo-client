@@ -31,7 +31,7 @@ const App = () => {
                                 <WorldView />
                             </main>
                         </Route>
-                        <Route path='/:org_id'>
+                        <Route path='/:trailer_id'>
                             <Sidebar />
                             <main className={classes.content}>
                                 <div className={classes.toolbar}></div>

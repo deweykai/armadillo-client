@@ -1,7 +1,7 @@
 import React from 'react';
-import BikeDataIndicator from './features/bikeData/BikeDataIndicator';
-import BikeDescription from './features/orgData/BikeDescription';
-import BikePowerGraph from './features/bikeData/BikePowerGraph';
+import BikeDataIndicator from '../features/bikeData/BikeDataIndicator';
+import BikeDescription from '../components/bike/BikeDescription';
+import BikePowerGraph from '../components/bike/BikePowerGraph';
 import Grid from '@material-ui/core/Grid';
 import {useParams} from 'react-router-dom';
 
@@ -23,10 +23,6 @@ const BikeDashboard = () => {
             </Grid>
         </div>
     );
-    /*
-        <Grid item xs={12}>
-          <BikeDataTable bikeData={bikeData} />
-        </Grid>*/
 };
 
 export default BikeDashboard;

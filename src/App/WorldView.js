@@ -4,31 +4,37 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import {Link} from 'react-router-dom';
 
-const renderOrg = (org) => {
+const renderTrailer = (trailer) => {
     return (
-        <ListItem button component={Link} to={`/${org.id}`}>
-            <ListItemText primary={org.name} />
+        <ListItem button component={Link} to={`/${trailer.id}`} key={trailer.id}>
+            <ListItemText primary={trailer.name} />
         </ListItem>
     );
 };
 
-const WorldView = () => {
-    const [orgList, setOrgList] = useState(null);
+const useTrailerList = () => {
+    const [trailerList, setTrailerList] = useState(null);
 
     useEffect(() => {
-        fetch('/api/org/')
+        fetch('/api/trailer')
             .then((res) => res.json())
-            .then((orgList) => setOrgList(orgList))
-            .catch(setOrgList(null));
+            .then((trailerList) => setTrailerList(trailerList))
+            .catch(setTrailerList(null));
     }, []);
 
-    if (orgList == null) {
+    return trailerList;
+};
+
+const WorldView = () => {
+    let trailerList = useTrailerList();
+
+    if (trailerList == null) {
         return 'failed to connect to database';
     }
 
-    const orgs = orgList.map(renderOrg);
+    const trailers = trailerList.map(renderTrailer);
 
-    return <List>{orgs}</List>;
+    return <List>{trailers}</List>;
 };
 
 export default WorldView;

@@ -1,3 +1,4 @@
+/*
 import {createSlice} from '@reduxjs/toolkit';
 import {getOrgData, getOrgList} from '../../api';
 
@@ -73,3 +74,4 @@ export const fetchOrgList = () => async (dispatch, getState) => {
 };
 
 export default orgDataSlice.reducer;
+*/

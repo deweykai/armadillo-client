@@ -1,23 +1,23 @@
 import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import useStyles from '../../styles';
+import useStyles from '../App/styles';
 import PropTypes from 'prop-types';
 
-const BikeDescription = ({bike_id}) => {
+const SolarDescription = ({solar_id}) => {
     const classes = useStyles();
 
     return (
         <Paper className={classes.graphPaper}>
             <Typography>
-                Bike: {bike_id}
+                Solar Microgrid: {solar_id}
             </Typography>
         </Paper>
     );
 };
 
-BikeDescription.propTypes = {
-    bike_id: PropTypes.number,
+SolarDescription.propTypes = {
+    solar_id: PropTypes.number,
 };
 
-export default BikeDescription;
+export default SolarDescription;

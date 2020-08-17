@@ -1,7 +1,7 @@
 import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import useStyles from '../../styles';
+import useStyles from '../../App/styles';
 import PropTypes from 'prop-types';
 
 const OvenDescription = ({oven_id}) => {
