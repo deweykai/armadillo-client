@@ -1,6 +1,6 @@
 import React from 'react';
 import BikeDataIndicator from '../features/bikeData/BikeDataIndicator';
-import BikeDescription from '../components/BikeDescription';
+import BikeDescription from '../components/bike/BikeDescription';
 import { useBikeGraphData } from '../features/bikeData/bikeGraphData';
 import PowerGraph from '../components/PowerGraph';
 import Grid from '@material-ui/core/Grid';
