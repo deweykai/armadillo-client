@@ -1,7 +1,7 @@
 import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
-import Toolbar from '@material-ui/core/ToolBar';
+import Toolbar from '@material-ui/core/Toolbar';
 import useStyles from './styles';
 import {useTrailer} from '../features/trailer/trailer';
 

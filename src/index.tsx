@@ -1,13 +1,13 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 
 import './index.css';
 import '../node_modules/react-vis/dist/style.css';
 
 import {Provider} from 'react-redux';
-import store from './App/store';
+import {store} from './App/store';
 
-import App from './App/App';
+import {App} from './App/App';
 import * as serviceWorker from './serviceWorker';
 import 'fontsource-roboto';
 
