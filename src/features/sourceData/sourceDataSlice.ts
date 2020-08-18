@@ -84,7 +84,7 @@ export const sourceDataSlice = createSlice({
         solar: [],
     },
     reducers: {
-        pushData: (state: DataState, action) => {
+        pushData: (state: DataState, action: {payload: {id: string, packet: any}}) => {
             const {id, packet} = action.payload;
 
             console.assert(packet);
@@ -114,7 +114,7 @@ export const {pushData} = sourceDataSlice.actions;
 // Returning a new [] instance causes
 const emptyArray: Array<DataPoint> = [];
 
-const sourceDataSelector = (type: DataType) => (id: number) => (state: any) => {
+const sourceDataSelector = (type: DataType) => (id: number) => (state: any): Array<DataPoint> => {
     return state.sourceData[type][id] || emptyArray; 
 };
 
@@ -122,7 +122,7 @@ export const bikeDataSelector = sourceDataSelector(DataType.Bike);
 export const ovenDataSelector = sourceDataSelector(DataType.Oven);
 export const solarDataSelector = sourceDataSelector(DataType.Solar);
 
-const sourceDataListSelector = (type: DataType) => (idList: Array<number>) => (state: any) => {
+const sourceDataListSelector = (type: DataType) => (idList: Array<number>) => (state: any): Array<Array<DataPoint>> => {
     let dataList = [];
     for (let i = 0; i < idList.length; i++) {
         dataList.push(state.sourceData[type][idList[i]] || emptyArray);
