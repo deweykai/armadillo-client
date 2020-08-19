@@ -29,7 +29,6 @@ let loopStarted = false;
 const downloadData = (dispatch, from, until) => {
     // can't do anything if there is no data.
     if (trailer === null) return;
-    console.log(from, until);
 
     // fetch initial data for bikes
     const trailerData = rxjs.from(getDataIds(trailer))
