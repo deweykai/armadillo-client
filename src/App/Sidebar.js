@@ -7,7 +7,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import TrailerIcon from '@material-ui/icons/LocalShippingTwoTone';
 import BikeIcon from '@material-ui/icons/DirectionsBike';
-import OrgIcon from '@material-ui/icons/Business';
+import GetApp from '@material-ui/icons/GetApp';
 import Button from '@material-ui/core/Button';
 import useStyles from './styles';
 import {useTrailer} from '../features/trailer/trailer';
@@ -38,6 +38,16 @@ const BikeListLink = ({url}) => (
     </ListItemLink>
 );
 
+const DownloaderLink = ({url}) => (
+    <ListItemLink to={`${url}/download`} key={`bike-list`}>
+        <ListItemIcon>
+            <GetApp />
+        </ListItemIcon>
+        <ListItemText primary={'Downloader'} />
+    </ListItemLink>
+);
+            
+
 const createDrawer = (url, trailer) => {
     const ovens = trailer.ovens.map(nodeListItem(url, 'oven'));
     const solars= trailer.solars.map(nodeListItem(url, 'solar'));
@@ -57,6 +67,8 @@ const createDrawer = (url, trailer) => {
             {ovens}
             <Divider />
             {solars}
+            <Divider />
+            <DownloaderLink url={url} />
         </List>
     );
 };

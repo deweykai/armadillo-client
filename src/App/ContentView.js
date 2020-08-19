@@ -52,6 +52,9 @@ const ContentView = () => {
             <Route path={`/${trailer_id}/solar/:solar_id`}>
                 <SolarDashboard />
             </Route>
+            <Route path={`/${trailer_id}/download`}>
+                Downloader
+            </Route>
         </Switch>
     );
 };
