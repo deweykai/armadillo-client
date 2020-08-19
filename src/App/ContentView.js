@@ -12,7 +12,7 @@ import {
     useParams,
 } from 'react-router-dom';
 import DataDownloader from '../common/downloadData';
-import Downloader from './Downloader';
+import DownloadForm from '../components/DownloadForm';
 
 const ContentView = () => {
     const {trailer_id} = useParams();
@@ -54,7 +54,7 @@ const ContentView = () => {
                 <SolarDashboard />
             </Route>
             <Route path={`/${trailer_id}/download`}>
-                <Downloader />
+                <DownloadForm />
             </Route>
         </Switch>
     );
