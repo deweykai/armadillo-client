@@ -30,21 +30,7 @@ const DownloadForm = () => {
             let until = Math.floor(untilDateTime.getTime()/1000);
             console.log(id, from, until);
 
-            fetch(`/api/data/${id}/csv?from=${from}&until=${until}`)
-                .then(resp => resp.blob())
-                .then(blob => {
-                    const url = window.URL.createObjectURL(blob);
-                    const a = document.createElement('a');
-                    a.style.display = 'none';
-                    a.href = url;
-                    // the filename you want
-                    a.download = 'todo-1.csv';
-                    document.body.appendChild(a);
-                    a.click();
-                    window.URL.revokeObjectURL(url);
-                    alert('your file has downloaded!');
-                })
-                .catch(err => console.log(err));
+            window.open(`/api/data/${id}/csv?from=${from}&until=${until}`, '_blank')
         }
     }
 
@@ -53,7 +39,7 @@ const DownloadForm = () => {
             <h3>Downloader</h3>
             <label>
                 ID: 
-                <input required name="id" placeholder="id" value={id} onChange={handleIdChange} />
+                <input required name="id" placeholder="<type>/<id>" value={id} onChange={handleIdChange} />
             </label>
 
             <br />
