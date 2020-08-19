@@ -1,4 +1,6 @@
 import * as React from 'react';
+import {useState} from 'react';
+import { KeyboardDateTimePicker } from '@material-ui/pickers';
 
 interface IForm {
     id: string,
@@ -19,6 +21,9 @@ const handleSubmit = (event: IFormEvent) => {
 }
 
 const DownloadForm = () => {
+    const [fromDateTime, handleFromDateTime] = useState<Date | null>(new Date());
+    const [untilDateTime, handleUntilDateTime] = useState<Date | null>(new Date());
+
     return (
         <form onSubmit={handleSubmit}>
             <h3>Downloader</h3>
@@ -29,25 +34,31 @@ const DownloadForm = () => {
 
             <br />
 
-            <label>
-                From:
-                <br />
-                <input name="from-date" type="date" />
-                <input name="from-time" type="time" />
-            </label>
+            <KeyboardDateTimePicker
+                required
+                variant="inline"
+                label="from"
+                value={fromDateTime}
+                onChange={newDate => handleFromDateTime(newDate)}
+                disablePast
+                format="yyyy/MM/dd HH:mm"
+            />
 
             <br />
 
-            <label>
-                Until:
-                <br />
-                <input name="until-date" type="date" />
-                <input name="until-time" type="time" />
-            </label>
+            <KeyboardDateTimePicker
+                required
+                variant="inline"
+                label="until"
+                value={untilDateTime}
+                onChange={newDate => handleUntilDateTime(newDate)}
+                disablePast
+                format="yyyy/MM/dd HH:mm"
+            />
 
             <br />
 
-            <input type="submit" value="Download" />
+            <input type="submit" />
         </form>
     );
 };

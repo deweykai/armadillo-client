@@ -10,12 +10,16 @@ import {store} from './App/store';
 import {App} from './App/App';
 import * as serviceWorker from './serviceWorker';
 import 'fontsource-roboto';
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+import DateFnsUtils from '@date-io/date-fns';
 
 ReactDOM.render(
     <React.StrictMode>
-        <Provider store={store}>
-            <App />
-        </Provider>
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <Provider store={store}>
+                <App />
+            </Provider>
+        </MuiPickersUtilsProvider>
     </React.StrictMode>,
     document.getElementById('root'),
 );
