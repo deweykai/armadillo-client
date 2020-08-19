@@ -29,7 +29,7 @@ const DownloadForm = () => {
             <h3>Downloader</h3>
             <label>
                 ID: 
-                <input name="id" placeholder="id" />
+                <input required name="id" placeholder="id" />
             </label>
 
             <br />
@@ -40,7 +40,6 @@ const DownloadForm = () => {
                 label="from"
                 value={fromDateTime}
                 onChange={newDate => handleFromDateTime(newDate)}
-                disablePast
                 format="yyyy/MM/dd HH:mm"
             />
 
@@ -52,7 +51,6 @@ const DownloadForm = () => {
                 label="until"
                 value={untilDateTime}
                 onChange={newDate => handleUntilDateTime(newDate)}
-                disablePast
                 format="yyyy/MM/dd HH:mm"
             />
 
