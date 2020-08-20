@@ -25,3 +25,5 @@ export const store = configureStore({
     },
     devTools,
 });
+
+export type AppDispatch = typeof store.dispatch;

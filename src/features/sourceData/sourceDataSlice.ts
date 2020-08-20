@@ -28,6 +28,8 @@ interface SolarData {
     power: number,
 };
 
+export type {BikeData, OvenData, SolarData, DataPoint};
+
 interface DataState {
     bike: {
         [id: number]: Array<BikeData>,
