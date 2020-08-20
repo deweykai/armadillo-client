@@ -106,10 +106,15 @@ export const sourceDataSlice = createSlice({
 
             dataSet[dataId] = data;
         },
+        clearData: (state: DataState) => {
+            state.bike = [];
+            state.oven = [];
+            state.solar = [];
+        }
     },
 });
 
-export const {pushData} = sourceDataSlice.actions;
+export const {pushData, clearData} = sourceDataSlice.actions;
 
 // this has to return the same empty array when fails because
 // [] != []

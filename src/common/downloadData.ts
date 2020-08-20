@@ -1,4 +1,4 @@
-import {pushData} from '../features/sourceData/sourceDataSlice';
+import {pushData, clearData} from '../features/sourceData/sourceDataSlice';
 import * as rxjs from 'rxjs';
 import {mergeMap} from 'rxjs/operators';
 import {getServerTime, getSourceData} from './api';
@@ -63,6 +63,7 @@ const start = (newTrailer: TrailerData, dispatch: AppDispatch) => {
         let innerLoop = async () => {
             if (changedTarget) {
                 changedTarget = false;
+                dispatch(clearData());
                 console.log('changed target to %s', trailer);
                 from = until - (60 * 5);
             }
