@@ -33,12 +33,13 @@ const DownloadForm = () => {
 
             setReq(`/api/data/${id}/csv?from=${from}&until=${until}`);
 
-            window.open(req, '_blank')
+//            window.open(req, '_blank')
         }
     }
 
     return (
     <>
+        <code>{window.location.host + req}</code>
         <form onSubmit={handleSubmit}>
             <h3>Downloader</h3>
             <label>
@@ -72,7 +73,6 @@ const DownloadForm = () => {
 
             <input type="submit" />
         </form>
-        <code>{req}</code>
     </>
     );
 };
