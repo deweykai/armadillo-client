@@ -2,16 +2,9 @@ import {pushData, clearData} from '../features/sourceData/sourceDataSlice';
 import * as rxjs from 'rxjs';
 import {mergeMap} from 'rxjs/operators';
 import {getServerTime, getSourceData} from './api';
-import type {BikeData, SolarData, OvenData, DataPoint} from '../features/sourceData/sourceDataSlice';
+import type {DataPoint} from '../features/sourceData/sourceDataSlice';
 import type {AppDispatch} from '../App/store';
-
-interface TrailerData {
-    name: string,
-    location: string,
-    bikes: Array<number>,
-    ovens: Array<number>,
-    solars: Array<number>,
-};
+import type {TrailerData} from '../features/trailer/trailerSlice';
 
 const getDataIds = (trailer: TrailerData) => ([
     trailer.bikes.map((bike) => `bike/${bike}`),

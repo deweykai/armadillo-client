@@ -27,7 +27,7 @@ export const getTrailerList = async () => {
     return await myFetch<any>(`${apiEndPoint}/trailer`)
 };
 
-export const getTrailerData = async (id: string) => {
+export const getTrailerData = async (id: number) => {
     return await myFetch<any>(`${apiEndPoint}/trailer/${id}`);
 };
 

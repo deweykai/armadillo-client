@@ -1,5 +1,28 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {getTrailerData} from '../../common/api';
+import type {AppDispatch} from '../../App/store';
+
+interface TrailerData {
+    name: string,
+    location: string,
+    bikes: Array<number>,
+    ovens: Array<number>,
+    solars: Array<number>,
+};
+
+export type {TrailerData};
+
+enum Status {
+    Idle = 'idle',
+    Loading = 'loading',
+    Failed = 'failed',
+    Success = 'success',
+};
+
+interface TrailerState {
+    status: Status,
+    data: TrailerData,
+}
 
 const initialTrailerData = {
     name: "",
@@ -9,9 +32,8 @@ const initialTrailerData = {
     solars: [],
 };
 
-
 const initialState = {
-    status: 'idle',
+    status: Status.Idle,
     data: initialTrailerData
 };
 
@@ -19,29 +41,29 @@ export const trailerSlice = createSlice({
     name: 'trailer',
     initialState,
     reducers: {
-        addData: (state, action) => {
+        addData: (state: TrailerState, action) => {
             let data = action.payload.data;
             state.data = data;
         },
-        removeData: (state) => {
+        removeData: (state: TrailerState) => {
             state.data = initialTrailerData;
-            state.status = 'idle';
+            state.status = Status.Loading;
         },
-        loading: (state) => {
-            state.status = 'loading';
+        loading: (state: TrailerState) => {
+            state.status = Status.Loading;
         },
-        failed: (state) => {
-            state.status = 'failed';
+        failed: (state: TrailerState) => {
+            state.status = Status.Failed;
         },
-        success: (state) => {
-            state.status = 'success';
+        success: (state: TrailerState) => {
+            state.status = Status.Success;
         },
     },
 });
 
 export const {addData, removeData, loading, failed, success} = trailerSlice.actions;
 
-export const fetchTrailerData = (id) => async (dispatch, getState) => {
+export const fetchTrailerData = (id: number) => async (dispatch: AppDispatch, getState: any) => {
     const {status} = getState();
     if (status === 'loading') return;
 
