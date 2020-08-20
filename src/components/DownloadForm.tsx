@@ -18,6 +18,7 @@ const DownloadForm = () => {
     const [fromDateTime, handleFromDateTime] = useState<Date | null>(new Date());
     const [untilDateTime, handleUntilDateTime] = useState<Date | null>(new Date());
     const [id, setId] = useState<string>('');
+    const [req, setReq] = useState<string>('');
 
     const handleIdChange = (event: any)=> {
         setId(event.target.value);
@@ -30,11 +31,14 @@ const DownloadForm = () => {
             let until = Math.floor(untilDateTime.getTime()/1000);
             console.log(id, from, until);
 
-            window.open(`/api/data/${id}/csv?from=${from}&until=${until}`, '_blank')
+            setReq(`/api/data/${id}/csv?from=${from}&until=${until}`);
+
+            window.open(req, '_blank')
         }
     }
 
     return (
+    <>
         <form onSubmit={handleSubmit}>
             <h3>Downloader</h3>
             <label>
@@ -68,6 +72,8 @@ const DownloadForm = () => {
 
             <input type="submit" />
         </form>
+        <code>{req}</code>
+    </>
     );
 };
 
