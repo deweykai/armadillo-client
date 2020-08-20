@@ -23,7 +23,7 @@ const fetchData = (from: number, until: number) => (id: string) => new rxjs.Obse
     getSourceData(id, from, until)
         .then(res => {
             if (res.ok) {
-                subscriber.next([id, res.data]);
+                subscriber.next([id, <Array<DataPoint>>res.data]);
             } else {
                 console.error(res.statusText);
             }
@@ -58,7 +58,7 @@ const start = (newTrailer: TrailerData, dispatch: AppDispatch) => {
     if (interval !== null) return;
 
     let startLoop = async () => {
-        let until = (await getServerTime()).data;
+        let until = <number>((await getServerTime()).data);
         let from = until;
         let innerLoop = async () => {
             if (changedTarget) {
@@ -70,7 +70,7 @@ const start = (newTrailer: TrailerData, dispatch: AppDispatch) => {
             if (trailer !== null) {
                 downloadData(dispatch, from, until);
                 from = until;
-                until = (await getServerTime()).data;
+                until = <number>((await getServerTime()).data);
             }
         };
         innerLoop();
