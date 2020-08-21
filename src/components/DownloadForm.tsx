@@ -33,7 +33,7 @@ const DownloadForm = () => {
 
             setReq(`/api/data/${id}/csv?from=${from}&until=${until}`);
 
-//            window.open(req, '_blank')
+            window.open(req, '_blank')
         }
     }
 
