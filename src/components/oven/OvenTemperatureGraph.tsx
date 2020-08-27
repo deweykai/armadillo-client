@@ -6,11 +6,11 @@ import type {GraphData} from '../../common/graphData';
 const OvenTemperatureGraph = ({ovenId}: {ovenId: number}) => {
     const data = useOvenData(ovenId);
 
-    const [temp, setTemp] = useState<GraphData[]>([]);
+    const [temp, setTemp] = useState<GraphData[] | null>(null);
 
     useEffect(() => {
         if (data === null) {
-            setTemp([]);
+            setTemp(null);
         } else {
             setTemp(data.map((entry) => ({
                 x: entry.created_at,
@@ -19,12 +19,8 @@ const OvenTemperatureGraph = ({ovenId}: {ovenId: number}) => {
         }
     }, [data]);
 
-    if (data === null) {
-        return "No oven temperature data found";
-    }
-
     return (
-        <TemperatureGraph data={temp} title="Oven Temperature" />
+        <TemperatureGraph data={temp} title="Oven Temperature" missingMsg="No solar oven temperature data available" />
     );
 };
 
