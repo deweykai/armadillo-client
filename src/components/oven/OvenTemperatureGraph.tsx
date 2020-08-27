@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {useOvenData} from '../../features/ovenData/ovenData';
 import TemperatureGraph from '../TemperatureGraph';
-import type {GraphData} from '../PowerGraph';
+import type {GraphData} from '../../common/graphData';
 
 const OvenTemperatureGraph = ({ovenId}: {ovenId: number}) => {
     const data = useOvenData(ovenId);

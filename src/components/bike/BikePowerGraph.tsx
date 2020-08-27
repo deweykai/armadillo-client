@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import PowerGraph from '../PowerGraph';
 import {useBikeData} from '../../features/bikeData/bikeData';
 import type {BikeData} from '../../features/sourceData/sourceDataSlice';
-import type {GraphData} from '../PowerGraph';
+import type {GraphData} from '../../common/graphData';
 
 const mapBikeGraphData = (bike: BikeData) => ({
     x: bike.created_at, // time

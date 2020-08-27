@@ -16,13 +16,7 @@ import AutoSizer from 'react-virtualized-auto-sizer';
 import useStyles from '../App/styles';
 import PropTypes from 'prop-types';
 import { useTheme } from '@material-ui/core/styles';
-
-interface GraphData {
-    x: number,
-    y: number,
-};
-
-export type {GraphData};
+import type {GraphData} from '../common/graphData';
 
 const PowerGraph = ({data, title} : {data: GraphData[], title: string}) => {
     const classes = useStyles();
