@@ -14,7 +14,6 @@ import {
 } from 'react-vis';
 import AutoSizer from 'react-virtualized-auto-sizer';
 import useStyles from '../App/styles';
-import PropTypes from 'prop-types';
 import { useTheme } from '@material-ui/core/styles';
 import type {GraphData} from '../common/graphData';
 
@@ -77,10 +76,6 @@ const PowerGraph = ({data, title, missingMsg} : {data: GraphData[] | null, title
             {graph}
         </Paper>
     );
-};
-
-PowerGraph.propTypes = {
-    data: PropTypes.array,
 };
 
 export default PowerGraph;
