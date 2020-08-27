@@ -31,9 +31,10 @@ const DownloadForm = () => {
             let until = Math.floor(untilDateTime.getTime()/1000);
             console.log(id, from, until);
 
-            setReq(`/api/data/${id}/csv?from=${from}&until=${until}`);
+            let url = `/api/data/${id}/csv?from=${from}&until=${until}`;
 
-            window.open(req, '_blank')
+            window.open(url, '_blank');
+            setReq(url);
         }
     }
 

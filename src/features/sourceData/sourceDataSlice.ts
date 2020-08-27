@@ -121,25 +121,26 @@ export const {pushData, clearData} = sourceDataSlice.actions;
 // Returning a new [] instance causes
 const emptyArray: Array<DataPoint> = [];
 
-const sourceDataSelector = (type: DataType) => (id: number) => (state: any): Array<DataPoint> => {
-    return state.sourceData[type][id] || emptyArray; 
+const sourceDataSelector = <T>(type: DataType) => (id: number) => (state: any): Array<T> | null => {
+    return state.sourceData[type][id] || null; 
 };
 
-export const bikeDataSelector = sourceDataSelector(DataType.Bike);
-export const ovenDataSelector = sourceDataSelector(DataType.Oven);
-export const solarDataSelector = sourceDataSelector(DataType.Solar);
+export const bikeDataSelector = sourceDataSelector<BikeData>(DataType.Bike);
+export const ovenDataSelector = sourceDataSelector<OvenData>(DataType.Oven);
+export const solarDataSelector = sourceDataSelector<SolarData>(DataType.Solar);
 
-const sourceDataListSelector = (type: DataType) => (idList: Array<number>) => (state: any): Array<Array<DataPoint>> => {
+const sourceDataListSelector = <T>(type: DataType) => (idList: Array<number>) => (state: any): Array<Array<T>> | null => {
     let dataList = [];
     for (let i = 0; i < idList.length; i++) {
         dataList.push(state.sourceData[type][idList[i]] || emptyArray);
     }
 
+    if (dataList.length === 0) return null;
     return dataList;
 };
 
-export const bikeDataListSelector = sourceDataListSelector(DataType.Bike);
-export const ovenDataListSelector = sourceDataListSelector(DataType.Oven);
-export const solarDataListSelector = sourceDataListSelector(DataType.Solar);
+export const bikeDataListSelector = sourceDataListSelector<BikeData>(DataType.Bike);
+export const ovenDataListSelector = sourceDataListSelector<OvenData>(DataType.Oven);
+export const solarDataListSelector = sourceDataListSelector<SolarData>(DataType.Solar);
 
 export default sourceDataSlice.reducer;
