@@ -2,16 +2,12 @@ import React, {useEffect, useState} from 'react';
 import PowerGraph from '../PowerGraph';
 import {useBikeData} from '../../features/bikeData/bikeData';
 import type {BikeData} from '../../features/sourceData/sourceDataSlice';
+import type {GraphData} from '../PowerGraph';
 
 const mapBikeGraphData = (bike: BikeData) => ({
     x: bike.created_at, // time
     y: bike.current * bike.voltage, // power
 });
-
-interface GraphData {
-    x: number,
-    y: number,
-};
 
 const BikePowerGraph = ({bike_id} : {bike_id: number}) => {
     // assume that the data is valid since this component should only render when the data is present.

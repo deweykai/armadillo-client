@@ -4,26 +4,23 @@ import {useParams} from 'react-router-dom';
 import TrailerDescription from '../components/trailer/TrailerDescription';
 import { useTrailer } from '../features/trailer/trailer';
 import { useBikeListGraphData } from '../features/bikeData/bikeGraphData';
-import { useOvenTemperatureGraphData} from '../features/ovenData/ovenGraphData';
-import { useSolarPowerGraphData} from '../features/solarData/solarGraphData';
 import PowerGraph from '../components/PowerGraph';
-import TemperatureGraph from '../components/TemperatureGraph';
+import SolarPowerGraph from '../components/solar/SolarPowerGraph';
+import OvenTemperatureGraph from '../components/oven/OvenTemperatureGraph';
 
 const OvenData = ({ trailerId }) => {
     const trailer = useTrailer(trailerId);
     const ovenId = trailer.ovens[0];
-    const tempData = useOvenTemperatureGraphData(ovenId);
 
-    return (<TemperatureGraph data={tempData} title={"Oven Temperature"} />);
+    return (<OvenTemperatureGraph ovenId={ovenId} />);
 };
 
 const SolarData = ({ trailerId }) => {
     const trailer = useTrailer(trailerId);
     const solarId = trailer.solars[0];
-    const powerData = useSolarPowerGraphData(solarId);
 
     return (
-        <PowerGraph data={powerData} title={"Solar Power"} />
+        <SolarPowerGraph solarId={solarId} />
     );
 };
 

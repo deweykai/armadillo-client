@@ -17,22 +17,28 @@ import useStyles from '../App/styles';
 import PropTypes from 'prop-types';
 import { useTheme } from '@material-ui/core/styles';
 
+interface GraphData {
+    x: number,
+    y: number,
+};
 
-const PowerGraph = ({data, title}) => {
+export type {GraphData};
+
+const PowerGraph = ({data, title} : {data: GraphData[], title: string}) => {
     const classes = useStyles();
     const theme = useTheme();
 
-    const [value, setValue] = useState(false);
+    const [value, setValue] = useState<GraphData | null>(null);
 
-    const onNearestX = (value, info)=> {
+    const onNearestX = (value: GraphData)=> {
         setValue(value);
     };
 
     const onMouseLeave = () => {
-        setValue(false);
+        setValue(null);
     };
 
-    const getX = (d) => {
+    const getX = (d: GraphData) => {
         return d.x * 1000;
     };
 
