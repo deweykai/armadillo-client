@@ -6,11 +6,11 @@ import type {GraphData} from '../../common/graphData';
 
 const SolarPowerGraph = ({solarId} : {solarId: number}) => {
     const data: SolarData[] | null = useSolarData(solarId);
-    const [power, setPower] = useState<GraphData[]>([]);
+    const [power, setPower] = useState<GraphData[] | null>([]);
 
     useEffect(() => {
         if (data === null) {
-            setPower([]);
+            setPower(null);
         } else {
             setPower(data.map((entry) => ({
                 x: entry.created_at,
@@ -19,12 +19,8 @@ const SolarPowerGraph = ({solarId} : {solarId: number}) => {
         }
     }, [data]);
 
-    if (data === null) {
-        return "No recent solar data available";
-    }
-
     return (
-        <PowerGraph data={power} title={"Solar Data"} />
+        <PowerGraph data={power} title={"Solar Data"} missingMsg="No recent solar data available" />
     );
 }
 

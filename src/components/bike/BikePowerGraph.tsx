@@ -4,7 +4,7 @@ import {useBikeData} from '../../features/bikeData/bikeData';
 import type {BikeData} from '../../features/sourceData/sourceDataSlice';
 import type {GraphData} from '../../common/graphData';
 
-const mapBikeGraphData = (bike: BikeData) => ({
+export const mapBikeGraphData = (bike: BikeData) => ({
     x: bike.created_at, // time
     y: bike.current * bike.voltage, // power
 });
@@ -24,12 +24,8 @@ const BikePowerGraph = ({bike_id} : {bike_id: number}) => {
         }
     }, [bikeData]);
 
-    if (data === null) {
-        return "Bike Data Missing";
-    }
-
     return (
-        <PowerGraph data={data} title={"Bike Power"} />
+        <PowerGraph data={data} title={"Bike Power"} missingMsg="missing bike data" />
     );
 };
 

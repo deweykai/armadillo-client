@@ -1,7 +1,6 @@
-export const sumArrays = (data) => {
-    // expects a list of arrays
-    console.assert(data[0] !== undefined);
+import type {GraphData} from './graphData';
 
+export const sumArrays = (data: GraphData[][]) => {
     // use longest array
     let longestLength = -1;
     let longestIndex = -1;

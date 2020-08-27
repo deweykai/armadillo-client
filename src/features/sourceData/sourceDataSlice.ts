@@ -132,7 +132,10 @@ export const solarDataSelector = sourceDataSelector<SolarData>(DataType.Solar);
 const sourceDataListSelector = <T>(type: DataType) => (idList: Array<number>) => (state: any): Array<Array<T>> | null => {
     let dataList = [];
     for (let i = 0; i < idList.length; i++) {
-        dataList.push(state.sourceData[type][idList[i]] || emptyArray);
+        let data = state.sourceData[type][idList[i]];
+        if (data) {
+            dataList.push(data);
+        }
     }
 
     if (dataList.length === 0) return null;

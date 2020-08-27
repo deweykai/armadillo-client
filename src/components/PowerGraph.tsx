@@ -18,7 +18,7 @@ import PropTypes from 'prop-types';
 import { useTheme } from '@material-ui/core/styles';
 import type {GraphData} from '../common/graphData';
 
-const PowerGraph = ({data, title} : {data: GraphData[], title: string}) => {
+const PowerGraph = ({data, title, missingMsg} : {data: GraphData[] | null, title: string, missingMsg: string}) => {
     const classes = useStyles();
     const theme = useTheme();
 
@@ -36,9 +36,10 @@ const PowerGraph = ({data, title} : {data: GraphData[], title: string}) => {
         return d.x * 1000;
     };
 
-    return (
-        <Paper className={classes.graphPaper}>
-            <Typography variant="h5">{title}</Typography>
+    let graph;
+
+    if (data !== null) {
+        graph = (
             <AutoSizer disableHeight>
                 {({width}) => (
                     <XYPlot getX={getX} onMouseLeave={onMouseLeave} height={250} width={width} xType="time">
@@ -65,6 +66,15 @@ const PowerGraph = ({data, title} : {data: GraphData[], title: string}) => {
                     </XYPlot>
                 )}
             </AutoSizer>
+        );
+    } else {
+        graph = missingMsg;
+    }
+
+    return (
+        <Paper className={classes.graphPaper}>
+            <Typography variant="h5">{title}</Typography>
+            {graph}
         </Paper>
     );
 };

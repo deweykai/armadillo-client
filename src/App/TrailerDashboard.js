@@ -3,8 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import {useParams} from 'react-router-dom';
 import TrailerDescription from '../components/trailer/TrailerDescription';
 import { useTrailer } from '../features/trailer/trailer';
-import { useBikeListGraphData } from '../features/bikeData/bikeGraphData';
-import PowerGraph from '../components/PowerGraph';
+import BikeSumPowerGraph from '../components/bike/BikeSumPowerGraph';
 import SolarPowerGraph from '../components/solar/SolarPowerGraph';
 import OvenTemperatureGraph from '../components/oven/OvenTemperatureGraph';
 
@@ -27,10 +26,8 @@ const SolarData = ({ trailerId }) => {
 const AggregateBikeData = ({ trailerId }) => {
     const trailer = useTrailer(trailerId);
 
-    const bikeGraphData = useBikeListGraphData(trailer.bikes);
-
     return (
-        <PowerGraph data={bikeGraphData} title={"Bike Data"} />
+        <BikeSumPowerGraph bikeIdList={trailer.bikes} />
     );
 }
 
