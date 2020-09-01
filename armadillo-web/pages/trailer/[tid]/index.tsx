@@ -29,13 +29,13 @@ export default function Trailer() {
                 <div className="col-span-3">
                     <TrailerDescription trailer_id={tid} />
                 </div>
-                <div className="md:col-span-1 col-span-3">
+                <div className="lg:col-span-1 col-span-3">
                     <BikeSumPowerGraph bikeIdList={trailer!.bikes} />
                 </div>
-                <div className="md:col-span-1 col-span-3">
+                <div className="lg:col-span-1 col-span-3">
                     <SolarPowerGraph solarId={trailer!.solars[0]} />
                 </div>
-                <div className="md:col-span-1 col-span-3">
+                <div className="lg:col-span-1 col-span-3">
                     <OvenTemperatureGraph ovenId={trailer!.ovens[0]} />
                 </div>
             </div>

@@ -14,9 +14,7 @@ export default function Solar() {
     
     if (trailer === null) {
         error = <Error msg="Trailer not found" />
-    }
-
-    if (trailer?.solars.length == 0) {
+    } else if (trailer?.solars.length === 0) {
         error = <Error msg="Trailer has no solar data" />
     }
 

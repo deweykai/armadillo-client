@@ -13,6 +13,8 @@ export default function Bike() {
 
     if (trailer === null) {
         error = <Error msg="Trailer data not found" />
+    } else if (trailer?.bikes.length === 0) {
+        error = <Error msg="No bike data found" />
     }
 
     const name = trailer ? trailer.name : "error";

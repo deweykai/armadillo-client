@@ -13,6 +13,8 @@ export default function Oven() {
 
     if (trailer === null) {
         error = <Error msg="No trailer data found" />
+    } else if (trailer?.ovens.length === 0) {
+        error = <Error msg="No oven data found" />
     }
 
     const name = trailer ? trailer.name : "error";
