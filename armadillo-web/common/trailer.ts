@@ -15,7 +15,7 @@ interface TrailerData {
 export type {TrailerData};
 
 // will return null with error
-export const useTrailer = (tid: number) => {
+export const useTrailer = (tid: number): TrailerData | null => {
     const {data, error} = useSWR(`/api/trailer/${tid}`, fetcher);
 
     if (error) return null;
@@ -24,7 +24,13 @@ export const useTrailer = (tid: number) => {
     return data;
 };
 
-export const useTrailerList = (tid: number) => {
+interface TrailerListData {
+    id: number,
+    name: string,
+    location: string,
+}
+
+export const useTrailerList = (tid: number): Array<TrailerListData> | null => {
     const {data, error} = useSWR('/api/trailer', fetcher);
 
     if (error) return null;

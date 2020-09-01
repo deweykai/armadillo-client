@@ -1,5 +1,6 @@
 const exampleSolarData = [{
     power: 10,
+    created_at: 0,
 }]
 
 export default (req, res) => {

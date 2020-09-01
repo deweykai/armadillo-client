@@ -7,10 +7,7 @@ export default function Home() {
   const trailers = useTrailerList();
 
   return (
-    <Layout home>
-      <Head>
-        <title>Armadillo</title>
-      </Head>
+    <Layout home name="Armadillo">
       {trailers ? (
         <ul>
           {trailers.map(trailer => (

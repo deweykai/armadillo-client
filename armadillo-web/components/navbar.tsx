@@ -1,9 +1,7 @@
 import React from 'react';
 import HomeButton from './homeButton';
 
-const Navbar = () => {
-    const title = 'Armadillo';
-
+const Navbar = ({title}: {title:string}) => {
     return (
         <nav className="flex z-50 h-12 inset-x-0 absolute top-0 inset-x-0 items-center shadow justify-between bg-orange-400">
             <div className="p-4">

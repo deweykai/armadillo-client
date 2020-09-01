@@ -1,5 +1,6 @@
 const exampleOvenData = [{
-    temperature: 10
+    temperature: 10,
+    created_at: 0,
 }]
 
 export default (req, res) => {
