@@ -1,29 +1,16 @@
 import React from 'react';
-import AppBar from '@material-ui/core/AppBar';
-import Typography from '@material-ui/core/Typography';
-import Toolbar from '@material-ui/core/Toolbar';
-//import {useTrailer} from '../features/trailer/trailer';
-import useStyle from '../common/styles';
-import HomeButton from '../components/HomeButton';
+import HomeButton from './homeButton';
 
 const Navbar = () => {
-    const classes = useStyle();
-    //const trailer = useTrailer();
-    
-    //const title = trailer ? trailer.name : 'Armadillo';
     const title = 'Armadillo';
 
     return (
-        <nav>
-            <AppBar position="fixed" className={classes.appBar}>
-                <Toolbar>
-                    <HomeButton />
-                
-                    <Typography varient="h5" noWrap>
-                    {title}
-                    </Typography>
-                </Toolbar>
-            </AppBar>
+        <nav className="flex z-50 h-12 inset-x-0 absolute top-0 inset-x-0 items-center shadow justify-between bg-orange-400">
+            <div className="p-4">
+                <HomeButton />
+            </div>
+            <h3 className="p-4">{title}</h3>
+            <div />
         </nav>
     );
 };

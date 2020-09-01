@@ -17,22 +17,20 @@ export default function Trailer() {
     
     return (
         <Layout>
-            <Grid container spacing={3}>
-                <Grid item xs={12}>
+            <div className="grid grid-cols-3 p-3 gap-3">
+                <div className="col-span-3">
                     <TrailerDescription trailer_id={tid} />
-                </Grid>
-                <Grid container item spacing={1}>
-                    <Grid item sm={12} md={4} key={'bike'}>
-                        <BikeSumPowerGraph bikeIdList={trailer.bikes} />
-                    </Grid>
-                    <Grid item sm={12} md={4} key={'solar'}>
-                        <SolarPowerGraph solarId={trailer.solars[0]} />
-                    </Grid>
-                    <Grid item sm={12} md={4} key={'oven'}>
-                        <OvenTemperatureGraph ovenId={trailer.ovens[0]} />
-                    </Grid>
-                </Grid>
-            </Grid>
+                </div>
+                <div className="md:col-span-1 col-span-3">
+                    <BikeSumPowerGraph bikeIdList={trailer.bikes} />
+                </div>
+                <div className="md:col-span-1 col-span-3">
+                    <SolarPowerGraph solarId={trailer.solars[0]} />
+                </div>
+                <div className="md:col-span-1 col-span-3">
+                    <OvenTemperatureGraph ovenId={trailer.ovens[0]} />
+                </div>
+            </div>
         </Layout>
     );
 };
