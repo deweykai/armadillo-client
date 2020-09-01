@@ -3,7 +3,6 @@ import * as rxjs from 'rxjs';
 import {mergeMap} from 'rxjs/operators';
 import {getServerTime, getSourceData} from './api';
 import type {DataPoint} from '../features/sourceData/sourceDataSlice';
-import type {AppDispatch} from '../App/store';
 import type {TrailerData} from '../components/trailerSlice';
 
 const getDataIds = (trailer: TrailerData) => ([

@@ -1,14 +1,14 @@
 import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import useStyles from '../../App/styles';
+import useStyles from '../../common/styles';
 import {useTrailer} from '../../common/trailer';
 
-const TrailerDescription = () => {
+const TrailerDescription = (tid) => {
     const classes = useStyles();
-    let trailer = useTrailer();
+    const trailer = useTrailer(tid);
 
-    if (trailer === null) return 'No data';
+    if (trailer === null) return <div>No Data</div>;
 
     return (
         <Paper className={classes.graphPaper}>

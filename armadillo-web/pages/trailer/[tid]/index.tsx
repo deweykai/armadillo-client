@@ -6,37 +6,12 @@ import { useTrailer } from '../../../common/trailer';
 import BikeSumPowerGraph from '../../../components/bike/BikeSumPowerGraph';
 import SolarPowerGraph from '../../../components/solar/SolarPowerGraph';
 import OvenTemperatureGraph from '../../../components/oven/OvenTemperatureGraph';
-import { toUnicode } from 'punycode';
-
-const OvenData = () => {
-    const trailer = useTrailer();
-    const ovenId = trailer.ovens[0];
-
-    return (<OvenTemperatureGraph ovenId={ovenId} />);
-};
-
-const SolarData = () => {
-    const trailer = useTrailer();
-    const solarId = trailer.solars[0];
-
-    return (
-        <SolarPowerGraph solarId={solarId} />
-    );
-};
-
-const AggregateBikeData = () => {
-    const trailer = useTrailer();
-
-    return (
-        <BikeSumPowerGraph bikeIdList={trailer.bikes} />
-    );
-}
 
 export default function Trailer() {
     const router = useRouter();
-    const {tid} = router.query;
+    const tid = Number(router.query.tid);
 
-    const trailer = useTrailer();
+    const trailer = useTrailer(tid);
 
     if (trailer === null) return "No Data";
     
@@ -44,17 +19,17 @@ export default function Trailer() {
         <Layout>
             <Grid container spacing={3}>
                 <Grid item xs={12}>
-                    <TrailerDescription trailer_id={trailerId} />
+                    <TrailerDescription trailer_id={tid} />
                 </Grid>
                 <Grid container item spacing={1}>
                     <Grid item sm={12} md={4} key={'bike'}>
-                        <AggregateBikeData trailerId={trailerId} />
+                        <BikeSumPowerGraph bikeIdList={trailer.bikes} />
                     </Grid>
                     <Grid item sm={12} md={4} key={'solar'}>
-                        <SolarData trailerId={trailerId} />
+                        <SolarPowerGraph solarId={trailer.solars[0]} />
                     </Grid>
                     <Grid item sm={12} md={4} key={'oven'}>
-                        <OvenData trailerId={trailerId} />
+                        <OvenTemperatureGraph ovenId={trailer.ovens[0]} />
                     </Grid>
                 </Grid>
             </Grid>

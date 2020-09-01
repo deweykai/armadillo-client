@@ -19,7 +19,16 @@ export const useTrailer = (tid: number) => {
     const {data, error} = useSWR(`/api/trailer/${tid}`, fetcher);
 
     if (error) return null;
-    if (!data) return [];
+    if (!data) return null;
 
     return data;
 };
+
+export const useTrailerList = (tid: number) => {
+    const {data, error} = useSWR('/api/trailer', fetcher);
+
+    if (error) return null;
+    if (!data) return [];
+
+    return data;
+}

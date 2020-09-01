@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import Typography from '@material-ui/core/Typography';
-import {NavLink} from 'react-router-dom';
+import {Link} from 'next/link';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -27,8 +27,8 @@ const HomeButton = () => {
     const classes = useStyles();
     return (
         <div className={classes.root}>
-            <ButtonBase className={classes.homeButton} component={NavLink} to='/'>
-                <Typography variant="h5">World</Typography>
+            <ButtonBase className={classes.homeButton} component={Link} href='/'>
+                <a><Typography variant="h5">World</Typography></a>
             </ButtonBase>
         </div>
     );

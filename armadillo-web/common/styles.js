@@ -10,6 +10,7 @@ const useStyles = makeStyles((theme) => ({
         width: `100%`,
         marginLeft: drawerWidth,
         backgroundColor: theme.palette.primary.main,
+        zIndex: theme.zIndex.drawer + 1,
     },
     drawer: {
         width: drawerWidth,
@@ -26,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
     graphPaper: {
         padding: theme.spacing(2),
     },
-    toolbar: theme.mixins.toolbar,
+    offset: theme.mixins.toolbar,
     content: {
         flexGrow: 1,
         backgroundColor: theme.palette.background.default,

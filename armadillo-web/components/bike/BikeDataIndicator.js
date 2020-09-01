@@ -3,7 +3,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import {bikeDataSelector} from '../../features/sourceData/sourceDataSlice';
 import {useSelector} from 'react-redux';
-import useStyles from '../../App/styles';
+import useStyles from '../../common/styles';
 import PropTypes from 'prop-types';
 
 const BikeDataIndicator = ({bike_id}) => {

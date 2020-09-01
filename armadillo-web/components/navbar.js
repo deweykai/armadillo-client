@@ -3,8 +3,8 @@ import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
 import Toolbar from '@material-ui/core/Toolbar';
 //import {useTrailer} from '../features/trailer/trailer';
-import Link from 'next/link';
 import useStyle from '../common/styles';
+import HomeButton from '../components/HomeButton';
 
 const Navbar = () => {
     const classes = useStyle();
@@ -17,12 +17,14 @@ const Navbar = () => {
         <nav>
             <AppBar position="fixed" className={classes.appBar}>
                 <Toolbar>
+                    <HomeButton />
+                
                     <Typography varient="h5" noWrap>
                     {title}
                     </Typography>
                 </Toolbar>
             </AppBar>
-        </nav> 
+        </nav>
     );
 };
 
