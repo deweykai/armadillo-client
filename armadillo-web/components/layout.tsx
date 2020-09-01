@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from './navbar';
 
-export default function Layout({ children, home }: { children: any, home:boolean }) {
+export default function Layout({ children, home = false }: { children: any, home:Boolean}) {
     return (
         <div>
             <Navbar />

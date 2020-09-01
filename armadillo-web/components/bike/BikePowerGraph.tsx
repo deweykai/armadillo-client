@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import PowerGraph from '../PowerGraph';
-import {useBikeData} from '../../features/bikeData/bikeData';
+import {useBikeData} from '../../common/bikeData';
 import type {BikeData} from '../../features/sourceData/sourceDataSlice';
 import type {GraphData} from '../../common/graphData';
 

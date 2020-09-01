@@ -7,7 +7,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
     },
     appBar: {
-        width: `calc(100% - ${drawerWidth}px)`,
+        width: `100%`,
         marginLeft: drawerWidth,
         backgroundColor: theme.palette.primary.main,
     },

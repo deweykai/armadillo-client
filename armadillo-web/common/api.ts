@@ -2,6 +2,12 @@ import type {DataPoint} from '../features/sourceData/sourceDataSlice';
 
 const apiEndPoint = '/api';
 
+interface TrailerListData {
+    id: number,
+    name: string,
+    location: string,
+};
+
 interface Response<T> {
     data: T | null,
     ok: boolean,
@@ -24,7 +30,7 @@ const myFetch= async <T>(url: string): Promise<Response<T>> => {
 };
 
 export const getTrailerList = async () => {
-    return await myFetch<any>(`${apiEndPoint}/trailer`)
+    return await myFetch<Array<TrailerListData>(`${apiEndPoint}/trailer`)
 };
 
 export const getTrailerData = async (id: number) => {

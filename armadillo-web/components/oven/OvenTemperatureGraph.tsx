@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {useOvenData} from '../../features/ovenData/ovenData';
+import {useOvenData} from '../../common/ovenData';
 import TemperatureGraph from '../TemperatureGraph';
 import type {GraphData} from '../../common/graphData';
 

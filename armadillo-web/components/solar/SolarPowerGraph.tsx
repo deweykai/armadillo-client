@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import PowerGraph from '../PowerGraph';
-import {useSolarData} from '../../features/solarData/solarData';
+import {useSolarData} from '../../common/solarData';
 import type {SolarData} from '../../features/sourceData/sourceDataSlice';
 import type {GraphData} from '../../common/graphData';
 

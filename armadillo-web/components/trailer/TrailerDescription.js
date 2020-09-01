@@ -2,7 +2,7 @@ import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import useStyles from '../../App/styles';
-import {useTrailer} from '../../features/trailer/trailer';
+import {useTrailer} from '../../common/trailer';
 
 const TrailerDescription = () => {
     const classes = useStyles();
