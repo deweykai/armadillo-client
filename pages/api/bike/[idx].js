@@ -8,7 +8,7 @@ export default async (req, res) => {
     } = req;
 
     try {
-        const resp = await axios.get(`http://localhost:3001/data/bike/${idx}`);
+        const resp = await axios.get(`${process.env.BACKEND}/data/bike/${idx}`);
         res.json(resp.data);
     } catch (err) {
         res.status(err.response.status);

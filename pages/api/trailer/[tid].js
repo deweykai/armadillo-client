@@ -8,7 +8,7 @@ export default async (req, res) => {
     } = req;
 
     try {
-        const resp = await axios.get(`http://localhost:3001/trailer/${tid}`);
+        const resp = await axios.get(`${process.env.BACKEND}/trailer/${tid}`);
         res.json(resp.data);
     } catch (err) {
         res.status(err.response.status);

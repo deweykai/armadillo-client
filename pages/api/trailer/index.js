@@ -2,7 +2,7 @@ const axios = require('axios')
 
 export default async (req, res) => {
     try {
-        const resp = await axios.get('http://localhost:3001/trailer');
+        const resp = await axios.get(`${process.env.BACKEND}/trailer`);
         res.statusCode = 200
         res.json(resp.data);
     } catch (err) {

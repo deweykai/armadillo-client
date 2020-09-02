@@ -7,5 +7,5 @@ export default function(req, res) {
         },
     } = req;
 
-    res.redirect(`http://localhost:3001/data/${id}/csv?from=${from}&until=${until}`);
+    res.redirect(`${process.env.BACKEND}/data/${id}/csv?from=${from}&until=${until}`);
 }
