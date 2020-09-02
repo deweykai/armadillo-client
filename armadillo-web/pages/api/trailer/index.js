@@ -1,17 +1,13 @@
-const trailerList = [
-    {
-        id: 1,
-        name: "kai's house",
-        location: "Japan",
-    },
-    {
-        id: 2,
-        name: "moon base",
-        location: "moon",
-    },
-];
+const axios = require('axios')
 
-export default (req, res) => {
-    res.statusCode = 200
-    res.json(trailerList)
+export default async (req, res) => {
+    try {
+        const resp = await axios.get('http://localhost:3001/trailer');
+        res.statusCode = 200
+        res.json(resp.data);
+    } catch (err) {
+        console.log(err);
+        res.status(err.response.status);
+        res.end(err.response.data);
+    }
 }

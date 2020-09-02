@@ -15,10 +15,15 @@ import { useTheme } from '@material-ui/core/styles';
 import type {GraphData} from '../common/graphData';
 import Error from './error';
 
+type DisplayData = {
+    x: string,
+    y: number,
+}
+
 const Graph = ({data, missingMsg} : {data: GraphData[] | null, missingMsg: string}) => {
     const theme = useTheme();
 
-    const [value, setValue] = useState<GraphData | null>(null);
+    const [value, setValue] = useState<DisplayData | null>(null);
 
     const onNearestX = (value: GraphData)=> {
         setValue({

@@ -38,7 +38,7 @@ const DownloadForm = ({bikeIds=[], ovenIds=[], solarIds=[]}: {bikeIds?: number[]
 
             let url = `/api/csv?id=${id}&from=${from}&until=${until}`;
 
-            //window.open(url, '_blank');
+            window.open(url, '_blank');
             setReq(url);
         }
     }

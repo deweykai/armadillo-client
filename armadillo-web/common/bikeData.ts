@@ -14,7 +14,7 @@ const fetcher = (url: string) => {
     return fetch(url).then(res => res.json());
 };
 
-export const useBikeData = (bikeId: number) => {
+export const useBikeData = (bikeId: number): BikeData[] | null => {
     const {data, error} = useSWR(`/api/bike/${bikeId}`, fetcher, {refreshInterval: 1000});
 
     if (error) return null;
@@ -23,7 +23,7 @@ export const useBikeData = (bikeId: number) => {
     return data;
 };
 
-export const useBikeListData = (bikeIds: number[]) => {
+export const useBikeListData = (bikeIds: number[]): BikeData[][] | null => {
     const {data, error} = useSWR(`/api/trailer/1/bike`, fetcher, {refreshInterval: 1000});
 
     if (error) return null;

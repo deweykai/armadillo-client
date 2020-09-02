@@ -1,5 +1,3 @@
-import type {DataPoint} from '../features/sourceData/sourceDataSlice';
-
 const apiEndPoint = '/api';
 
 interface TrailerListData {
@@ -30,7 +28,7 @@ const myFetch= async <T>(url: string): Promise<Response<T>> => {
 };
 
 export const getTrailerList = async () => {
-    return await myFetch<Array<TrailerListData>(`${apiEndPoint}/trailer`)
+    return await myFetch<Array<TrailerListData>>(`${apiEndPoint}/trailer`)
 };
 
 export const getTrailerData = async (id: number) => {
@@ -39,9 +37,4 @@ export const getTrailerData = async (id: number) => {
 
 export const getServerTime = async () => {
     return await myFetch<number>(`${apiEndPoint}/time`);
-};
-
-export const getSourceData = async (id: string, from: number, until: number) => {
-    // id in the format of `bike/bike_id`
-    return await myFetch<Array<DataPoint>>(`${apiEndPoint}/data/${id}?from=${from}&until=${until}`);
 };

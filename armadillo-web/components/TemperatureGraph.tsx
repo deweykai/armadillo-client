@@ -2,9 +2,9 @@ import React from 'react';
 import Graph from './Graph';
 import type {GraphData} from '../common/graphData';
 
-const TemperatureGraph = ({ data, title, missingMsg }: { data: GraphData[] | null, title: string, missingMsg: string }) => {
+const TemperatureGraph = ({ data, missingMsg }: { data: GraphData[] | null, missingMsg: string }) => {
     return (
-        <Graph title={title} missingMsg={missingMsg} data={data} />
+        <Graph missingMsg={missingMsg} data={data} />
     );
 };
 
