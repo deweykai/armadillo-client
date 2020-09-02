@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { useTrailer } from '../../../common/trailer';
 import DownloadForm from '../../../components/DownloadForm';
 import Error from '../../../components/error';
+import GridItem from '../../../components/gridItem';
 
 export default function Solar() {
     const router = useRouter();
@@ -21,7 +22,11 @@ export default function Solar() {
     return (
         <Layout name={name}>
             {error ? error :
-                <DownloadForm />
+            <div className="m-3">
+                <GridItem title="Download">
+                    <DownloadForm bikeIds={trailer?.bikes} ovenIds={trailer?.ovens} solarIds={trailer?.solars}/>
+                </GridItem>
+            </div>
             }
         </Layout>
     );

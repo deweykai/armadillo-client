@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { useTrailer } from '../../../common/trailer';
 import SolarPowerGraph from '../../../components/solar/SolarPowerGraph';
 import Error from '../../../components/error';
+import GridItem from '../../../components/gridItem';
 
 export default function Solar() {
     const router = useRouter();
@@ -25,8 +26,13 @@ export default function Solar() {
     return (
         <Layout name={name}>
             {error ? error :
-            <div className="grid m-3">
-                <SolarPowerGraph solarId={trailer!.solars[0]} />
+            <div className="grid m-3 gap-3">
+                <GridItem title="Solar Microgrid">
+                    <p>ID: {trailer!.solars[0]}</p>
+                </GridItem>
+                <GridItem title="Power">
+                    <SolarPowerGraph solarId={trailer!.solars[0]} />
+                </GridItem>
             </div>
             }
         </Layout>
