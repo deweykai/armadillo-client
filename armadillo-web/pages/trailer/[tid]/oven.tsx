@@ -15,6 +15,8 @@ export default function Oven() {
         error = <Error msg="No trailer data found" />
     } else if (trailer?.ovens.length === 0) {
         error = <Error msg="No oven data found" />
+    } else if (isNaN(tid)) {
+        error = <Error msg="Invalid trailer id" />
     }
 
     const name = trailer ? trailer.name : "error";

@@ -1,11 +1,18 @@
-const exampleBikeData = [{
-    voltage: 10,
-    rpm: 10,
-    current: 10,
-    created_at: 0,
-}];
+const axios = require('axios')
 
-export default (req, res) => {
-    res.statusCode = 200
-    res.json(exampleBikeData)
+export default async (req, res) => {
+    const {
+        query: {
+            idx,
+        },
+    } = req;
+
+    try {
+        const resp = await axios.get(`http://localhost:3001/data/bike/${idx}`);
+        res.json(resp.data);
+    } catch (err) {
+        console.log(err);
+        res.status(err.response.status);
+        res.end(err.response.data);
+    }
 }

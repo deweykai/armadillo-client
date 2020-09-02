@@ -1,12 +1,18 @@
-const exampleTrailer = {
-    name: "Test",
-    location: "Test",
-    bikes: [1, 2, 3],
-    ovens: [1],
-    solars: [1],
-};
+const axios = require('axios')
 
-export default (req, res) => {
-    res.statusCode = 200
-    res.json(exampleTrailer)
+export default async (req, res) => {
+    const {
+        query: {
+            tid,
+        },
+    } = req;
+
+    try {
+        const resp = await axios.get(`http://localhost:3001/trailer/${tid}`);
+        res.json(resp.data);
+    } catch (err) {
+        console.log(err);
+        res.status(err.response.status);
+        res.end(err.response.data);
+    }
 }

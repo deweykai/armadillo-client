@@ -15,6 +15,8 @@ export default function Bike() {
         error = <Error msg="Trailer data not found" />
     } else if (trailer?.bikes.length === 0) {
         error = <Error msg="No bike data found" />
+    } else if (isNaN(tid)) {
+        error = <Error msg="Invalid trailer id" />
     }
 
     const name = trailer ? trailer.name : "error";

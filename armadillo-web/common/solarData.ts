@@ -13,7 +13,7 @@ interface SolarData {
 export type {SolarData};
 
 export const useSolarData = (solarId: number) => {
-    const {data, error} = useSWR(`/api/solar/${solarId}`, fetcher);
+    const {data, error} = useSWR(`/api/solar/${solarId}`, fetcher, {refreshInterval:1000});
 
     if (error) return null;
     if (!data) return [];

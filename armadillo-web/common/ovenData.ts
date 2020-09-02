@@ -13,7 +13,7 @@ const fetcher = (url: string) => {
 };
 
 export const useOvenData = (ovenId: number) => {
-    const {data, error} = useSWR(`/api/oven/${ovenId}`, fetcher);
+    const {data, error} = useSWR(`/api/oven/${ovenId}`, fetcher, {refreshInterval:1000});
 
     if (error) return null;
     if (!data) return [];

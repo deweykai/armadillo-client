@@ -21,7 +21,10 @@ const Graph = ({data, title, missingMsg} : {data: GraphData[] | null, title: str
     const [value, setValue] = useState<GraphData | null>(null);
 
     const onNearestX = (value: GraphData)=> {
-        setValue(value);
+        setValue({
+            y: value.y,
+            x: new Date(value.x * 1000).toLocaleTimeString(),
+        });
     };
 
     const onMouseLeave = () => {
@@ -37,7 +40,7 @@ const Graph = ({data, title, missingMsg} : {data: GraphData[] | null, title: str
     if (data !== null) {
         graph = (
             <AutoSizer disableHeight>
-                {({width}) => (
+                {({width}: {width: number}) => (
                     <XYPlot getX={getX} onMouseLeave={onMouseLeave} height={250} width={width} xType="time">
                         <XAxis />
                         <YAxis />

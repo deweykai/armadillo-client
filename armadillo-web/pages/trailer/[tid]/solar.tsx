@@ -16,6 +16,8 @@ export default function Solar() {
         error = <Error msg="Trailer not found" />
     } else if (trailer?.solars.length === 0) {
         error = <Error msg="Trailer has no solar data" />
+    } else if (isNaN(tid)) {
+        error = <Error msg="Invalid trailer id" />
     }
 
     const name = trailer ? trailer.name : "error";

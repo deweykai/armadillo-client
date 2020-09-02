@@ -17,6 +17,8 @@ export default function Trailer() {
 
     if (trailer === null) {
         error = <Error msg="No trailer data" />
+    } else if (isNaN(tid)) {
+        error = <Error msg="Invalid trailer id" />
     }
 
     const name = trailer ? trailer.name : "error";
