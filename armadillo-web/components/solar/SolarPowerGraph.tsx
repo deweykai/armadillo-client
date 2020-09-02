@@ -20,7 +20,7 @@ const SolarPowerGraph = ({solarId} : {solarId: number}) => {
     }, [data]);
 
     return (
-        <PowerGraph data={power} title={"Solar Data"} missingMsg="No recent solar data available" />
+        <PowerGraph data={power} missingMsg="No recent solar data available" />
     );
 }
 

@@ -23,8 +23,8 @@ export const useBikeData = (bikeId: number) => {
     return data;
 };
 
-export const useBikeListData = (tid: number) => {
-    const {data, error} = useSWR(`/api/trailer/${tid}/bike`, fetcher, {refreshInterval: 1000});
+export const useBikeListData = (bikeIds: number[]) => {
+    const {data, error} = useSWR(`/api/trailer/1/bike`, fetcher, {refreshInterval: 1000});
 
     if (error) return null;
     if (!data) return [[]];

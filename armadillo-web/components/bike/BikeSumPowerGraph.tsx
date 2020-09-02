@@ -22,7 +22,7 @@ const BikeSumPowerGraph = ({bikeIdList} : {bikeIdList: number[]}) => {
     }, [bikeDataList]);
 
     return (
-        <PowerGraph data={data} title={"Bike Power"} missingMsg="missing bike data" />
+        <PowerGraph data={data} missingMsg="missing bike data" />
     );
 };
 

@@ -20,7 +20,7 @@ const OvenTemperatureGraph = ({ovenId}: {ovenId: number}) => {
     }, [data]);
 
     return (
-        <TemperatureGraph data={temp} title="Oven Temperature" missingMsg="No solar oven temperature data available" />
+        <TemperatureGraph data={temp} missingMsg="No solar oven temperature data available" />
     );
 };
 

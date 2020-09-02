@@ -1,16 +1,11 @@
 import React from 'react';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import useStyles from '../common/styles';
 
-const GridItem = ({component, title}: {component: any, title: string}) => {
-    const classes = useStyles();
-
+const GridItem = ({children, title}: {children: any, title: string}) => {
     return (
-        <Paper className={classes.graphPaper}>
-            <Typography variant="h5">{title}</Typography>
-            {component}
-        </Paper>
+        <div className="p-3 rounded shadow">
+            <h4 className="text-lg">{title}</h4>
+            {children}
+        </div>
     );
 };
 

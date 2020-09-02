@@ -5,6 +5,7 @@ import { useTrailer } from '../../../common/trailer';
 import BikeSumPowerGraph from '../../../components/bike/BikeSumPowerGraph';
 import SolarPowerGraph from '../../../components/solar/SolarPowerGraph';
 import OvenTemperatureGraph from '../../../components/oven/OvenTemperatureGraph';
+import GridItem from '../../../components/gridItem';
 import Error from '../../../components/error';
 
 export default function Trailer() {
@@ -29,16 +30,24 @@ export default function Trailer() {
             :
             <div className="grid grid-cols-3 m-3 gap-3">
                 <div className="col-span-3">
-                    <TrailerDescription trailer_id={tid} />
+                    <GridItem title="Trailer">
+                        <TrailerDescription name={trailer!.name} location={trailer!.location} />
+                    </GridItem>
                 </div>
                 <div className="lg:col-span-1 col-span-3">
-                    <BikeSumPowerGraph bikeIdList={trailer!.bikes} />
+                    <GridItem title="Bike Power">
+                        <BikeSumPowerGraph bikeIdList={trailer!.bikes} />
+                    </GridItem>
                 </div>
                 <div className="lg:col-span-1 col-span-3">
-                    <SolarPowerGraph solarId={trailer!.solars[0]} />
+                    <GridItem title="Solar Power">
+                        <SolarPowerGraph solarId={trailer!.solars[0]} />
+                    </GridItem>
                 </div>
                 <div className="lg:col-span-1 col-span-3">
-                    <OvenTemperatureGraph ovenId={trailer!.ovens[0]} />
+                    <GridItem title="Oven temperature">
+                        <OvenTemperatureGraph ovenId={trailer!.ovens[0]} />
+                    </GridItem>
                 </div>
             </div>
             }

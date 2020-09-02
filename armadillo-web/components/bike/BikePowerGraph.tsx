@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import PowerGraph from '../PowerGraph';
 import {useBikeData} from '../../common/bikeData';
-import type {BikeData} from '../../features/sourceData/sourceDataSlice';
+import type {BikeData} from '../../common/bikeData';
 import type {GraphData} from '../../common/graphData';
 
 export const mapBikeGraphData = (bike: BikeData) => ({
@@ -25,7 +25,7 @@ const BikePowerGraph = ({bike_id} : {bike_id: number}) => {
     }, [bikeData]);
 
     return (
-        <PowerGraph data={data} title={"Bike Power"} missingMsg="missing bike data" />
+        <PowerGraph data={data} missingMsg="missing bike data" />
     );
 };
 

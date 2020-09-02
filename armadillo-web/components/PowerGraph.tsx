@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import Graph from './Graph';
 import type {GraphData} from '../common/graphData';
 
-const PowerGraph = ({data, title, missingMsg} : {data: GraphData[] | null, title: string, missingMsg: string}) => (
-    <Graph data={data} title={title} missingMsg={missingMsg} />
+const PowerGraph = ({data, missingMsg} : {data: GraphData[] | null, missingMsg: string}) => (
+    <Graph data={data} missingMsg={missingMsg} />
 );
 
 export default PowerGraph;

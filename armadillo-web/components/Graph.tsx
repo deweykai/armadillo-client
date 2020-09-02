@@ -13,9 +13,9 @@ import {
 import AutoSizer from 'react-virtualized-auto-sizer';
 import { useTheme } from '@material-ui/core/styles';
 import type {GraphData} from '../common/graphData';
-import GridItem from './GridItem';
+import Error from './error';
 
-const Graph = ({data, title, missingMsg} : {data: GraphData[] | null, title: string, missingMsg: string}) => {
+const Graph = ({data, missingMsg} : {data: GraphData[] | null, missingMsg: string}) => {
     const theme = useTheme();
 
     const [value, setValue] = useState<GraphData | null>(null);
@@ -67,11 +67,11 @@ const Graph = ({data, title, missingMsg} : {data: GraphData[] | null, title: str
             </AutoSizer>
         );
     } else {
-        graph = missingMsg;
+        graph = <Error msg={missingMsg} />;
     }
 
     return (
-        <GridItem title={title} component={graph} />
+        graph
     );
 };
 
