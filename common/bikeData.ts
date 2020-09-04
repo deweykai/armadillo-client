@@ -24,7 +24,7 @@ export const useBikeData = (bikeId: number): BikeData[] | null => {
 };
 
 export const useBikeListData = (bikeIds: number[]): BikeData[][] | null => {
-    const {data, error} = useSWR(`/api/trailer/1/bike`, fetcher, {refreshInterval: 1000});
+    const {data, error} = useSWR(`/api/bike?ids=${bikeIds.join()}`, fetcher, {refreshInterval: 1000});
 
     if (error) return null;
     if (!data) return [[]];
