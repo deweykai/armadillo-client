@@ -1,6 +1,6 @@
 import type {GraphData} from './graphData';
 
-export const sumArrays = (data: GraphData[][]) => {
+export const sumArrays = (data: GraphData[][]): GraphData[] => {
     // use dictionary for sum
 
     let sums: Record<number, number> = {}
@@ -15,7 +15,7 @@ export const sumArrays = (data: GraphData[][]) => {
     let sumList = [];
 
     for (let x in sums) {
-        sumList.push({x, y: sums[x]})
+        sumList.push({x: Number(x), y: sums[x]})
     }
 
     return sumList;
