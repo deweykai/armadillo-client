@@ -1,30 +1,22 @@
 import type {GraphData} from './graphData';
 
 export const sumArrays = (data: GraphData[][]) => {
-    // use longest array
-    let longestLength = -1;
-    let longestIndex = -1;
+    // use dictionary for sum
 
+    let sums: Record<number, number> = {}
     for (let i = 0; i < data.length; i++) {
-        if (data[i].length > longestLength) {
-            longestLength = data[i].length;
-            longestIndex = i;
+        for (let j = 0; j < data[i].length; j++) {
+            let entry = data[i][j];
+            sums[entry.x] = sums[entry.x] || 0;
+            sums[entry.x] += entry.y;
         }
     }
 
-    let sumArray = [];
-    for (let i = 0; i < longestLength; i++) {
-        let ySum = 0;
-        for (let j = 0; j < data.length; j++) {
-            if (data[j][i] === undefined) continue;
-            ySum += data[j][i].y || 0;
-        }
-        let sum = {
-            y: ySum,
-            x: data[longestIndex][i].x,
-        };
-        sumArray.push(sum);
+    let sumList = [];
+
+    for (let x in sums) {
+        sumList.push({x, y: sums[x]})
     }
 
-    return sumArray;
+    return sumList;
 };
